@@ -10,7 +10,12 @@ void Clock::setup() {
   fonts.push_back("keys.ttf");
   fonts.push_back("giovanni.ttf");
   
+  // Listeners
   fontSize.addListener(this, &Clock::updateFromGui);
+  daysField.addListener(this, &Clock::updateDays);
+  hoursField.addListener(this, &Clock::updateHours);
+  minutesField.addListener(this, &Clock::updateMinutes);
+  secondsField.addListener(this, &Clock::updateSeconds);
   
   createWords();
 }
@@ -34,6 +39,7 @@ void Clock::draw() {
     ofTranslate(xPosition, ofGetHeight()/2);
     currentX = 0;
     for (int i = 0; i < numWords; i++) {
+      ofSetColor(ofColor::black);
       drawWords(i);
     }
   ofPopMatrix();
@@ -134,4 +140,20 @@ void Clock::drawWords(int idx) {
 
 void Clock::updateFromGui(int & val) {
   createWords();
+}
+
+void Clock::updateDays(int & val) {
+  days = val;
+}
+
+void Clock::updateHours(int & val) {
+  hours = val;
+}
+
+void Clock::updateMinutes(int & val) {
+  minutes = val;
+}
+
+void Clock::updateSeconds(int & val) {
+  seconds = val;
 }

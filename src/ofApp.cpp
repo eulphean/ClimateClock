@@ -2,14 +2,15 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
-  ofBackground(0);
+  ofBackground(ofColor::red);
   
   // Setup clock
   myClock.setup();
   
   // Setup GUI.
   gui.setup();
-  gui.add(myClock.parameters);
+  gui.add(myClock.formatParams);
+  gui.add(myClock.clockParams);
   gui.loadFromFile("ClimateClock.xml");
   
   // Record first time.
