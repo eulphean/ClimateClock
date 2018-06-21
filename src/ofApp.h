@@ -9,14 +9,30 @@ class ofApp : public ofBaseApp{
 		void update();
 		void draw();
   
-    void keyPressed(int key);
+    void updateCarbonClock();
     
-    ofTrueTypeFont trueSeconds;
+    void keyPressed(int key);
+  
+    // Constants for the time. 
+    int years = 18;
+    ofTrueTypeFont trueYears;
+  
+    int days = 198;
+    ofTrueTypeFont trueDays;
+  
+    int hours = 1;
+    ofTrueTypeFont trueHours;
+  
+    int minutes = 53;
     ofTrueTypeFont trueMinutes;
+  
+    int seconds = 59;
+    ofTrueTypeFont trueSeconds;
+  
+    // Last recorded time. 
+    unsigned long int lastTimeMillis;
   
     // Cycle fonts.
     int curFontIdx = 0;
-    vector<string> fonts;
-  
-    int minutes; int seconds;
+    vector<string> fonts;  
 };
