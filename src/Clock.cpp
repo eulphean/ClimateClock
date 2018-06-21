@@ -10,12 +10,9 @@ void Clock::setup() {
   fonts.push_back("keys.ttf");
   fonts.push_back("giovanni.ttf");
   
-  // Update clock array with clock characters. 
-  for (int i = 0; i < numWords; i++) {
-    ofTrueTypeFont word;
-    word.load(fonts[0], fontSize);
-    clock.push_back(word);
-  }
+  fontSize.addListener(this, &Clock::updateFromGui);
+  
+  createWords();
 }
 
 void Clock::update() {
@@ -40,6 +37,32 @@ void Clock::draw() {
       drawWords(i);
     }
   ofPopMatrix();
+}
+
+void Clock::createWords() {
+  clock.clear();
+  
+  for (int i = 0; i < numWords; i++) {
+    ofTrueTypeFont word;
+    word.load(fonts[curFontIdx], fontSize);
+    clock.push_back(word);
+  }
+}
+
+void Clock::cycleFont(bool forward) {
+  if (forward) {
+    // Wrapp current font idx.
+    curFontIdx = (curFontIdx + 1) % fonts.size();
+    createWords();
+  } else {
+    // Wrap current font idx.
+    if ((curFontIdx - 1) < 0) {
+      curFontIdx = fonts.size() - 1;
+    } else {
+      curFontIdx--;
+    }
+    createWords();
+  }
 }
 
 void Clock::drawWords(int idx) {
@@ -107,4 +130,8 @@ void Clock::drawWords(int idx) {
       break;
     }
   }
+}
+
+void Clock::updateFromGui(int & val) {
+  createWords();
 }

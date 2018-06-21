@@ -9,6 +9,7 @@ class Clock {
     void setup();
     void update();
     void draw();
+    void cycleFont(bool forward);
   
     // GUI parameters.
     ofParameter<float> wordSpacing { "Word Spacing", 10.0, 5.0, 100.0 }; // Distance between 2 consecutive words.
@@ -21,6 +22,8 @@ class Clock {
   
   private:
     void drawWords(int idx);
+    void updateFromGui(int & val);
+    void createWords();
   
     // 18 years, 198 days, 1 hrs, 50 mins, 34 secs
     // 10 unique word.
