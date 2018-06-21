@@ -1,6 +1,9 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
+#include "Clock.h"
+
 
 class ofApp : public ofBaseApp{
 
@@ -8,31 +11,19 @@ class ofApp : public ofBaseApp{
 		void setup();
 		void update();
 		void draw();
-  
-    void updateCarbonClock();
     
     void keyPressed(int key);
   
-    // Constants for the time. 
-    int years = 18;
-    ofTrueTypeFont trueYears;
-  
-    int days = 198;
-    ofTrueTypeFont trueDays;
-  
-    int hours = 1;
-    ofTrueTypeFont trueHours;
-  
-    int minutes = 53;
-    ofTrueTypeFont trueMinutes;
-  
-    int seconds = 59;
-    ofTrueTypeFont trueSeconds;
+  private:
   
     // Last recorded time. 
     unsigned long int lastTimeMillis;
   
-    // Cycle fonts.
-    int curFontIdx = 0;
-    vector<string> fonts;  
+    // Clock
+    Clock myClock;
+  
+    ofxPanel gui;
+    // TODO: Add clock setting commands
+    // in the GUI. For now, just give
+    // formatting commands. 
 };
