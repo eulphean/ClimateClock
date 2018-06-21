@@ -25,8 +25,6 @@ class ofApp : public ofBaseApp{
     // Clock
     Clock myClock;
   
+    // Gui.
     ofxPanel gui;
-    // TODO: Add clock setting commands
-    // in the GUI. For now, just give
-    // formatting commands. 
 };

@@ -10,8 +10,8 @@
 		<Seconds>2</Seconds>
 	</Clock>
 	<Format>
-		<Word_Spacing>11</Word_Spacing>
-		<X_Position>32</X_Position>
-		<Font_Size>55</Font_Size>
+		<Word_Spacing>9.84694</Word_Spacing>
+		<X_Position>26.1224</X_Position>
+		<Font_Size>60</Font_Size>
 	</Format>
 </group>

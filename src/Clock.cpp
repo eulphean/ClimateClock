@@ -2,6 +2,11 @@
 
 void Clock::setup() {
   // Load various fonts.
+  fonts.push_back("messages.ttf");
+  fonts.push_back("philosopher.ttf");
+  fonts.push_back("absender.ttf");
+  fonts.push_back("monofur.ttf");
+  fonts.push_back("instruction.otf");
   fonts.push_back("betong.ttf");
   fonts.push_back("jmt.otf");
   fonts.push_back("perfect.otf");
@@ -136,6 +141,10 @@ void Clock::drawWords(int idx) {
       break;
     }
   }
+}
+
+string Clock::currentFont() {
+  return fonts[curFontIdx];
 }
 
 void Clock::updateFromGui(int & val) {

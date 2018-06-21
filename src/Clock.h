@@ -11,6 +11,7 @@ class Clock {
     void update();
     void draw();
     void cycleFont(bool forward);
+    string currentFont();
   
     // GUI parameters.
     ofParameter<float> wordSpacing { "Word Spacing", 10.0, 5.0, 100.0 }; // Distance between 2 consecutive words.
@@ -38,7 +39,7 @@ class Clock {
     void updateSeconds(int & val);
   
     // 18 years, 198 days, 1 hrs, 50 mins, 34 secs
-    // 10 unique word.
+    // 10 unique words.
     // 0 - years, 2 - days, 4 - hours, 6 - minutes, 8 - seconds
     const int numWords = 10;
     std::vector<ofTrueTypeFont> clock;
