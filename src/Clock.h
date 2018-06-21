@@ -35,7 +35,7 @@ class Clock {
     int years = 18; int days = 198; int hours = 1; int minutes = 53; int seconds = 59;
   
     // Cycle fonts.
-    int curFontIdx = 0;
+    int curFontIdx = 3;
     vector<string> fonts;
   
     int currentX;
