@@ -44,7 +44,7 @@ void Clock::draw() {
     ofTranslate(xPosition, ofGetHeight()/2);
     currentX = 0;
     for (int i = 0; i < numWords; i++) {
-      ofSetColor(ofColor::black);
+      ofSetColor(textColor);
       drawWords(i);
     }
   ofPopMatrix();

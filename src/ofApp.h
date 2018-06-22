@@ -27,4 +27,5 @@ class ofApp : public ofBaseApp{
   
     // Gui.
     ofxPanel gui;
+    ofxColorSlider backgroundColor;
 };

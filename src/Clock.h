@@ -17,6 +17,7 @@ class Clock {
     ofParameter<float> wordSpacing { "Word Spacing", 10.0, 5.0, 100.0 }; // Distance between 2 consecutive words.
     ofParameter<float> xPosition { "X Position", 50, -ofGetWidth(), ofGetWidth() };
     ofParameter<int> fontSize { "Font Size", 15, 5, 100 };
+    ofxColorSlider textColor;
   
     ofParameter<int> daysField { "Days", 195, 0, 198 };
     ofParameter<int> hoursField { "Hours", 1, 0, 23 };
