@@ -16,7 +16,7 @@ void ofApp::setup() {
 
   // Setup projection mask
   projectionMask.setup(HOMOGRAPHY);
-  clockFace = projectionMask.newPattern(1600, 1000);
+  clockFace = projectionMask.newPattern(1350, 70);
   
   // Record first time.
   lastTimeMillis = ofGetElapsedTimeMillis();

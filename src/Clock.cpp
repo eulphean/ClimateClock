@@ -41,7 +41,7 @@ void Clock::update() {
 void Clock::draw() {
   // Draw the clock.
   ofPushMatrix();
-    ofTranslate(xPosition, ofGetHeight()/2);
+    ofTranslate(xPosition, yPosition);
     currentX = 0;
     for (int i = 0; i < numWords; i++) {
       ofSetColor(textColor);

@@ -15,7 +15,8 @@ class Clock {
   
     // GUI parameters.
     ofParameter<float> wordSpacing { "Word Spacing", 10.0, 5.0, 100.0 }; // Distance between 2 consecutive words.
-    ofParameter<float> xPosition { "X Position", 50, -ofGetWidth(), ofGetWidth() };
+    ofParameter<float> xPosition { "X Position", 5, -ofGetWidth(), ofGetWidth() };
+    ofParameter<float> yPosition { "Y Position", 50, -ofGetHeight(), ofGetHeight() };
     ofParameter<int> fontSize { "Font Size", 15, 5, 100 };
     ofxColorSlider textColor;
   
