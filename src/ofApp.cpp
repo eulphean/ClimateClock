@@ -42,7 +42,7 @@ void ofApp::update() {
 void ofApp::draw() {
   clockFace->begin();
   {
-    ofBackground(255, 255, 255);
+    ofBackground(ofColor::white);
     myClock.draw();
   }
   clockFace->end();
