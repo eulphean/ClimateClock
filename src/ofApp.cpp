@@ -13,6 +13,10 @@ void ofApp::setup() {
   gui.add(myClock.textColor.setup("Text color", ofColor(0), ofColor(0), ofColor(255)));
   gui.add(backgroundColor.setup("Background color", ofColor(255, 0, 0), ofColor(0), ofColor(255)));
   gui.loadFromFile("ClimateClock.xml");
+
+  // Setup projection mask
+  projectionMask.setup(HOMOGRAPHY);
+  clockFace = projectionMask.newPattern(1600, 1000);
   
   // Record first time.
   lastTimeMillis = ofGetElapsedTimeMillis();
@@ -21,6 +25,7 @@ void ofApp::setup() {
 //--------------------------------------------------------------
 void ofApp::update() {
   ofBackground(backgroundColor);
+  projectionMask.update(mouseX, mouseY);
   
   // As this time increases, the carbon countdown time
   // decreases.
@@ -35,7 +40,12 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-  myClock.draw();
+  clockFace->begin();
+  {
+    ofBackground(255, 255, 255);
+    myClock.draw();
+  }
+  clockFace->end();
   
   if (!hideGui) {
     ofDrawBitmapStringHighlight("Press h to toggle GUI", 55, 30);

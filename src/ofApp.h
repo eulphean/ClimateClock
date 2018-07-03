@@ -3,7 +3,8 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "Clock.h"
-
+#include "ofxProjectionMask.h"
+#include "ofxLayerMask.h"
 
 class ofApp : public ofBaseApp{
 
@@ -28,4 +29,7 @@ class ofApp : public ofBaseApp{
     // Gui.
     ofxPanel gui;
     ofxColorSlider backgroundColor;
+
+    ofxProjectionMask projectionMask;
+    ofxLayerMask *clockFace;
 };
