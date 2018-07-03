@@ -1,6 +1,7 @@
 *.app
 bin/data/ProjectionMasks/development/saved-*
 bin/data/ProjectionMasks/production/saved-*
+.DS_Store
 
 #####=== Node ===#####
 
