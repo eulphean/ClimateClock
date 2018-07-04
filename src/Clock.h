@@ -21,14 +21,8 @@ class Clock {
     ofParameter<int> fontSize { "Font Size", 15, 5, 100 };
     ofxColorSlider textColor;
   
-    ofParameter<int> daysField { "Days", 195, 0, 198 };
-    ofParameter<int> hoursField { "Hours", 1, 0, 23 };
-    ofParameter<int> minutesField { "Minutes", 53, 0, 59 };
-    ofParameter<int> secondsField { "Seconds", 59, 0, 59 };
-  
     // GUI group.
     ofParameterGroup formatParams { "Format", wordSpacing, xPosition, yPosition, fontSize };
-    ofParameterGroup clockParams { "Clock", daysField, hoursField, minutesField, secondsField };
   
   private:
     void drawWords(int idx);

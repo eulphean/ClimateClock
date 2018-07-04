@@ -9,7 +9,6 @@ void ofApp::setup() {
   gui.setup();
   gui.setPosition(50, 65);
   gui.add(myClock.formatParams);
-  gui.add(myClock.clockParams);
   gui.add(myClock.textColor.setup("Text color", ofColor(0), ofColor(0), ofColor(255)));
   gui.add(backgroundColor.setup("Background color", ofColor(255, 0, 0), ofColor(0), ofColor(255)));
   gui.loadFromFile("ClimateClock.xml");
@@ -23,7 +22,6 @@ void ofApp::setup() {
 void ofApp::update() {
   ofBackground(backgroundColor);
   projectionMask.update(mouseX, mouseY);
-  
   myClock.update();
 }
 

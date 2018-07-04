@@ -9,7 +9,6 @@ void SecondApp::setup() {
   gui.setup();
   gui.setPosition(50, 65);
   gui.add(myClock.formatParams);
-  gui.add(myClock.clockParams);
   gui.add(myClock.textColor.setup("Text color", ofColor(0), ofColor(0), ofColor(255)));
   gui.add(backgroundColor.setup("Background color", ofColor(255, 0, 0), ofColor(0), ofColor(255)));
   gui.loadFromFile("ClimateClockSecond.xml");
@@ -20,7 +19,6 @@ void SecondApp::setup() {
 //--------------------------------------------------------------
 void SecondApp::update() {
   ofBackground(backgroundColor);
-  // A second has passed, update carbon countdown clock.
   myClock.update();
 }
 
