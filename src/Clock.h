@@ -33,6 +33,7 @@ class Clock {
   private:
     void drawWords(int idx);
     void createWords();
+    void createFutureTime();
   
     // GUI listeners
     void updateFromGui(int & val);
@@ -48,7 +49,7 @@ class Clock {
     std::vector<ofTrueTypeFont> clock;
   
     // Default clock time. 
-    int years = 18; int days = 195; int hours = 1; int minutes = 53; int seconds = 59;
+    int days; int hours; int minutes; int seconds; int milliseconds; 
   
     vector<string> fonts;
   
@@ -56,4 +57,9 @@ class Clock {
     int curFontIdx = 3;
   
     int currentX;
+  
+    // Future time.
+    time_t now;
+    struct tm futureTime;
+  
 };

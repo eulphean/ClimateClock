@@ -23,16 +23,8 @@ void SecondApp::setup() {
 //--------------------------------------------------------------
 void SecondApp::update() {
   ofBackground(backgroundColor);
-  
-  // As this time increases, the carbon countdown time
-  // decreases.
-  if (ofGetElapsedTimeMillis() - lastTimeMillis > 1000) {
-    // A second has passed, update carbon countdown clock.
-    myClock.update();
-    
-    // Reset time
-    lastTimeMillis = ofGetElapsedTimeMillis();
-  }
+  // A second has passed, update carbon countdown clock.
+  myClock.update();
 }
 
 //--------------------------------------------------------------

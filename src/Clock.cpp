@@ -17,25 +17,22 @@ void Clock::setup() {
   
   // Listeners
   fontSize.addListener(this, &Clock::updateFromGui);
-  daysField.addListener(this, &Clock::updateDays);
-  hoursField.addListener(this, &Clock::updateHours);
-  minutesField.addListener(this, &Clock::updateMinutes);
-  secondsField.addListener(this, &Clock::updateSeconds);
+  
+  createFutureTime();
   
   createWords();
 }
 
 void Clock::update() {
-  // Decrement seconds (60) -> minutes (60) -> hours (24) -> days (365) -> years based on current time.
-  seconds = seconds - 1;
-  minutes = (seconds < 0) ? minutes - 1 : minutes;
-  seconds = (seconds < 0) ? 59 : seconds;
-  hours = (minutes < 0) ? hours - 1: hours;
-  minutes = (minutes < 0) ? 59 : minutes;
-  days = (hours < 0) ? days - 1: days;
-  hours = (hours < 0) ? 23 : hours;
-  days = (days < 0) ? 364 : days; // Regular year - 365 days, Leap year - 366 days
-  years = (days < 0) ? years - 1: years;
+  // FutureTime - CurrentTime
+  time(&now);
+  long distance = difftime(mktime(&futureTime), now) * 1000; // Returned in millseconds
+  
+  // Formulaes to convert milliseconds to Days, Hours, Minutes, and Seconds.
+  days = floor(distance / (1000 * 60 * 60 * 24));
+  hours = floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  minutes = floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  seconds = floor(distance % (1000 * 60) / 1000);
 }
 
 void Clock::draw() {
@@ -50,9 +47,18 @@ void Clock::draw() {
   ofPopMatrix();
 }
 
+void Clock::createFutureTime() {
+  // January 5th, 2037, 12:00AM
+  futureTime.tm_year = 2037 - 1900; // Years after year (1900)
+  futureTime.tm_mon = 0;
+  futureTime.tm_mday = 5; // Day of the month
+  futureTime.tm_hour = 0; // Hours after midnight
+  futureTime.tm_min = 0; // Minutes after 0
+  futureTime.tm_sec = 0; // Seconds after 0
+}
+
 void Clock::createWords() {
   clock.clear();
-  
   for (int i = 0; i < numWords; i++) {
     ofTrueTypeFont word;
     word.load(fonts[curFontIdx], fontSize);
@@ -79,61 +85,61 @@ void Clock::cycleFont(bool forward) {
 void Clock::drawWords(int idx) {
   switch (idx) {
     case 0: {
-      clock[idx].drawString(ofToString(years), currentX, 0);
-      currentX = clock[idx].stringWidth(ofToString(years)) + wordSpacing;
-      break;
-    }
-    
-    case 1: {
-      clock[idx].drawString("years,", currentX, 0);
-      currentX += clock[idx].stringWidth("years,") + wordSpacing;
-      break;
-    }
-    
-    case 2: {
       clock[idx].drawString(ofToString(days), currentX, 0);
       currentX += clock[idx].stringWidth(ofToString(days)) + wordSpacing;
       break;
     }
     
-    case 3: {
-      clock[idx].drawString("days,", currentX, 0);
-      currentX += clock[idx].stringWidth("days,") + wordSpacing;
+    case 1: {
+      clock[idx].drawString("days:", currentX, 0);
+      currentX += clock[idx].stringWidth("days:") + wordSpacing;
       break;
     }
     
-    case 4: {
+    case 2: {
       clock[idx].drawString(ofToString(hours), currentX, 0);
       currentX += clock[idx].stringWidth(ofToString(hours)) + wordSpacing;
       break;
     }
     
-    case 5: {
-      clock[idx].drawString("hrs,", currentX, 0);
-      currentX += clock[idx].stringWidth("hrs,") + wordSpacing;
+    case 3: {
+      clock[idx].drawString("hrs:", currentX, 0);
+      currentX += clock[idx].stringWidth("hrs:") + wordSpacing;
       break;
     }
     
-    case 6: {
+    case 4: {
       clock[idx].drawString(ofToString(minutes), currentX, 0);
       currentX += clock[idx].stringWidth(ofToString(minutes)) + wordSpacing;
       break;
     }
     
-    case 7: {
-      clock[idx].drawString("mins,", currentX, 0);
-      currentX += clock[idx].stringWidth("mins,") + wordSpacing;
+    case 5: {
+      clock[idx].drawString("mins:", currentX, 0);
+      currentX += clock[idx].stringWidth("mins:") + wordSpacing;
       break;
     }
     
-    case 8: {
+    case 6: {
       clock[idx].drawString(ofToString(seconds), currentX, 0);
       currentX += clock[idx].stringWidth(ofToString(seconds)) + wordSpacing;
       break;
     }
     
+    case 7: {
+      clock[idx].drawString("secs:", currentX, 0);
+      currentX += clock[idx].stringWidth("secs:") + wordSpacing;
+      break;
+    }
+    
+    case 8: {
+      clock[idx].drawString(ofToString(milliseconds), currentX, 0);
+      currentX += clock[idx].stringWidth(ofToString(milliseconds)) + wordSpacing;
+      break;
+    }
+    
     case 9: {
-      clock[idx].drawString("secs", currentX, 0);
+      clock[idx].drawString("msecs", currentX, 0);
       break;
     }
     
@@ -149,22 +155,6 @@ string Clock::currentFont() {
 
 void Clock::updateFromGui(int & val) {
   createWords();
-}
-
-void Clock::updateDays(int & val) {
-  days = val;
-}
-
-void Clock::updateHours(int & val) {
-  hours = val;
-}
-
-void Clock::updateMinutes(int & val) {
-  minutes = val;
-}
-
-void Clock::updateSeconds(int & val) {
-  seconds = val;
 }
 
 void Clock::setCurrentFont(int idx) {
