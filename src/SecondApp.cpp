@@ -1,7 +1,7 @@
-#include "ofApp.h"
+#include "SecondApp.h"
 
 //--------------------------------------------------------------
-void ofApp::setup() {
+void SecondApp::setup() {
   // Setup clock
   myClock.setup();
   
@@ -12,20 +12,17 @@ void ofApp::setup() {
   gui.add(myClock.clockParams);
   gui.add(myClock.textColor.setup("Text color", ofColor(0), ofColor(0), ofColor(255)));
   gui.add(backgroundColor.setup("Background color", ofColor(255, 0, 0), ofColor(0), ofColor(255)));
-  gui.loadFromFile("ClimateClock.xml");
-
-  // Setup projection mask
-  projectionMask.setup(HOMOGRAPHY);
-  clockFace = projectionMask.newPattern(1350, 70);
+  gui.loadFromFile("ClimateClockSecond.xml");
   
   // Record first time.
   lastTimeMillis = ofGetElapsedTimeMillis();
+  
+  myClock.setCurrentFont(7);
 }
 
 //--------------------------------------------------------------
-void ofApp::update() {
+void SecondApp::update() {
   ofBackground(backgroundColor);
-  projectionMask.update(mouseX, mouseY);
   
   // As this time increases, the carbon countdown time
   // decreases.
@@ -39,26 +36,21 @@ void ofApp::update() {
 }
 
 //--------------------------------------------------------------
-void ofApp::draw() {
-  clockFace->begin();
-  {
-    ofBackground(ofColor::white);
-    myClock.draw();
-  }
-  clockFace->end();
+void SecondApp::draw() {
+  myClock.draw();
   
   if (!hideGui) {
     ofDrawBitmapStringHighlight("Press h to toggle GUI", 55, 30);
     ofDrawBitmapStringHighlight("Current font: " + myClock.currentFont() + " <-- Press left/right arraow keys to cycle the font.", 55, 55);
-    //gui.draw();
+    gui.draw();
   }
 }
 
-void ofApp::exit() {
-  gui.saveToFile("ClimateClock.xml");
+void SecondApp::exit() {
+  gui.saveToFile("ClimateClockSecond.xml");
 }
 
-void ofApp::keyPressed(int key) {
+void SecondApp::keyPressed(int key) {
   if (key == 'h') {
     hideGui = !hideGui;
   }

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<group>
+	<Format>
+		<Word_Spacing>5</Word_Spacing>
+		<X_Position>110.204</X_Position>
+		<Y_Position>397.959</Y_Position>
+		<Font_Size>50</Font_Size>
+	</Format>
+	<Clock>
+		<Days>140</Days>
+		<Hours>12</Hours>
+		<Minutes>23</Minutes>
+		<Seconds>24</Seconds>
+	</Clock>
+	<Text_color>0, 125, 172, 255</Text_color>
+	<Background_color>255, 247, 0, 255</Background_color>
+</group>

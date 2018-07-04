@@ -166,3 +166,7 @@ void Clock::updateMinutes(int & val) {
 void Clock::updateSeconds(int & val) {
   seconds = val;
 }
+
+ void Clock::setCurrentFont(int idx) {
+  curFontIdx = idx; 
+ }

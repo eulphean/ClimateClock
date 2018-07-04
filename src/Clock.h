@@ -12,6 +12,7 @@ class Clock {
     void draw();
     void cycleFont(bool forward);
     string currentFont();
+    void setCurrentFont(int idx);
   
     // GUI parameters.
     ofParameter<float> wordSpacing { "Word Spacing", 10.0, 5.0, 100.0 }; // Distance between 2 consecutive words.
@@ -26,7 +27,7 @@ class Clock {
     ofParameter<int> secondsField { "Seconds", 59, 0, 59 };
   
     // GUI group.
-    ofParameterGroup formatParams { "Format", wordSpacing, xPosition, fontSize };
+    ofParameterGroup formatParams { "Format", wordSpacing, xPosition, yPosition, fontSize };
     ofParameterGroup clockParams { "Clock", daysField, hoursField, minutesField, secondsField };
   
   private:
@@ -49,9 +50,10 @@ class Clock {
     // Default clock time. 
     int years = 18; int days = 195; int hours = 1; int minutes = 53; int seconds = 59;
   
+    vector<string> fonts;
+  
     // Cycle fonts.
     int curFontIdx = 3;
-    vector<string> fonts;
   
     int currentX;
 };

@@ -13,6 +13,7 @@
 		<Word_Spacing>5</Word_Spacing>
 		<X_Position>13.0613</X_Position>
 		<Font_Size>52</Font_Size>
+		<Y_Position>50</Y_Position>
 	</Format>
 	<Text_color>0, 0, 0, 255</Text_color>
 	<Background_color>255, 0, 0, 255</Background_color>
