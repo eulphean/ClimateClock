@@ -17,9 +17,6 @@ class SecondApp : public ofBaseApp{
   private:
     // flags
     bool hideGui = false;
-    
-    // Last recorded time. 
-    unsigned long int lastTimeMillis;
   
     // Clock
     Clock myClock;

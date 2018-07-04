@@ -14,9 +14,6 @@ void SecondApp::setup() {
   gui.add(backgroundColor.setup("Background color", ofColor(255, 0, 0), ofColor(0), ofColor(255)));
   gui.loadFromFile("ClimateClockSecond.xml");
   
-  // Record first time.
-  lastTimeMillis = ofGetElapsedTimeMillis();
-  
   myClock.setCurrentFont(7);
 }
 

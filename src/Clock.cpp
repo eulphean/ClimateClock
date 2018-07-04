@@ -25,14 +25,17 @@ void Clock::setup() {
 
 void Clock::update() {
   // FutureTime - CurrentTime
-  time(&now);
-  long distance = difftime(mktime(&futureTime), now) * 1000; // Returned in millseconds
+  auto futurePoint = std::chrono::system_clock::from_time_t(mktime(&futureTime));
+  auto currentPoint = std::chrono::system_clock::now();
+  auto millis = std::chrono::duration_cast<chrono::milliseconds>(futurePoint - currentPoint);
+  auto distance = millis.count();
   
-  // Formulaes to convert milliseconds to Days, Hours, Minutes, and Seconds.
+  // Formulaes to convert milliseconds to Days, Hours, Minutes, Seconds, and Milliseconds.
   days = floor(distance / (1000 * 60 * 60 * 24));
   hours = floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   minutes = floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   seconds = floor(distance % (1000 * 60) / 1000);
+  milliseconds = 1000 - distance % 1000;
 }
 
 void Clock::draw() {

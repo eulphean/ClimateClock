@@ -17,9 +17,6 @@ void ofApp::setup() {
   // Setup projection mask
   projectionMask.setup(HOMOGRAPHY);
   clockFace = projectionMask.newPattern(1350, 70);
-  
-  // Record first time.
-  lastTimeMillis = ofGetElapsedTimeMillis();
 }
 
 //--------------------------------------------------------------
@@ -27,15 +24,7 @@ void ofApp::update() {
   ofBackground(backgroundColor);
   projectionMask.update(mouseX, mouseY);
   
-  // As this time increases, the carbon countdown time
-  // decreases.
-  if (ofGetElapsedTimeMillis() - lastTimeMillis > 1000) {
-    // A second has passed, update carbon countdown clock.
-    myClock.update();
-    
-    // Reset time
-    lastTimeMillis = ofGetElapsedTimeMillis();
-  }
+  myClock.update();
 }
 
 //--------------------------------------------------------------

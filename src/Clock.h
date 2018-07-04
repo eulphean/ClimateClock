@@ -59,7 +59,5 @@ class Clock {
     int currentX;
   
     // Future time.
-    time_t now;
     struct tm futureTime;
-  
 };
