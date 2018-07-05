@@ -1,6 +1,6 @@
 <session>
     <type>auto</type>
-    <timestamp>2018-07-04-22-25-17-442</timestamp>
+    <timestamp>2018-07-05-18-05-47-736</timestamp>
     <designCanvas>
         <width>240</width>
         <height>180</height>
@@ -26,28 +26,28 @@
             <liveY>87</liveY>
             <maskPoints>
                 <maskPoint>
-                    <designX>2</designX>
-                    <designY>26</designY>
-                    <liveX>6</liveX>
-                    <liveY>60</liveY>
+                    <designX>95</designX>
+                    <designY>41</designY>
+                    <liveX>242</liveX>
+                    <liveY>94</liveY>
                 </maskPoint>
                 <maskPoint>
-                    <designX>189</designX>
-                    <designY>34</designY>
-                    <liveX>481</liveX>
-                    <liveY>78</liveY>
+                    <designX>153</designX>
+                    <designY>37</designY>
+                    <liveX>389</liveX>
+                    <liveY>85</liveY>
                 </maskPoint>
                 <maskPoint>
-                    <designX>188</designX>
-                    <designY>67</designY>
-                    <liveX>478</liveX>
-                    <liveY>153</liveY>
+                    <designX>152</designX>
+                    <designY>58</designY>
+                    <liveX>387</liveX>
+                    <liveY>133</liveY>
                 </maskPoint>
                 <maskPoint>
-                    <designX>4</designX>
-                    <designY>83</designY>
-                    <liveX>11</liveX>
-                    <liveY>190</liveY>
+                    <designX>96</designX>
+                    <designY>57</designY>
+                    <liveX>244</liveX>
+                    <liveY>130</liveY>
                 </maskPoint>
             </maskPoints>
         </maskFrame>

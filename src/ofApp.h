@@ -28,5 +28,6 @@ class ofApp : public ofBaseApp{
     ofxColorSlider backgroundColor;
 
     ofxProjectionMask projectionMask;
-    ofxLayerMask *clockFace;
+    ofxLayerMask *clockFace, *background;
+    ofImage backgroundImage;
 };

@@ -16,6 +16,14 @@ void ofApp::setup() {
   // Setup projection mask
   projectionMask.setup(HOMOGRAPHY);
   clockFace = projectionMask.newPattern(1350, 70);
+
+  backgroundImage.load("japan.jpg");
+  background = projectionMask.getBackground();
+  background->begin();
+  {
+    backgroundImage.draw(0, 0, background->getWidth(), background->getHeight());
+  }
+  background->end();
 }
 
 //--------------------------------------------------------------
