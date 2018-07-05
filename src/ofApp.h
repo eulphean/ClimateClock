@@ -8,22 +8,17 @@
 
 class ofApp : public ofBaseApp{
 
-	public:
-		void setup();
-		void update();
-		void draw();
+public:
+    void setup();
+    void update();
+    void draw();
     void exit();
-    
     void keyPressed(int key);
   
-  private:
-    // flags
+private:
     bool hideGui = false;
-  
-    // Clock
-    Clock myClock;
-  
-    // Gui.
+    Clock clock;
+
     ofxPanel gui;
     ofxColorSlider backgroundColor;
 
