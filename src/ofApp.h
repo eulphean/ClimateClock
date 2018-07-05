@@ -28,5 +28,7 @@ private:
     ofImage backgroundImage;
     map<string, ofImage> backgrounds;
     string backgroundsDir;
-    string currentCity;
+
+    vector<string> cities;
+    int currentCity;
 };

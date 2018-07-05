@@ -14,6 +14,7 @@ void ofApp::setup() {
     clockFace = projectionMask.newPattern(1350, 70);
 
     setupImages();
+    currentCity = 0;
     background = projectionMask.getBackground();
 }
 
@@ -24,9 +25,7 @@ void ofApp::setupImages(){
     vector<ofFile> contents = dir.getFiles();
 
     for(int i = 0; i < contents.size(); i++){
-        if(i == 0){
-            currentCity = contents.at(i).getBaseName();
-        }
+        cities.push_back(contents.at(i).getBaseName());
         backgroundImage.load(backgroundsDir + "/" + contents.at(i).getFileName());
         backgrounds[contents.at(i).getBaseName()] = backgroundImage;
     }
@@ -39,7 +38,7 @@ void ofApp::update() {
 
     background->begin();
     {
-        backgrounds[currentCity].draw(0, 0, background->getWidth(), background->getHeight());
+        backgrounds[cities.at(currentCity)].draw(0, 0, background->getWidth(), background->getHeight());
     }
     background->end();
 }
@@ -68,11 +67,27 @@ void ofApp::keyPressed(int key) {
         hideGui = !hideGui;
     }
 
-    if (key == OF_KEY_RIGHT) {
-        clock.cycleFont(true);
+    if (key == OF_KEY_UP) {
+        currentCity++;
+        if(currentCity >= cities.size()){
+            currentCity = 0;
+        }
+        projectionMask.setStorageFileName(cities.at(currentCity));
+    }
+
+    if (key == OF_KEY_DOWN) {
+        currentCity--;
+        if(currentCity < 0){
+            currentCity = cities.size() - 1;
+        }
+        projectionMask.setStorageFileName(cities.at(currentCity));
     }
 
     if (key == OF_KEY_LEFT) {
         clock.cycleFont(false);
+    }
+
+    if (key == OF_KEY_RIGHT) {
+        clock.cycleFont(true);
     }
 }
