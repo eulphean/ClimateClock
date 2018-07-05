@@ -24,11 +24,11 @@ void Clock::setup() {
 void Clock::update() {
   // Future time in a zone.
   auto future = date::make_zoned(locate_zone("Asia/Calcutta"), date::local_days{2037_y / date::jan / 5}, date::choose::earliest);
-  auto futureTime = future.get_sys_time();
+  auto futureTime = floor<chrono::milliseconds>(future.get_sys_time());
   
   // Current time in a zone.
   auto now = date::make_zoned(locate_zone("Asia/Calcutta"), chrono::system_clock::now());
-  auto nowTime = now.get_sys_time();
+  auto nowTime = floor<chrono::milliseconds>(now.get_sys_time());
 
   // Time difference.
   auto diff = chrono::duration_cast<chrono::milliseconds>(futureTime - nowTime);
