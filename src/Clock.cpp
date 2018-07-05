@@ -15,27 +15,44 @@ void Clock::setup() {
   fonts.push_back("keys.ttf");
   fonts.push_back("giovanni.ttf");
   
-  // Listeners
+  // Listeners for GUI.
   fontSize.addListener(this, &Clock::updateFromGui);
-  
-  createFutureTime();
-  
+
   createWords();
 }
 
 void Clock::update() {
-  // FutureTime - CurrentTime
-  auto futurePoint = std::chrono::system_clock::from_time_t(mktime(&futureTime));
-  auto currentPoint = std::chrono::system_clock::now();
-  auto millis = std::chrono::duration_cast<chrono::milliseconds>(futurePoint - currentPoint);
-  auto distance = millis.count();
+  // Future time in a zone.
+  auto future = date::make_zoned(locate_zone("Asia/Calcutta"), date::local_days{2037_y / date::jan / 5}, date::choose::earliest);
+  auto futureTime = future.get_sys_time();
   
-  // Formulaes to convert milliseconds to Days, Hours, Minutes, Seconds, and Milliseconds.
-  days = floor(distance / (1000 * 60 * 60 * 24));
-  hours = floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  minutes = floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  seconds = floor(distance % (1000 * 60) / 1000);
-  milliseconds = 1000 - distance % 1000;
+  // Current time in a zone.
+  auto now = date::make_zoned(locate_zone("Asia/Calcutta"), chrono::system_clock::now());
+  auto nowTime = now.get_sys_time();
+
+  // Time difference.
+  auto diff = chrono::duration_cast<chrono::milliseconds>(futureTime - nowTime);
+  auto distance = diff.count();
+
+  // Days
+  auto d = date::floor<date::days>(diff); //This might be negative if future is in the past
+  days = d.count();
+  
+  // Hours
+  auto hrs = date::floor<std::chrono::hours>(diff %= d);
+  hours = hrs.count();
+  
+  // Minutes
+  auto min = (date::floor<std::chrono::minutes>(diff -= hrs));
+  minutes = min.count();
+  
+  // Seconds
+  auto secs = (date::floor<std::chrono::seconds>(diff -= min));
+  seconds = secs.count();
+  
+  // Milliseconds
+  auto millis = diff - secs;
+  milliseconds = millis.count();
 }
 
 void Clock::draw() {
@@ -48,16 +65,6 @@ void Clock::draw() {
       drawWords(i);
     }
   ofPopMatrix();
-}
-
-void Clock::createFutureTime() {
-  // January 5th, 2037, 12:00AM
-  futureTime.tm_year = 2037 - 1900; // Years after year (1900)
-  futureTime.tm_mon = 0;
-  futureTime.tm_mday = 5; // Day of the month
-  futureTime.tm_hour = 0; // Hours after midnight
-  futureTime.tm_min = 0; // Minutes after 0
-  futureTime.tm_sec = 0; // Seconds after 0
 }
 
 void Clock::createWords() {

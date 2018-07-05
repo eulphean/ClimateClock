@@ -4,6 +4,9 @@
 #include "ofParameterGroup.h"
 #include "ofMain.h"
 #include "ofxGui.h"
+#include "tz.h"
+
+using namespace date;
 
 class Clock {
   public:
@@ -18,7 +21,7 @@ class Clock {
     ofParameter<float> wordSpacing { "Word Spacing", 10.0, 5.0, 100.0 }; // Distance between 2 consecutive words.
     ofParameter<float> xPosition { "X Position", 5, -ofGetWidth(), ofGetWidth() };
     ofParameter<float> yPosition { "Y Position", 50, -ofGetHeight(), ofGetHeight() };
-    ofParameter<int> fontSize { "Font Size", 15, 5, 100 };
+    ofParameter<int> fontSize { "Font Size", 15, 5, 500 };
     ofxColorSlider textColor;
   
     // GUI group.
@@ -27,7 +30,7 @@ class Clock {
   private:
     void drawWords(int idx);
     void createWords();
-    void createFutureTime();
+    //date::sys_time<chrono::milliseconds> createFutureTime(date::time_zone *zone);
   
     // GUI listeners
     void updateFromGui(int & val);
@@ -35,7 +38,7 @@ class Clock {
     void updateHours(int & val);
     void updateMinutes(int & val);
     void updateSeconds(int & val);
-  
+
     // 18 years, 198 days, 1 hrs, 50 mins, 34 secs
     // 10 unique words.
     // 0 - years, 2 - days, 4 - hours, 6 - minutes, 8 - seconds
@@ -51,7 +54,4 @@ class Clock {
     int curFontIdx = 3;
   
     int currentX;
-  
-    // Future time.
-    struct tm futureTime;
 };
