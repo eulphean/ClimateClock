@@ -10,6 +10,7 @@ class ofApp : public ofBaseApp{
 
 public:
     void setup();
+    void setupImages();
     void update();
     void draw();
     void exit();
@@ -25,4 +26,7 @@ private:
     ofxProjectionMask projectionMask;
     ofxLayerMask *clockFace, *background;
     ofImage backgroundImage;
+    map<string, ofImage> backgrounds;
+    string backgroundsDir;
+    string currentCity;
 };

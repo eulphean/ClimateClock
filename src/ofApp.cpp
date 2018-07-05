@@ -13,19 +13,35 @@ void ofApp::setup() {
     projectionMask.setup(HOMOGRAPHY);
     clockFace = projectionMask.newPattern(1350, 70);
 
-    backgroundImage.load("japan.jpg");
+    setupImages();
     background = projectionMask.getBackground();
-    background->begin();
-    {
-        backgroundImage.draw(0, 0, background->getWidth(), background->getHeight());
+}
+
+void ofApp::setupImages(){
+    backgroundsDir = "cities";
+    ofDirectory dir(backgroundsDir);
+    dir.listDir();
+    vector<ofFile> contents = dir.getFiles();
+
+    for(int i = 0; i < contents.size(); i++){
+        if(i == 0){
+            currentCity = contents.at(i).getBaseName();
+        }
+        backgroundImage.load(backgroundsDir + "/" + contents.at(i).getFileName());
+        backgrounds[contents.at(i).getBaseName()] = backgroundImage;
     }
-    background->end();
 }
 
 void ofApp::update() {
     ofBackground(backgroundColor);
     projectionMask.update(mouseX, mouseY);
     clock.update();
+
+    background->begin();
+    {
+        backgrounds[currentCity].draw(0, 0, background->getWidth(), background->getHeight());
+    }
+    background->end();
 }
 
 void ofApp::draw() {
