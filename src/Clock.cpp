@@ -82,67 +82,38 @@ void Clock::cycleFont(bool forward) {
 void Clock::drawTime(int idx) {
   switch (idx) {
     case 0: {
-      time[idx].drawString(ofToString(days), currentTimeX, 0);
-      ofPushMatrix();
-        ofTranslate(currentTimeX, yPositionTitle);
-        int lengthTime = time[idx].stringWidth(ofToString(days));
-        int lengthTitle = title[idx].stringWidth("Days");
-        int xPos = abs(lengthTime-lengthTitle)/2;
-        title[idx].drawString("Days", xPos, 0);
-      ofPopMatrix();
+      string daysToPrint = placeValueTime(days, PlaceValue::Thousand);
+      drawTimeTitle(idx, daysToPrint, "Days");
       currentTimeX += time[idx].stringWidth(ofToString(days)) + wordSpacing;
       break;
     }
     
     case 1: {
-      time[idx].drawString(ofToString(hours), currentTimeX, 0);
-      ofPushMatrix();
-        ofTranslate(currentTimeX, yPositionTitle);
-        int lengthTime = time[idx].stringWidth(ofToString(hours));
-        int lengthTitle = title[idx].stringWidth("Hrs");
-        int xPos = abs(lengthTime-lengthTitle)/2;
-        title[idx].drawString("Hrs", xPos, 0);
-      ofPopMatrix();
-      currentTimeX += time[idx].stringWidth(ofToString(hours)) + wordSpacing;
+      string hrsToPrint = placeValueTime(hours, PlaceValue::Ten);
+      drawTimeTitle(idx, hrsToPrint, "Hrs");
+      currentTimeX += time[idx].stringWidth(hrsToPrint) + wordSpacing;
       break;
     }
     
     case 2: {
-      time[idx].drawString(ofToString(minutes), currentTimeX, 0);
-      ofPushMatrix();
-        ofTranslate(currentTimeX, yPositionTitle);
-        int lengthTime = time[idx].stringWidth(ofToString(minutes));
-        int lengthTitle = title[idx].stringWidth("Mins");
-        int xPos = abs(lengthTime-lengthTitle)/2;
-        title[idx].drawString("Mins", xPos, 0);
-      ofPopMatrix();
-      currentTimeX += time[idx].stringWidth(ofToString(minutes)) + wordSpacing;
+      string minsToPrint = placeValueTime(minutes, PlaceValue::Ten); // Minutes should be till 10th place.
+      drawTimeTitle(idx, minsToPrint, "Mins");
+      currentTimeX += time[idx].stringWidth(minsToPrint) + wordSpacing;
       break;
     }
     
     case 3: {
-      time[idx].drawString(ofToString(seconds), currentTimeX, 0);
-      ofPushMatrix();
-        ofTranslate(currentTimeX, yPositionTitle);
-        int lengthTime = time[idx].stringWidth(ofToString(seconds));
-        int lengthTitle = title[idx].stringWidth("Secs");
-        int xPos = abs(lengthTime-lengthTitle)/2;
-        title[idx].drawString("Secs", xPos, 0);
-      ofPopMatrix();
-      currentTimeX += time[idx].stringWidth(ofToString(seconds)) + wordSpacing;
+      // Seconds (10th place precision)
+      string secsToPrint = placeValueTime(seconds, PlaceValue::Ten);
+      drawTimeTitle(idx, secsToPrint, "Secs");
+      currentTimeX += time[idx].stringWidth(secsToPrint) + wordSpacing;
       break;
     }
     
     case 4: {
-      time[idx].drawString(ofToString(milliseconds), currentTimeX, 0);
-      ofPushMatrix();
-        ofTranslate(currentTimeX, yPositionTitle);
-        int lengthTime = time[idx].stringWidth(ofToString(milliseconds));
-        int lengthTitle = title[idx].stringWidth("mSecs");
-        int xPos = abs(lengthTime-lengthTitle)/2;
-        title[idx].drawString("mSecs", xPos, 0);
-      ofPopMatrix();
-      currentTimeX += time[idx].stringWidth(ofToString(milliseconds)) + wordSpacing;
+      string millisToPrint = placeValueTime(milliseconds, PlaceValue::Hundred);
+      drawTimeTitle(idx, millisToPrint, "mSecs");
+      currentTimeX += time[idx].stringWidth(millisToPrint) + wordSpacing;
       break;
     }
     
@@ -150,6 +121,77 @@ void Clock::drawTime(int idx) {
       break;
     }
   }
+}
+
+void Clock::drawTimeTitle(int idx, string timeToPrint, string timeTitle) {
+  time[idx].drawString(timeToPrint, currentTimeX, 0);
+  ofPushMatrix();
+    ofTranslate(currentTimeX, yPositionTitle);
+    int lengthTime = time[idx].stringWidth(timeToPrint);
+    int lengthTitle = title[idx].stringWidth(timeTitle);
+    int xPos = abs(lengthTime-lengthTitle)/2;
+    title[idx].drawString(timeTitle, xPos, 0);
+  ofPopMatrix();
+}
+
+string Clock::placeValueTime(int time, PlaceValue place) {
+  string s;
+  switch (place) {
+    case Ten: {
+      s = ofToString(time);
+      float d = time/10;
+      if (d < 1.0) {
+        s = "0" + ofToString(time);
+      }
+      break;
+    }
+    
+    case Hundred: {
+      s = ofToString(time);
+      
+      // Check for Hundred.
+      float d = time/100;
+      if (d < 1.0) {
+        s = "0" + ofToString(time);
+      }
+      
+      // Check for Ten.
+      d = time/10;
+      if (d < 1.0) {
+        s = "00" + ofToString(time);
+      }
+      
+      break;
+    }
+    
+    case Thousand: {
+      s = ofToString(time);
+      
+      // Check for Thousand/
+      float d = time / 1000;
+      if (d < 1.0) {
+        s = "0" + ofToString(time);
+      }
+      
+      // Check for Hundred.
+      d = time/100;
+      if (d < 1.0) {
+        s = "00" + ofToString(time);
+      }
+      
+      d = time/10;
+      if (d < 1.0) {
+        s = "000" + ofToString(time);
+      }
+      
+      break;
+    }
+    
+    default:
+      break;
+  }
+  
+  return s;
 }
 
 void Clock::updateTime() {
@@ -165,7 +207,7 @@ void Clock::updateTime() {
   auto diff = chrono::duration_cast<chrono::milliseconds>(futureTime - nowTime);
   auto distance = diff.count();
 
-  // Days
+  // Days (should be maintained till 1000th, place value)
   auto d = date::floor<date::days>(diff); //This might be negative if future is in the past
   days = d.count();
   
@@ -177,7 +219,7 @@ void Clock::updateTime() {
   auto min = (date::floor<std::chrono::minutes>(diff -= hrs));
   minutes = min.count();
   
-  // Seconds
+  // Seconds (should be maintained till 10s, place value)
   auto secs = (date::floor<std::chrono::seconds>(diff -= min));
   seconds = secs.count();
   

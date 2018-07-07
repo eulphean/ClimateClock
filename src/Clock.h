@@ -8,6 +8,13 @@
 
 using namespace date;
 
+// Place
+enum PlaceValue {
+  Ten,
+  Hundred,
+  Thousand
+};
+
 class Clock {
   public:
     void setup();
@@ -31,6 +38,8 @@ class Clock {
   
   private:
     void drawTime(int idx);
+    void drawTimeTitle(int idx, string timeToPrint, string title);
+    string placeValueTime(int unit, PlaceValue place); // Create the time string based on its Units place.
     void createTimeWords();
     void createTitleWords();
     void updateTime();
