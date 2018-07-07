@@ -17,6 +17,8 @@ enum PlaceValue {
 
 class Clock {
   public:
+    Clock();
+    ~Clock();
     void setup();
     void update();
     void draw();
@@ -25,13 +27,13 @@ class Clock {
     void setCurrentFont(int idx);
   
     // GUI parameters.
-    ofParameter<float> wordSpacing { "Word Spacing", 10.0, 5.0, 100.0 }; // Distance between 2 consecutive words.
+    ofParameter<float> wordSpacing { "Word Spacing", 11.3, 5.0, 100.0 }; // Distance between 2 consecutive words.
     ofParameter<float> xPosition { "X Position", 5, 0, ofGetWidth() };
     ofParameter<float> yPositionTime { "Y Position (Time)", 50, 0, ofGetHeight() };
-    ofParameter<int> fontSizeTime { "Font Size Time", 15, 5, 500 };
-    ofParameter<int> fontSizeTitle { "Font Size Title", 15, 5, 500 };
-    ofParameter<int> yPositionTitle { "Y Position (Title)", 20, 20, ofGetHeight()/2 };
-    ofxColorSlider textColor;
+    ofParameter<int> fontSizeTime { "Font Size Time", 30, 5, 500 };
+    ofParameter<int> fontSizeTitle { "Font Size Title", 22, 5, 500 };
+    ofParameter<int> yPositionTitle { "Y Position (Title)", 23, 20, ofGetHeight()/2 };
+    //ofxColorSlider textColor;
   
     // GUI group.
     ofParameterGroup formatParams { "Format", wordSpacing, xPosition, yPositionTime, fontSizeTime, fontSizeTitle, yPositionTitle };

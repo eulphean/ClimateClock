@@ -1,5 +1,14 @@
 #include "Clock.h"
 
+Clock::Clock() {
+
+}
+
+Clock::~Clock() {
+
+}
+
+
 void Clock::setup() {
   // Load various fonts.
   fonts.push_back("messages.ttf");
@@ -34,7 +43,8 @@ void Clock::draw() {
     ofTranslate(xPosition, yPositionTime);
     currentX = 0;
     for (int i = 0; i < numWordsTime; i++) {
-      ofSetColor(textColor);
+      //ofSetColor(textColor);
+      ofSetColor(ofColor::white);
       drawTime(i);
     }
   ofPopMatrix();
