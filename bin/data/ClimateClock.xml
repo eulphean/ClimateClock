@@ -14,6 +14,10 @@
 		<X_Position>13.0613</X_Position>
 		<Font_Size>52</Font_Size>
 		<Y_Position>50</Y_Position>
+		<Y_Position__Time_>50</Y_Position__Time_>
+		<Font_Size_Time>15</Font_Size_Time>
+		<Font_Size_Title>15</Font_Size_Title>
+		<Y_Position__Title_>20</Y_Position__Title_>
 	</Format>
 	<Text_color>0, 0, 0, 255</Text_color>
 	<Background_color>255, 0, 0, 255</Background_color>

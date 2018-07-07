@@ -16,12 +16,143 @@ void Clock::setup() {
   fonts.push_back("giovanni.ttf");
   
   // Listeners for GUI.
-  fontSize.addListener(this, &Clock::updateFromGui);
+  fontSizeTime.addListener(this, &Clock::updateTimeFont);
+  fontSizeTitle.addListener(this, &Clock::updateTitleFont);
 
-  createWords();
+  // Create ofTrueTypeFont time and title words.
+  createTimeWords();
+  createTitleWords();
 }
 
 void Clock::update() {
+  updateTime();
+}
+
+void Clock::draw() {
+  // Draw Time characters (Line 1)
+  ofPushMatrix();
+    ofTranslate(xPosition, yPositionTime);
+    currentTimeX = 0;
+    for (int i = 0; i < numWordsTime; i++) {
+      ofSetColor(textColor);
+      drawTime(i);
+    }
+  ofPopMatrix();
+}
+
+void Clock::createTimeWords() {
+  // Create words for Time.
+  time.clear();
+  for (int i = 0; i < numWordsTime; i++) {
+    ofTrueTypeFont word;
+    word.load(fonts[curFontIdx], fontSizeTime);
+    time.push_back(word);
+  }
+}
+
+void Clock::createTitleWords() {
+  // Create words for Title.
+  title.clear();
+  for (int i = 0; i < numWordsTitle; i++) {
+    ofTrueTypeFont word;
+    word.load(fonts[curFontIdx], fontSizeTitle - 10); // Title should be smaller than Time's font size.
+    title.push_back(word);
+  }
+}
+
+
+void Clock::cycleFont(bool forward) {
+  if (forward) {
+    // Wrapp current font idx.
+    curFontIdx = (curFontIdx + 1) % fonts.size();
+    createTimeWords();
+    createTitleWords();
+  } else {
+    // Wrap current font idx.
+    if ((curFontIdx - 1) < 0) {
+      curFontIdx = fonts.size() - 1;
+    } else {
+      curFontIdx--;
+    }
+    createTimeWords();
+    createTitleWords();
+  }
+}
+
+void Clock::drawTime(int idx) {
+  switch (idx) {
+    case 0: {
+      time[idx].drawString(ofToString(days), currentTimeX, 0);
+      ofPushMatrix();
+        ofTranslate(currentTimeX, yPositionTitle);
+        int lengthTime = time[idx].stringWidth(ofToString(days));
+        int lengthTitle = title[idx].stringWidth("Days");
+        int xPos = abs(lengthTime-lengthTitle)/2;
+        title[idx].drawString("Days", xPos, 0);
+      ofPopMatrix();
+      currentTimeX += time[idx].stringWidth(ofToString(days)) + wordSpacing;
+      break;
+    }
+    
+    case 1: {
+      time[idx].drawString(ofToString(hours), currentTimeX, 0);
+      ofPushMatrix();
+        ofTranslate(currentTimeX, yPositionTitle);
+        int lengthTime = time[idx].stringWidth(ofToString(hours));
+        int lengthTitle = title[idx].stringWidth("Hrs");
+        int xPos = abs(lengthTime-lengthTitle)/2;
+        title[idx].drawString("Hrs", xPos, 0);
+      ofPopMatrix();
+      currentTimeX += time[idx].stringWidth(ofToString(hours)) + wordSpacing;
+      break;
+    }
+    
+    case 2: {
+      time[idx].drawString(ofToString(minutes), currentTimeX, 0);
+      ofPushMatrix();
+        ofTranslate(currentTimeX, yPositionTitle);
+        int lengthTime = time[idx].stringWidth(ofToString(minutes));
+        int lengthTitle = title[idx].stringWidth("Mins");
+        int xPos = abs(lengthTime-lengthTitle)/2;
+        title[idx].drawString("Mins", xPos, 0);
+      ofPopMatrix();
+      currentTimeX += time[idx].stringWidth(ofToString(minutes)) + wordSpacing;
+      break;
+    }
+    
+    case 3: {
+      time[idx].drawString(ofToString(seconds), currentTimeX, 0);
+      ofPushMatrix();
+        ofTranslate(currentTimeX, yPositionTitle);
+        int lengthTime = time[idx].stringWidth(ofToString(seconds));
+        int lengthTitle = title[idx].stringWidth("Secs");
+        int xPos = abs(lengthTime-lengthTitle)/2;
+        title[idx].drawString("Secs", xPos, 0);
+      ofPopMatrix();
+      currentTimeX += time[idx].stringWidth(ofToString(seconds)) + wordSpacing;
+      break;
+    }
+    
+    case 4: {
+      time[idx].drawString(ofToString(milliseconds), currentTimeX, 0);
+      ofPushMatrix();
+        ofTranslate(currentTimeX, yPositionTitle);
+        int lengthTime = time[idx].stringWidth(ofToString(milliseconds));
+        int lengthTitle = title[idx].stringWidth("mSecs");
+        int xPos = abs(lengthTime-lengthTitle)/2;
+        title[idx].drawString("mSecs", xPos, 0);
+      ofPopMatrix();
+      currentTimeX += time[idx].stringWidth(ofToString(milliseconds)) + wordSpacing;
+      break;
+    }
+    
+    default: {
+      break;
+    }
+  }
+}
+
+void Clock::updateTime() {
   // Future time in a zone.
   auto future = date::make_zoned(locate_zone("Asia/Calcutta"), date::local_days{2037_y / date::jan / 5}, date::choose::earliest);
   auto futureTime = floor<chrono::milliseconds>(future.get_sys_time());
@@ -55,117 +186,18 @@ void Clock::update() {
   milliseconds = millis.count();
 }
 
-void Clock::draw() {
-  // Draw the clock.
-  ofPushMatrix();
-    ofTranslate(xPosition, yPosition);
-    currentX = 0;
-    for (int i = 0; i < numWords; i++) {
-      ofSetColor(textColor);
-      drawWords(i);
-    }
-  ofPopMatrix();
-}
-
-void Clock::createWords() {
-  clock.clear();
-  for (int i = 0; i < numWords; i++) {
-    ofTrueTypeFont word;
-    word.load(fonts[curFontIdx], fontSize);
-    clock.push_back(word);
-  }
-}
-
-void Clock::cycleFont(bool forward) {
-  if (forward) {
-    // Wrapp current font idx.
-    curFontIdx = (curFontIdx + 1) % fonts.size();
-    createWords();
-  } else {
-    // Wrap current font idx.
-    if ((curFontIdx - 1) < 0) {
-      curFontIdx = fonts.size() - 1;
-    } else {
-      curFontIdx--;
-    }
-    createWords();
-  }
-}
-
-void Clock::drawWords(int idx) {
-  switch (idx) {
-    case 0: {
-      clock[idx].drawString(ofToString(days), currentX, 0);
-      currentX += clock[idx].stringWidth(ofToString(days)) + wordSpacing;
-      break;
-    }
-    
-    case 1: {
-      clock[idx].drawString("days:", currentX, 0);
-      currentX += clock[idx].stringWidth("days:") + wordSpacing;
-      break;
-    }
-    
-    case 2: {
-      clock[idx].drawString(ofToString(hours), currentX, 0);
-      currentX += clock[idx].stringWidth(ofToString(hours)) + wordSpacing;
-      break;
-    }
-    
-    case 3: {
-      clock[idx].drawString("hrs:", currentX, 0);
-      currentX += clock[idx].stringWidth("hrs:") + wordSpacing;
-      break;
-    }
-    
-    case 4: {
-      clock[idx].drawString(ofToString(minutes), currentX, 0);
-      currentX += clock[idx].stringWidth(ofToString(minutes)) + wordSpacing;
-      break;
-    }
-    
-    case 5: {
-      clock[idx].drawString("mins:", currentX, 0);
-      currentX += clock[idx].stringWidth("mins:") + wordSpacing;
-      break;
-    }
-    
-    case 6: {
-      clock[idx].drawString(ofToString(seconds), currentX, 0);
-      currentX += clock[idx].stringWidth(ofToString(seconds)) + wordSpacing;
-      break;
-    }
-    
-    case 7: {
-      clock[idx].drawString("secs:", currentX, 0);
-      currentX += clock[idx].stringWidth("secs:") + wordSpacing;
-      break;
-    }
-    
-    case 8: {
-      clock[idx].drawString(ofToString(milliseconds), currentX, 0);
-      currentX += clock[idx].stringWidth(ofToString(milliseconds)) + wordSpacing;
-      break;
-    }
-    
-    case 9: {
-      clock[idx].drawString("msecs", currentX, 0);
-      break;
-    }
-    
-    default: {
-      break;
-    }
-  }
-}
-
 string Clock::currentFont() {
   return fonts[curFontIdx];
 }
 
-void Clock::updateFromGui(int & val) {
-  createWords();
+void Clock::updateTimeFont(int & val) {
+  createTimeWords();
 }
+
+void Clock::updateTitleFont(int & val) {
+  createTitleWords();
+}
+
 
 void Clock::setCurrentFont(int idx) {
   curFontIdx = idx; 

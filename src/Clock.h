@@ -4,7 +4,7 @@
 #include "ofParameterGroup.h"
 #include "ofMain.h"
 #include "ofxGui.h"
-#include "tz.h"
+#include "Date/tz.h"
 
 using namespace date;
 
@@ -20,38 +20,39 @@ class Clock {
     // GUI parameters.
     ofParameter<float> wordSpacing { "Word Spacing", 10.0, 5.0, 100.0 }; // Distance between 2 consecutive words.
     ofParameter<float> xPosition { "X Position", 5, -ofGetWidth(), ofGetWidth() };
-    ofParameter<float> yPosition { "Y Position", 50, -ofGetHeight(), ofGetHeight() };
-    ofParameter<int> fontSize { "Font Size", 15, 5, 500 };
+    ofParameter<float> yPositionTime { "Y Position (Time)", 50, -ofGetHeight(), ofGetHeight() };
+    ofParameter<int> fontSizeTime { "Font Size Time", 15, 5, 500 };
+    ofParameter<int> fontSizeTitle { "Font Size Title", 15, 5, 500 };
+    ofParameter<int> yPositionTitle { "Y Position (Title)", 20, 20, ofGetHeight()/2 };
     ofxColorSlider textColor;
   
     // GUI group.
-    ofParameterGroup formatParams { "Format", wordSpacing, xPosition, yPosition, fontSize };
+    ofParameterGroup formatParams { "Format", wordSpacing, xPosition, yPositionTime, fontSizeTime, fontSizeTitle, yPositionTitle };
   
   private:
-    void drawWords(int idx);
-    void createWords();
-    //date::sys_time<chrono::milliseconds> createFutureTime(date::time_zone *zone);
+    void drawTime(int idx);
+    void createTimeWords();
+    void createTitleWords();
+    void updateTime();
   
     // GUI listeners
-    void updateFromGui(int & val);
-    void updateDays(int & val);
-    void updateHours(int & val);
-    void updateMinutes(int & val);
-    void updateSeconds(int & val);
+    void updateTimeFont(int & val);
+    void updateTitleFont(int & val);
 
-    // 18 years, 198 days, 1 hrs, 50 mins, 34 secs
-    // 10 unique words.
-    // 0 - years, 2 - days, 4 - hours, 6 - minutes, 8 - seconds
-    const int numWords = 10;
-    std::vector<ofTrueTypeFont> clock;
+    // 6756  15   11   11   221 <- Line 1 (5 words)
+    // Days  Hrs Mins Secs mSecs <- Line 2 (5 words)
   
-    // Default clock time. 
+    const int numWordsTime = 5; // Line 1
+    std::vector<ofTrueTypeFont> time;
+    int currentTimeX;
+  
+    const int numWordsTitle = 5; // Line 2
+    std::vector<ofTrueTypeFont> title;
+  
+    // Clock parameters
     int days; int hours; int minutes; int seconds; int milliseconds; 
-  
-    vector<string> fonts;
   
     // Cycle fonts.
     int curFontIdx = 3;
-  
-    int currentX;
+    vector<string> fonts;
 };
