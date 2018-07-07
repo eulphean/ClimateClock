@@ -1,30 +1,23 @@
 #include "Clock.h"
 
-void Clock::setup() {
-  // Load various fonts.
-  fonts.push_back("messages.ttf");
-  fonts.push_back("philosopher.ttf");
-  fonts.push_back("absender.ttf");
-  fonts.push_back("monofur.ttf");
-  fonts.push_back("instruction.otf");
-  fonts.push_back("betong.ttf");
-  fonts.push_back("jmt.otf");
-  fonts.push_back("perfect.otf");
-  fonts.push_back("chengis.otf");
-  fonts.push_back("schaeffer.ttf");
-  fonts.push_back("keys.ttf");
-  fonts.push_back("giovanni.ttf");
-  
-  // Listeners for GUI.
-  fontSizeTime.addListener(this, &Clock::updateTimeFont);
-  fontSizeTitle.addListener(this, &Clock::updateTitleFont);
+void Clock::setup(string fileName) {
+  if (fileName != " ") {
+    // Load XML file.
+    settings.loadFile("Clocks/" + fileName);
+    fontSizeTime = settings.getValue("settings:fontSizeTime", 10.0);
+    fontSizeTitle = settings.getValue("settings:fontSizeTitle", 10.0);
+    font = settings.getValue("settings:font", "instruction.otf");
+    timeZone = settings.getValue("settings:timeZone", "America/Chicago");
+   
+    // Construct color from XML.
+    string color = settings.getValue("settings:fontColor", "255,255,255,255");
+    auto c = ofSplitString(color, ",");
+    fontColor = ofColor(ofToInt(c[0]), ofToInt(c[1]), ofToInt(c[2]), ofToInt(c[3]));
+  }
 
   // Create ofTrueTypeFont time and title words.
   createTimeWords();
   createTitleWords();
-  
-  // Default text color
-  textColor = ofColor::black;
 }
 
 void Clock::update() {
@@ -34,10 +27,9 @@ void Clock::update() {
 void Clock::drawClock() {
   // Draw Time characters (Line 1)
   ofPushMatrix();
-    ofTranslate(xPosition, yPositionTime);
+    ofTranslate(xPosition, yPosition);
     currentX = 0;
     for (int i = 0; i < numWordsTime; i++) {
-      ofSetColor(textColor);
       switch (i) {
         case 0: {
           string yearsToPrint = placeValueTime(years, PlaceValue::Ten);
@@ -83,6 +75,7 @@ void Clock::drawClock() {
 }
 
 void Clock::drawTimeTitle(int idx, string timeToPrint, string timeTitle) {
+  ofSetColor(fontColor);
   time[idx].drawString(timeToPrint, currentX, 0);
   ofPushMatrix();
     ofTranslate(currentX, yPositionTitle);
@@ -93,77 +86,87 @@ void Clock::drawTimeTitle(int idx, string timeToPrint, string timeTitle) {
   ofPopMatrix();
 }
 
-void Clock::drawYears(int x = 0, int y = 0) {
+void Clock::drawYears(int x, int y) {
   string yearsToPrint = placeValueTime(years, PlaceValue::Ten);
   ofPushMatrix();
     ofTranslate(x, y);
+    ofSetColor(fontColor);
     time[0].drawString(yearsToPrint, 0, 0);
   ofPopMatrix();
 }
 
-void Clock::drawYearsTitle(int x = 0, int y = 0) {
+void Clock::drawYearsTitle(int x, int y) {
   ofPushMatrix();
     ofTranslate(x, y);
+    ofSetColor(fontColor);
     title[0].drawString("Years", 0, 0);
   ofPopMatrix();
 }
 
-void Clock::drawDays(int x = 0, int y = 0) {
+void Clock::drawDays(int x, int y) {
   string daysToPrint = placeValueTime(days, PlaceValue::Hundred);
   ofPushMatrix();
     ofTranslate(x, y);
+    ofSetColor(fontColor);
     time[1].drawString(daysToPrint, 0, 0);
   ofPopMatrix();
 }
 
-void Clock::drawDaysTitle(int x = 0, int y = 0) {
+void Clock::drawDaysTitle(int x, int y) {
   ofPushMatrix();
     ofTranslate(x, y);
+    ofSetColor(fontColor);
     title[1].drawString("Days", 0, 0);
   ofPopMatrix();
 }
 
-void Clock::drawHrs(int x = 0, int y = 0) {
+void Clock::drawHrs(int x, int y) {
   string hrsToPrint = placeValueTime(hours, PlaceValue::Ten);
   ofPushMatrix();
     ofTranslate(x, y);
+    ofSetColor(fontColor);
     time[2].drawString(hrsToPrint, 0, 0);
   ofPopMatrix();
 }
 
-void Clock::drawHrsTitle(int x = 0, int y = 0) {
+void Clock::drawHrsTitle(int x, int y) {
   ofPushMatrix();
     ofTranslate(x, y);
+    ofSetColor(fontColor);
     title[2].drawString("Hrs", 0, 0);
   ofPopMatrix();
 }
 
-void Clock::drawMins(int x = 0, int y = 0) {
+void Clock::drawMins(int x, int y) {
   string minsToPrint = placeValueTime(minutes, PlaceValue::Ten);
   ofPushMatrix();
     ofTranslate(x, y);
+    ofSetColor(fontColor);
     time[3].drawString(minsToPrint, 0, 0);
   ofPopMatrix();
 }
 
-void Clock::drawMinsTitle(int x = 0, int y = 0) {
+void Clock::drawMinsTitle(int x, int y) {
   ofPushMatrix();
     ofTranslate(x, y);
+    ofSetColor(fontColor);
     title[3].drawString("Mins", 0, 0);
   ofPopMatrix();
 }
 
-void Clock::drawSecs(int x = 0, int y = 0) {
+void Clock::drawSecs(int x, int y) {
   string secsToPrint = placeValueTime(seconds, PlaceValue::Ten);
   ofPushMatrix();
     ofTranslate(x, y);
+    ofSetColor(fontColor);
     time[4].drawString(secsToPrint, 0, 0);
   ofPopMatrix();
 }
 
-void Clock::drawSecsTitle(int x = 0, int y = 0) {
+void Clock::drawSecsTitle(int x, int y) {
   ofPushMatrix();
     ofTranslate(x, y);
+    ofSetColor(fontColor);
     title[4].drawString("Secs", 0, 0);
   ofPopMatrix();
 }
@@ -173,7 +176,7 @@ void Clock::createTimeWords() {
   time.clear();
   for (int i = 0; i < numWordsTime; i++) {
     ofTrueTypeFont word;
-    word.load(fonts[curFontIdx], fontSizeTime);
+    word.load("Fonts/" + font, fontSizeTime);
     time.push_back(word);
   }
 }
@@ -183,26 +186,8 @@ void Clock::createTitleWords() {
   title.clear();
   for (int i = 0; i < numWordsTitle; i++) {
     ofTrueTypeFont word;
-    word.load(fonts[curFontIdx], fontSizeTitle - 10); // Title should be smaller than Time's font size.
+    word.load("Fonts/" + font, fontSizeTitle); // Title should be smaller than Time's font size.
     title.push_back(word);
-  }
-}
-
-void Clock::cycleFont(bool forward) {
-  if (forward) {
-    // Wrapp current font idx.
-    curFontIdx = (curFontIdx + 1) % fonts.size();
-    createTimeWords();
-    createTitleWords();
-  } else {
-    // Wrap current font idx.
-    if ((curFontIdx - 1) < 0) {
-      curFontIdx = fonts.size() - 1;
-    } else {
-      curFontIdx--;
-    }
-    createTimeWords();
-    createTitleWords();
   }
 }
 
@@ -283,29 +268,12 @@ void Clock::updateTime() {
   milliseconds = millis.count();
 }
 
-string Clock::currentFont() {
-  return fonts[curFontIdx];
-}
-
-void Clock::updateTimeFont(int & val) {
-  createTimeWords();
-}
-
-void Clock::updateTitleFont(int & val) {
-  createTitleWords();
-}
-
-
-void Clock::setCurrentFont(int idx) {
-  curFontIdx = idx; 
-}
-
 void Clock::setTextColor(ofColor c) {
-  textColor = c;
+  fontColor = c;
 }
 
 void Clock::setPosition(float x, float y) {
-  xPosition = x; yPositionTime = y;
+  xPosition = x; yPosition = y;
 }
 
 void Clock::setTimeZone(string tz) {

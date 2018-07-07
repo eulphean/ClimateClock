@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<group>
+	<Text_color>255, 255, 255, 255</Text_color>
+	<Background_color>15, 22, 24, 255</Background_color>
+	<Clock_Width>272</Clock_Width>
+	<Clock_Height>90</Clock_Height>
+	<X_Padding>47</X_Padding>
+	<Y_Padding>25</Y_Padding>
+</group>

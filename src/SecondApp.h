@@ -30,12 +30,11 @@ class SecondApp : public ofBaseApp{
   
     // Timezones
     std::vector<string> timeZones; // All the timezones
-    std::vector<int> tzIndices; // Current timezone indices in the grid. 
+    std::vector<int> tzIndices; // Current timezone indices in the grid.
   
     // Gui.
     ofxPanel gui;
     ofxColorSlider backgroundColor;
-    ofxColorSlider textColor;
     ofParameter<int> clockWidth { "Clock Width", 300, 200, 350 }; // Distance between 2 consecutive words.
     ofParameter<int> clockHeight { "Clock Height", 80, 40, 150 };
     ofParameter<int> xPadding { "X Padding", 10, 0, 100 };

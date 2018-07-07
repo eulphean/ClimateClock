@@ -1,14 +1,7 @@
 #include "ofApp.h"
 
 void ofApp::setup() {
-    clock.setup();
-
-    gui.setup();
-    gui.setPosition(50, 65);
-    gui.add(clock.formatParams);
-    gui.add(textColor.setup("Text color", ofColor(0), ofColor(0), ofColor(255)));
-    gui.add(backgroundColor.setup("Background color", ofColor(255, 0, 0), ofColor(0), ofColor(255)));
-    gui.loadFromFile("ClimateClock.xml");
+    clock.setup("newyork.xml");
 
     projectionMask.setup(HOMOGRAPHY);
     clockFace = projectionMask.newPattern(1350, 70);
@@ -34,7 +27,6 @@ void ofApp::setupMovies(){
 }
 
 void ofApp::update() {
-    ofBackground(backgroundColor);
     projectionMask.update(mouseX, mouseY);
     clock.update();
 
@@ -56,23 +48,13 @@ void ofApp::draw() {
         clock.drawClock();
     }
     clockFace->end();
-
-    if (!hideGui) {
-        ofDrawBitmapStringHighlight("Press h to toggle GUI", 55, 30);
-        ofDrawBitmapStringHighlight("Current font: " + clock.currentFont() + " <-- Press left/right arraow keys to cycle the font.", 55, 55);
-        //gui.draw();
-    }
 }
 
 void ofApp::exit() {
-    gui.saveToFile("ClimateClock.xml");
+
 }
 
 void ofApp::keyPressed(int key) {
-    if (key == 'h') {
-        hideGui = !hideGui;
-    }
-
     if (key == OF_KEY_UP) {
         stopCurrentMovie();
         currentCity++;
@@ -91,14 +73,6 @@ void ofApp::keyPressed(int key) {
         }
         projectionMask.setStorageFileName(cities.at(currentCity));
         playCurrentMovie();
-    }
-
-    if (key == OF_KEY_LEFT) {
-        clock.cycleFont(false);
-    }
-
-    if (key == OF_KEY_RIGHT) {
-        clock.cycleFont(true);
     }
 }
 

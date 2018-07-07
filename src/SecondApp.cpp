@@ -8,8 +8,6 @@ void SecondApp::setup() {
   // Setup GUI.
   gui.setup();
   gui.setPosition(50, 65);
-  //gui.add(clock.formatParams);
-  gui.add(textColor.setup("Clock's text color", ofColor(0), ofColor(0), ofColor(255)));
   gui.add(backgroundColor.setup("Background color", ofColor(255, 0, 0), ofColor(0), ofColor(255)));
   gui.add(clockWidth); gui.add(clockHeight);
   gui.add(xPadding); gui.add(yPadding);
@@ -19,7 +17,7 @@ void SecondApp::setup() {
   xPadding.addListener(this, &SecondApp::updateFromGui);
   yPadding.addListener(this, &SecondApp::updateFromGui);
   
-  gui.loadFromFile("ClimateClockSecond.xml");
+  gui.loadFromFile("Grid.xml");
   
   // Create the grid. 
   createGrid();
@@ -47,7 +45,7 @@ void SecondApp::draw() {
   for (int i = 0; i < clocks.size(); i++) {
     clocks[i].drawClock();
   }
-  
+
   if (!hideGui) {
     gui.draw();
   }
@@ -64,7 +62,6 @@ void SecondApp::createGrid() {
       clock.setup();
       clock.setTimeZone(selectTimeZone());
       clock.setTextColor(ofColor::white);
-      clock.setCurrentFont(4);
       clock.setPosition(x, y);
       clocks.push_back(clock);
     }
@@ -76,7 +73,7 @@ void SecondApp::updateFromGui(int & val) {
 }
 
 void SecondApp::exit() {
-  gui.saveToFile("ClimateClockSecond.xml");
+  gui.saveToFile("Grid.xml");
 }
 
 void SecondApp::windowResized(int w, int h) {

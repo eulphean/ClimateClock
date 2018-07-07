@@ -4,6 +4,7 @@
 #include "ofParameterGroup.h"
 #include "ofMain.h"
 #include "ofxGui.h"
+#include "ofxXmlSettings.h"
 #include "Date/tz.h"
 
 // Place
@@ -15,7 +16,7 @@ enum PlaceValue {
 
 class Clock {
   public:
-    void setup();
+    void setup(string fileName = " ");
     void update();
 
     // Generic method that draws the entire clock
@@ -23,35 +24,16 @@ class Clock {
   
     // Custom draw methods (for projection mask).
     // Default x, y parameters for custom position.
-    void drawYears(int x, int y); void drawYearsTitle(int x, int y);
-    void drawDays(int x, int y); void drawDaysTitle(int x, int y);
-    void drawHrs(int x, int y); void drawHrsTitle(int x, int y);
-    void drawMins(int x, int y); void drawMinsTitle(int x, int y);
-    void drawSecs(int x, int y); void drawSecsTitle(int x, int y);
+    void drawYears(int x=0, int y=0); void drawYearsTitle(int x=0, int y=0);
+    void drawDays(int x=0, int y=0); void drawDaysTitle(int x=0, int y=0);
+    void drawHrs(int x=0, int y=0); void drawHrsTitle(int x=0, int y=0);
+    void drawMins(int x=0, int y=0); void drawMinsTitle(int x=0, int y=0);
+    void drawSecs(int x=0, int y=0); void drawSecsTitle(int x=0, int y=0);
   
     // Setters
-    void setCurrentFont(int idx);
     void setTextColor(ofColor color);
     void setPosition (float x, float y);
     void setTimeZone (string timezone);
-  
-    // Getters
-    string currentFont();
-  
-    // Utility functions.
-    void cycleFont(bool forward);
-  
-    // TODO: Clean GUI parameters. 
-    // GUI parameters.
-    ofParameter<float> wordSpacing { "Word Spacing", 11.3, 5.0, 100.0 }; // Distance between 2 consecutive words.
-    ofParameter<float> xPosition { "X Position", 5, 0, ofGetWidth() };
-    ofParameter<float> yPositionTime { "Y Position (Time)", 50, 0, ofGetHeight() };
-    ofParameter<int> fontSizeTime { "Font Size Time", 30, 5, 500 };
-    ofParameter<int> fontSizeTitle { "Font Size Title", 22, 5, 500 };
-    ofParameter<int> yPositionTitle { "Y Position (Title)", 23, 20, ofGetHeight()/2 };
-  
-    // GUI group.
-    ofParameterGroup formatParams { "Format", wordSpacing, xPosition, yPositionTime, fontSizeTime, fontSizeTitle, yPositionTitle };
   
   private:
     void drawTimeTitle(int idx, string timeToPrint, string title);
@@ -60,9 +42,18 @@ class Clock {
     void createTitleWords();
     void updateTime();
   
-    // GUI listeners
-    void updateTimeFont(int & val);
-    void updateTitleFont(int & val);
+    // XML instance.
+    ofxXmlSettings settings;
+  
+    // Clock format parameters.
+    ofColor fontColor = ofColor::white;
+    float wordSpacing = 11.3;
+    int fontSizeTime = 30;
+    int fontSizeTitle = 12;
+    int yPositionTitle = 23;
+    string font = "instruction.otf";
+    string timeZone = "America/Chicago";
+    float xPosition; float yPosition;
 
     //  18   181  15   11   11  <- Line 1 (5 words)
     // Years Days Hrs Mins Secs <- Line 2 (5 words)
@@ -75,14 +66,4 @@ class Clock {
   
     // Clock parameters
     int years; int days; int hours; int minutes; int seconds; int milliseconds;
-  
-    // Text color.
-    ofColor textColor;
-  
-    // Cycle fonts.
-    int curFontIdx = 3;
-    vector<string> fonts;
-  
-    // Timezone.
-    string timeZone = "America/Chicago"; // Default Timezone. 
 };
