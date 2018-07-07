@@ -25,6 +25,7 @@ class Clock {
     void setCurrentFont(int idx);
     void setTextColor(ofColor color);
     void setPosition (float x, float y);
+    void setTimeZone (string timezone);
   
     // Getters
     string currentFont();
@@ -79,4 +80,7 @@ class Clock {
     // Cycle fonts.
     int curFontIdx = 3;
     vector<string> fonts;
+  
+    // Timezone.
+    string timeZone = "America/Chicago"; // Default Timezone. 
 };

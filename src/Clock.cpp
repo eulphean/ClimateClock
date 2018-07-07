@@ -15,6 +15,12 @@ void Clock::setup() {
   fonts.push_back("keys.ttf");
   fonts.push_back("giovanni.ttf");
   
+  // Load certain timezones.
+  // Pick a random timezone on load.
+  // Add a new line on top of the clock for the city.
+  // Put an option to not show that line. (Set that true for Andy's clock).
+  // Every clock has a collection of all these random timezones.
+  
   // Listeners for GUI.
   fontSizeTime.addListener(this, &Clock::updateTimeFont);
   fontSizeTitle.addListener(this, &Clock::updateTitleFont);
@@ -199,11 +205,11 @@ string Clock::placeValueTime(int time, PlaceValue place) {
 
 void Clock::updateTime() {
   // Future time in a zone.
-  auto future = date::make_zoned(locate_zone("Asia/Calcutta"), date::local_days{2037_y / date::jan / 5}, date::choose::earliest);
+  auto future = date::make_zoned(locate_zone(timeZone), date::local_days{2037_y / date::jan / 5}, date::choose::earliest);
   auto futureTime = floor<chrono::milliseconds>(future.get_sys_time());
   
   // Current time in a zone.
-  auto now = date::make_zoned(locate_zone("Asia/Calcutta"), chrono::system_clock::now());
+  auto now = date::make_zoned(locate_zone(timeZone), chrono::system_clock::now());
   auto nowTime = floor<chrono::milliseconds>(now.get_sys_time());
 
   // Time difference.
@@ -262,4 +268,8 @@ void Clock::setTextColor(ofColor c) {
 
 void Clock::setPosition(float x, float y) {
   xPosition = x; yPositionTime = y;
+}
+
+void Clock::setTimeZone(string tz) {
+  timeZone = tz;
 }

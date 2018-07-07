@@ -18,16 +18,19 @@ class SecondApp : public ofBaseApp{
   
   private:
     void createGrid();
+    void loadTimeZones();
+    string selectTimeZone();
     
     // flags
     bool hideGui = false;
     bool recreateGrid = false;
   
-    // Clock
-    Clock clock;
-  
     // Grid clocks.
     std::vector<Clock> clocks;
+  
+    // Timezones
+    std::vector<string> timeZones; // All the timezones
+    std::vector<int> tzIndices; // Current timezone indices in the grid. 
   
     // Gui.
     ofxPanel gui;
