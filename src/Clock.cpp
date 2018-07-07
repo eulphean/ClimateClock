@@ -32,7 +32,7 @@ void Clock::draw() {
   // Draw Time characters (Line 1)
   ofPushMatrix();
     ofTranslate(xPosition, yPositionTime);
-    currentTimeX = 0;
+    currentX = 0;
     for (int i = 0; i < numWordsTime; i++) {
       ofSetColor(textColor);
       drawTime(i);
@@ -84,21 +84,21 @@ void Clock::drawTime(int idx) {
     case 0: {
       string daysToPrint = placeValueTime(days, PlaceValue::Thousand);
       drawTimeTitle(idx, daysToPrint, "Days");
-      currentTimeX += time[idx].stringWidth(ofToString(days)) + wordSpacing;
+      currentX += time[idx].stringWidth(ofToString(days)) + wordSpacing;
       break;
     }
     
     case 1: {
       string hrsToPrint = placeValueTime(hours, PlaceValue::Ten);
       drawTimeTitle(idx, hrsToPrint, "Hrs");
-      currentTimeX += time[idx].stringWidth(hrsToPrint) + wordSpacing;
+      currentX += time[idx].stringWidth(hrsToPrint) + wordSpacing;
       break;
     }
     
     case 2: {
       string minsToPrint = placeValueTime(minutes, PlaceValue::Ten); // Minutes should be till 10th place.
       drawTimeTitle(idx, minsToPrint, "Mins");
-      currentTimeX += time[idx].stringWidth(minsToPrint) + wordSpacing;
+      currentX += time[idx].stringWidth(minsToPrint) + wordSpacing;
       break;
     }
     
@@ -106,14 +106,14 @@ void Clock::drawTime(int idx) {
       // Seconds (10th place precision)
       string secsToPrint = placeValueTime(seconds, PlaceValue::Ten);
       drawTimeTitle(idx, secsToPrint, "Secs");
-      currentTimeX += time[idx].stringWidth(secsToPrint) + wordSpacing;
+      currentX += time[idx].stringWidth(secsToPrint) + wordSpacing;
       break;
     }
     
     case 4: {
       string millisToPrint = placeValueTime(milliseconds, PlaceValue::Hundred);
       drawTimeTitle(idx, millisToPrint, "mSecs");
-      currentTimeX += time[idx].stringWidth(millisToPrint) + wordSpacing;
+      currentX += time[idx].stringWidth(millisToPrint);
       break;
     }
     
@@ -124,9 +124,9 @@ void Clock::drawTime(int idx) {
 }
 
 void Clock::drawTimeTitle(int idx, string timeToPrint, string timeTitle) {
-  time[idx].drawString(timeToPrint, currentTimeX, 0);
+  time[idx].drawString(timeToPrint, currentX, 0);
   ofPushMatrix();
-    ofTranslate(currentTimeX, yPositionTitle);
+    ofTranslate(currentX, yPositionTitle);
     int lengthTime = time[idx].stringWidth(timeToPrint);
     int lengthTitle = title[idx].stringWidth(timeTitle);
     int xPos = abs(lengthTime-lengthTitle)/2;
@@ -243,4 +243,12 @@ void Clock::updateTitleFont(int & val) {
 
 void Clock::setCurrentFont(int idx) {
   curFontIdx = idx; 
- }
+}
+
+int Clock::getWidth() {
+  return currentX;
+}
+
+int Clock::getHeight() {
+ return (time[0].getLineHeight() + yPositionTitle + title[0].getLineHeight());
+}

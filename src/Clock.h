@@ -26,8 +26,8 @@ class Clock {
   
     // GUI parameters.
     ofParameter<float> wordSpacing { "Word Spacing", 10.0, 5.0, 100.0 }; // Distance between 2 consecutive words.
-    ofParameter<float> xPosition { "X Position", 5, -ofGetWidth(), ofGetWidth() };
-    ofParameter<float> yPositionTime { "Y Position (Time)", 50, -ofGetHeight(), ofGetHeight() };
+    ofParameter<float> xPosition { "X Position", 5, 0, ofGetWidth() };
+    ofParameter<float> yPositionTime { "Y Position (Time)", 50, 0, ofGetHeight() };
     ofParameter<int> fontSizeTime { "Font Size Time", 15, 5, 500 };
     ofParameter<int> fontSizeTitle { "Font Size Title", 15, 5, 500 };
     ofParameter<int> yPositionTitle { "Y Position (Title)", 20, 20, ofGetHeight()/2 };
@@ -35,6 +35,10 @@ class Clock {
   
     // GUI group.
     ofParameterGroup formatParams { "Format", wordSpacing, xPosition, yPositionTime, fontSizeTime, fontSizeTitle, yPositionTitle };
+  
+    // Returns the dimension of the clock.
+    int getHeight();
+    int getWidth();
   
   private:
     void drawTime(int idx);
@@ -53,7 +57,7 @@ class Clock {
   
     const int numWordsTime = 5; // Line 1
     std::vector<ofTrueTypeFont> time;
-    int currentTimeX;
+    int currentX;
   
     const int numWordsTitle = 5; // Line 2
     std::vector<ofTrueTypeFont> title;

@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <group>
 	<Format>
-		<Word_Spacing>59.7704</Word_Spacing>
-		<X_Position>61.2245</X_Position>
+		<Word_Spacing>11.3843</Word_Spacing>
+		<X_Position>382.653</X_Position>
 		<Y_Position>367.347</Y_Position>
 		<Font_Size>50</Font_Size>
-		<Y_Position__Time_>367.347</Y_Position__Time_>
-		<Font_Size_Time>100</Font_Size_Time>
-		<Font_Size_Title>50</Font_Size_Title>
-		<Y_Position__Title_>72</Y_Position__Title_>
+		<Y_Position__Time_>428.571</Y_Position__Time_>
+		<Font_Size_Time>30</Font_Size_Time>
+		<Font_Size_Title>22</Font_Size_Title>
+		<Y_Position__Title_>23</Y_Position__Title_>
 	</Format>
 	<Clock>
 		<Days>140</Days>
@@ -16,6 +16,6 @@
 		<Minutes>23</Minutes>
 		<Seconds>24</Seconds>
 	</Clock>
-	<Text_color>217, 255, 233, 255</Text_color>
+	<Text_color>255, 255, 255, 255</Text_color>
 	<Background_color>0, 0, 0, 255</Background_color>
 </group>

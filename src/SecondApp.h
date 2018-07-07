@@ -19,7 +19,7 @@ class SecondApp : public ofBaseApp{
     bool hideGui = false;
   
     // Clock
-    Clock myClock;
+    Clock clock;
   
     // Gui.
     ofxPanel gui;
