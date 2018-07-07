@@ -6,8 +6,6 @@
 #include "ofxGui.h"
 #include "Date/tz.h"
 
-using namespace date;
-
 // Place
 enum PlaceValue {
   Ten,
@@ -72,7 +70,7 @@ class Clock {
     std::vector<ofTrueTypeFont> title;
   
     // Clock parameters
-    int days; int hours; int minutes; int seconds; int milliseconds;
+    int years; int days; int hours; int minutes; int seconds; int milliseconds;
   
     // Text color.
     ofColor textColor;

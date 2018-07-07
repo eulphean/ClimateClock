@@ -18,8 +18,8 @@
 	</Clock>
 	<Text_color>255, 255, 255, 255</Text_color>
 	<Background_color>15, 22, 24, 255</Background_color>
-	<Clock_Width>270</Clock_Width>
+	<Clock_Width>286</Clock_Width>
 	<Clock_Height>90</Clock_Height>
-	<X_Padding>48</X_Padding>
+	<X_Padding>43</X_Padding>
 	<Y_Padding>25</Y_Padding>
 </group>
