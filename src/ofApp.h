@@ -10,13 +10,16 @@ class ofApp : public ofBaseApp{
 
 public:
     void setup();
-    void setupImages();
+    void setupMovies();
     void update();
     void draw();
     void exit();
     void keyPressed(int key);
   
 private:
+    void playCurrentMovie();
+    void stopCurrentMovie();
+
     bool hideGui = false;
     Clock clock;
 
@@ -26,8 +29,8 @@ private:
 
     ofxProjectionMask projectionMask;
     ofxLayerMask *clockFace, *background;
-    ofImage backgroundImage;
-    map<string, ofImage> backgrounds;
+    ofVideoPlayer backgroundMovie;
+    map<string, ofVideoPlayer> backgrounds;
     string backgroundsDir;
 
     vector<string> cities;

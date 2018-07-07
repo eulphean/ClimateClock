@@ -2,6 +2,7 @@
 bin/data/ProjectionMasks/development/*-*
 bin/data/ProjectionMasks/production/*-*
 .DS_Store
+bin/data/cities/*
 
 #########################
 # openFrameworks patterns

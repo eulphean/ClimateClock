@@ -2,7 +2,7 @@
 
 void ofApp::setup() {
     clock.setup();
-    
+
     gui.setup();
     gui.setPosition(50, 65);
     gui.add(clock.formatParams);
@@ -13,12 +13,12 @@ void ofApp::setup() {
     projectionMask.setup(HOMOGRAPHY);
     clockFace = projectionMask.newPattern(1350, 70);
 
-    setupImages();
+    setupMovies();
     currentCity = 0;
     background = projectionMask.getBackground();
 }
 
-void ofApp::setupImages(){
+void ofApp::setupMovies(){
     backgroundsDir = "cities";
     ofDirectory dir(backgroundsDir);
     dir.listDir();
@@ -26,15 +26,21 @@ void ofApp::setupImages(){
 
     for(int i = 0; i < contents.size(); i++){
         cities.push_back(contents.at(i).getBaseName());
-        backgroundImage.load(backgroundsDir + "/" + contents.at(i).getFileName());
-        backgrounds[contents.at(i).getBaseName()] = backgroundImage;
+        backgroundMovie.load(backgroundsDir + "/" + contents.at(i).getFileName());
+        backgrounds[contents.at(i).getBaseName()] = backgroundMovie;
     }
+
+    playCurrentMovie();
 }
 
 void ofApp::update() {
     ofBackground(backgroundColor);
     projectionMask.update(mouseX, mouseY);
     clock.update();
+
+    for(auto& background : backgrounds){
+        background.second.update();
+    }
 
     background->begin();
     {
@@ -68,19 +74,23 @@ void ofApp::keyPressed(int key) {
     }
 
     if (key == OF_KEY_UP) {
+        stopCurrentMovie();
         currentCity++;
         if(currentCity >= cities.size()){
             currentCity = 0;
         }
         projectionMask.setStorageFileName(cities.at(currentCity));
+        playCurrentMovie();
     }
 
     if (key == OF_KEY_DOWN) {
+        stopCurrentMovie();
         currentCity--;
         if(currentCity < 0){
             currentCity = cities.size() - 1;
         }
         projectionMask.setStorageFileName(cities.at(currentCity));
+        playCurrentMovie();
     }
 
     if (key == OF_KEY_LEFT) {
@@ -90,4 +100,12 @@ void ofApp::keyPressed(int key) {
     if (key == OF_KEY_RIGHT) {
         clock.cycleFont(true);
     }
+}
+
+void ofApp::playCurrentMovie(){
+    backgrounds[cities.at(currentCity)].play();
+}
+
+void ofApp::stopCurrentMovie(){
+    backgrounds[cities.at(currentCity)].stop();
 }
