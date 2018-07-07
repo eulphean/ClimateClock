@@ -1,6 +1,6 @@
 <session>
     <type>auto</type>
-    <timestamp>2018-07-05-18-05-47-736</timestamp>
+    <timestamp>2018-07-07-03-28-24-630</timestamp>
     <designCanvas>
         <width>240</width>
         <height>180</height>
@@ -18,13 +18,19 @@
             <id>0</id>
             <designWidth>214</designWidth>
             <designHeight>98</designHeight>
-            <designX>25</designX>
-            <designY>38</designY>
+            <designX>26</designX>
+            <designY>40</designY>
             <liveWidth>544</liveWidth>
             <liveHeight>224</liveHeight>
-            <liveX>64</liveX>
-            <liveY>87</liveY>
+            <liveX>67</liveX>
+            <liveY>92</liveY>
             <maskPoints>
+                <maskPoint>
+                    <designX>95</designX>
+                    <designY>49</designY>
+                    <liveX>242</liveX>
+                    <liveY>112</liveY>
+                </maskPoint>
                 <maskPoint>
                     <designX>95</designX>
                     <designY>41</designY>

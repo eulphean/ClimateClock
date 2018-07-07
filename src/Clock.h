@@ -17,15 +17,26 @@ enum PlaceValue {
 
 class Clock {
   public:
-    Clock();
-    ~Clock();
     void setup();
     void update();
     void draw();
-    void cycleFont(bool forward);
-    string currentFont();
-    void setCurrentFont(int idx);
   
+    // Setters
+    void setCurrentFont(int idx);
+    void setTextColor(ofColor color);
+    void setPosition (float x, float y);
+  
+    // Getters
+    string currentFont();
+    // To get the exact height of the clock
+    // (if necessary, else work with approximation)
+    int getHeight();
+    int getWidth();
+  
+    // Utility functions.
+    void cycleFont(bool forward);
+  
+    // TODO: Clean GUI parameters. 
     // GUI parameters.
     ofParameter<float> wordSpacing { "Word Spacing", 11.3, 5.0, 100.0 }; // Distance between 2 consecutive words.
     ofParameter<float> xPosition { "X Position", 5, 0, ofGetWidth() };
@@ -33,14 +44,9 @@ class Clock {
     ofParameter<int> fontSizeTime { "Font Size Time", 30, 5, 500 };
     ofParameter<int> fontSizeTitle { "Font Size Title", 22, 5, 500 };
     ofParameter<int> yPositionTitle { "Y Position (Title)", 23, 20, ofGetHeight()/2 };
-    //ofxColorSlider textColor;
   
     // GUI group.
     ofParameterGroup formatParams { "Format", wordSpacing, xPosition, yPositionTime, fontSizeTime, fontSizeTitle, yPositionTitle };
-  
-    // Returns the dimension of the clock.
-    int getHeight();
-    int getWidth();
   
   private:
     void drawTime(int idx);
@@ -65,7 +71,10 @@ class Clock {
     std::vector<ofTrueTypeFont> title;
   
     // Clock parameters
-    int days; int hours; int minutes; int seconds; int milliseconds; 
+    int days; int hours; int minutes; int seconds; int milliseconds;
+  
+    // Text color.
+    ofColor textColor;
   
     // Cycle fonts.
     int curFontIdx = 3;

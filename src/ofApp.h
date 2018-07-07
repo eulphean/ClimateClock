@@ -22,6 +22,7 @@ private:
 
     ofxPanel gui;
     ofxColorSlider backgroundColor;
+    ofxColorSlider textColor;
 
     ofxProjectionMask projectionMask;
     ofxLayerMask *clockFace, *background;
