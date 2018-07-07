@@ -15,12 +15,6 @@ void Clock::setup() {
   fonts.push_back("keys.ttf");
   fonts.push_back("giovanni.ttf");
   
-  // Load certain timezones.
-  // Pick a random timezone on load.
-  // Add a new line on top of the clock for the city.
-  // Put an option to not show that line. (Set that true for Andy's clock).
-  // Every clock has a collection of all these random timezones.
-  
   // Listeners for GUI.
   fontSizeTime.addListener(this, &Clock::updateTimeFont);
   fontSizeTitle.addListener(this, &Clock::updateTitleFont);
@@ -37,15 +31,140 @@ void Clock::update() {
   updateTime();
 }
 
-void Clock::draw() {
+void Clock::drawClock() {
   // Draw Time characters (Line 1)
   ofPushMatrix();
     ofTranslate(xPosition, yPositionTime);
     currentX = 0;
     for (int i = 0; i < numWordsTime; i++) {
       ofSetColor(textColor);
-      drawTime(i);
+      switch (i) {
+        case 0: {
+          string yearsToPrint = placeValueTime(years, PlaceValue::Ten);
+          drawTimeTitle(i, yearsToPrint, "Years");
+          currentX += time[i].stringWidth(yearsToPrint) + wordSpacing;
+          break;
+        }
+        
+        case 1: {
+          string daysToPrint = placeValueTime(days, PlaceValue::Hundred);
+          drawTimeTitle(i, daysToPrint, "Days");
+          currentX += time[i].stringWidth(daysToPrint) + wordSpacing;
+          break;
+        }
+        
+        case 2: {
+          string hrsToPrint = placeValueTime(hours, PlaceValue::Ten);
+          drawTimeTitle(i, hrsToPrint, "Hrs");
+          currentX += time[i].stringWidth(hrsToPrint) + wordSpacing;
+          break;
+        }
+        
+        case 3: {
+          string minsToPrint = placeValueTime(minutes, PlaceValue::Ten); // Minutes should be till 10th place.
+          drawTimeTitle(i, minsToPrint, "Mins");
+          currentX += time[i].stringWidth(minsToPrint) + wordSpacing;
+          break;
+        }
+        
+        case 4: {
+          string secsToPrint = placeValueTime(seconds, PlaceValue::Ten);
+          drawTimeTitle(i, secsToPrint, "Secs");
+          currentX += time[i].stringWidth(secsToPrint) + wordSpacing;
+          break;
+        }
+        
+        default: {
+          break;
+        }
+      }
     }
+  ofPopMatrix();
+}
+
+void Clock::drawTimeTitle(int idx, string timeToPrint, string timeTitle) {
+  time[idx].drawString(timeToPrint, currentX, 0);
+  ofPushMatrix();
+    ofTranslate(currentX, yPositionTitle);
+    int lengthTime = time[idx].stringWidth(timeToPrint);
+    int lengthTitle = title[idx].stringWidth(timeTitle);
+    int xPos = abs(lengthTime-lengthTitle)/2;
+    title[idx].drawString(timeTitle, xPos, 0);
+  ofPopMatrix();
+}
+
+void Clock::drawYears(int x = 0, int y = 0) {
+  string yearsToPrint = placeValueTime(years, PlaceValue::Ten);
+  ofPushMatrix();
+    ofTranslate(x, y);
+    time[0].drawString(yearsToPrint, 0, 0);
+  ofPopMatrix();
+}
+
+void Clock::drawYearsTitle(int x = 0, int y = 0) {
+  ofPushMatrix();
+    ofTranslate(x, y);
+    title[0].drawString("Years", 0, 0);
+  ofPopMatrix();
+}
+
+void Clock::drawDays(int x = 0, int y = 0) {
+  string daysToPrint = placeValueTime(days, PlaceValue::Hundred);
+  ofPushMatrix();
+    ofTranslate(x, y);
+    time[1].drawString(daysToPrint, 0, 0);
+  ofPopMatrix();
+}
+
+void Clock::drawDaysTitle(int x = 0, int y = 0) {
+  ofPushMatrix();
+    ofTranslate(x, y);
+    title[1].drawString("Days", 0, 0);
+  ofPopMatrix();
+}
+
+void Clock::drawHrs(int x = 0, int y = 0) {
+  string hrsToPrint = placeValueTime(hours, PlaceValue::Ten);
+  ofPushMatrix();
+    ofTranslate(x, y);
+    time[2].drawString(hrsToPrint, 0, 0);
+  ofPopMatrix();
+}
+
+void Clock::drawHrsTitle(int x = 0, int y = 0) {
+  ofPushMatrix();
+    ofTranslate(x, y);
+    title[2].drawString("Hrs", 0, 0);
+  ofPopMatrix();
+}
+
+void Clock::drawMins(int x = 0, int y = 0) {
+  string minsToPrint = placeValueTime(minutes, PlaceValue::Ten);
+  ofPushMatrix();
+    ofTranslate(x, y);
+    time[3].drawString(minsToPrint, 0, 0);
+  ofPopMatrix();
+}
+
+void Clock::drawMinsTitle(int x = 0, int y = 0) {
+  ofPushMatrix();
+    ofTranslate(x, y);
+    title[3].drawString("Mins", 0, 0);
+  ofPopMatrix();
+}
+
+void Clock::drawSecs(int x = 0, int y = 0) {
+  string secsToPrint = placeValueTime(seconds, PlaceValue::Ten);
+  ofPushMatrix();
+    ofTranslate(x, y);
+    time[4].drawString(secsToPrint, 0, 0);
+  ofPopMatrix();
+}
+
+void Clock::drawSecsTitle(int x = 0, int y = 0) {
+  ofPushMatrix();
+    ofTranslate(x, y);
+    title[4].drawString("Secs", 0, 0);
   ofPopMatrix();
 }
 
@@ -69,7 +188,6 @@ void Clock::createTitleWords() {
   }
 }
 
-
 void Clock::cycleFont(bool forward) {
   if (forward) {
     // Wrapp current font idx.
@@ -86,61 +204,6 @@ void Clock::cycleFont(bool forward) {
     createTimeWords();
     createTitleWords();
   }
-}
-
-void Clock::drawTime(int idx) {
-  switch (idx) {
-    case 0: {
-      string yearsToPrint = placeValueTime(years, PlaceValue::Ten);
-      drawTimeTitle(idx, yearsToPrint, "Years");
-      currentX += time[idx].stringWidth(yearsToPrint) + wordSpacing;
-      break;
-    }
-    
-    case 1: {
-      string daysToPrint = placeValueTime(days, PlaceValue::Hundred);
-      drawTimeTitle(idx, daysToPrint, "Days");
-      currentX += time[idx].stringWidth(daysToPrint) + wordSpacing;
-      break;
-    }
-    
-    case 2: {
-      string hrsToPrint = placeValueTime(hours, PlaceValue::Ten);
-      drawTimeTitle(idx, hrsToPrint, "Hrs");
-      currentX += time[idx].stringWidth(hrsToPrint) + wordSpacing;
-      break;
-    }
-    
-    case 3: {
-      string minsToPrint = placeValueTime(minutes, PlaceValue::Ten); // Minutes should be till 10th place.
-      drawTimeTitle(idx, minsToPrint, "Mins");
-      currentX += time[idx].stringWidth(minsToPrint) + wordSpacing;
-      break;
-    }
-    
-    case 4: {
-      // Seconds (10th place precision)
-      string secsToPrint = placeValueTime(seconds, PlaceValue::Ten);
-      drawTimeTitle(idx, secsToPrint, "Secs");
-      currentX += time[idx].stringWidth(secsToPrint) + wordSpacing;
-      break;
-    }
-    
-    default: {
-      break;
-    }
-  }
-}
-
-void Clock::drawTimeTitle(int idx, string timeToPrint, string timeTitle) {
-  time[idx].drawString(timeToPrint, currentX, 0);
-  ofPushMatrix();
-    ofTranslate(currentX, yPositionTitle);
-    int lengthTime = time[idx].stringWidth(timeToPrint);
-    int lengthTitle = title[idx].stringWidth(timeTitle);
-    int xPos = abs(lengthTime-lengthTitle)/2;
-    title[idx].drawString(timeTitle, xPos, 0);
-  ofPopMatrix();
 }
 
 string Clock::placeValueTime(int time, PlaceValue place) {
@@ -168,29 +231,6 @@ string Clock::placeValueTime(int time, PlaceValue place) {
       d = time/10;
       if (d < 1.0) {
         s = "00" + ofToString(time);
-      }
-      
-      break;
-    }
-    
-    case Thousand: {
-      s = ofToString(time);
-      
-      // Check for Thousand/
-      float d = time / 1000;
-      if (d < 1.0) {
-        s = "0" + ofToString(time);
-      }
-      
-      // Check for Hundred.
-      d = time/100;
-      if (d < 1.0) {
-        s = "00" + ofToString(time);
-      }
-      
-      d = time/10;
-      if (d < 1.0) {
-        s = "000" + ofToString(time);
       }
       
       break;
@@ -258,14 +298,6 @@ void Clock::updateTitleFont(int & val) {
 
 void Clock::setCurrentFont(int idx) {
   curFontIdx = idx; 
-}
-
-int Clock::getWidth() {
-  return currentX;
-}
-
-int Clock::getHeight() {
- return (time[0].getLineHeight() + yPositionTitle + title[0].getLineHeight());
 }
 
 void Clock::setTextColor(ofColor c) {

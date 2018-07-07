@@ -17,7 +17,17 @@ class Clock {
   public:
     void setup();
     void update();
-    void draw();
+
+    // Generic method that draws the entire clock
+    void drawClock();
+  
+    // Custom draw methods (for projection mask).
+    // Default x, y parameters for custom position.
+    void drawYears(int x, int y); void drawYearsTitle(int x, int y);
+    void drawDays(int x, int y); void drawDaysTitle(int x, int y);
+    void drawHrs(int x, int y); void drawHrsTitle(int x, int y);
+    void drawMins(int x, int y); void drawMinsTitle(int x, int y);
+    void drawSecs(int x, int y); void drawSecsTitle(int x, int y);
   
     // Setters
     void setCurrentFont(int idx);
@@ -27,10 +37,6 @@ class Clock {
   
     // Getters
     string currentFont();
-    // To get the exact height of the clock
-    // (if necessary, else work with approximation)
-    int getHeight();
-    int getWidth();
   
     // Utility functions.
     void cycleFont(bool forward);
@@ -48,7 +54,6 @@ class Clock {
     ofParameterGroup formatParams { "Format", wordSpacing, xPosition, yPositionTime, fontSizeTime, fontSizeTitle, yPositionTitle };
   
   private:
-    void drawTime(int idx);
     void drawTimeTitle(int idx, string timeToPrint, string title);
     string placeValueTime(int unit, PlaceValue place); // Create the time string based on its Units place.
     void createTimeWords();
@@ -59,9 +64,8 @@ class Clock {
     void updateTimeFont(int & val);
     void updateTitleFont(int & val);
 
-    // 6756  15   11   11   221 <- Line 1 (5 words)
-    // Days  Hrs Mins Secs mSecs <- Line 2 (5 words)
-  
+    //  18   181  15   11   11  <- Line 1 (5 words)
+    // Years Days Hrs Mins Secs <- Line 2 (5 words)
     const int numWordsTime = 5; // Line 1
     std::vector<ofTrueTypeFont> time;
     int currentX;

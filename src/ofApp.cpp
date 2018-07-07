@@ -53,7 +53,7 @@ void ofApp::draw() {
     clockFace->begin();
     {
         ofBackground(ofColor::white);
-        clock.draw();
+        clock.drawClock();
     }
     clockFace->end();
 

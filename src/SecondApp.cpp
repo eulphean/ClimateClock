@@ -45,7 +45,7 @@ void SecondApp::update() {
 //--------------------------------------------------------------
 void SecondApp::draw() {
   for (int i = 0; i < clocks.size(); i++) {
-    clocks[i].draw();
+    clocks[i].drawClock();
   }
   
   if (!hideGui) {
