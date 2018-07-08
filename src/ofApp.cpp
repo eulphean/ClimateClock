@@ -50,8 +50,8 @@ void ofApp::draw() {
     clockFace->end();
 }
 
-void ofApp::exit() {
-
+void ofApp::drawSecondWindow(ofEventArgs &args){
+    projectionMask.drawSecondWindow();
 }
 
 void ofApp::keyPressed(int key) {

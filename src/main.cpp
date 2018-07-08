@@ -1,30 +1,23 @@
 #include "ofMain.h"
 #include "ofApp.h"
-#include "SecondApp.h"
+#include "ofAppGLFWWindow.h"
 
-//========================================================================
-int main( ){
-  ofGLFWWindowSettings settings;
-  
-  
-  settings.setSize(400, 400);
-  settings.setPosition(ofVec2f(0,0));
-  settings.resizable = true;
-  settings.multiMonitorFullScreen = true;
-  shared_ptr<ofAppBaseWindow> secondWindow = ofCreateWindow(settings);
-  
-  
-  settings.setSize(600, 600);
-  settings.setPosition(ofVec2f(300,0));
-  settings.resizable = true;
-  settings.multiMonitorFullScreen = false;
-  shared_ptr<ofAppBaseWindow> mainWindow = ofCreateWindow(settings);
-
-  shared_ptr<ofApp> mainApp(new ofApp);
-  shared_ptr<SecondApp> secondApp(new SecondApp);
-  
-  ofRunApp(secondWindow, secondApp);
-  ofRunApp(mainWindow, mainApp);
-  ofRunMainLoop();
-  
+int main(){
+    ofGLFWWindowSettings settings;
+    settings.setSize(1024, 768);
+    settings.resizable = false;
+    shared_ptr<ofAppBaseWindow> mainWindow = ofCreateWindow(settings);
+    
+    settings.setSize(1024, 768);
+    settings.resizable = false;
+    settings.multiMonitorFullScreen = true;
+    settings.shareContextWith = mainWindow;
+    shared_ptr<ofAppBaseWindow> secondWindow = ofCreateWindow(settings);
+    secondWindow->setVerticalSync(false);
+    
+    shared_ptr<ofApp> mainApp(new ofApp);
+    ofAddListener(secondWindow->events().draw, mainApp.get(), &ofApp::drawSecondWindow);
+    
+    ofRunApp(mainWindow, mainApp);
+    ofRunMainLoop();
 }

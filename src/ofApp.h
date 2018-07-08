@@ -13,7 +13,7 @@ public:
     void setupMovies();
     void update();
     void draw();
-    void exit();
+    void drawSecondWindow(ofEventArgs &args);
     void keyPressed(int key);
   
 private:
