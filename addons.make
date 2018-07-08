@@ -1,5 +1,4 @@
 ofxGui
 ofxLayerMask
 ofxProjectionMask
-ofxSecondWindow
 ofxXmlSettings
