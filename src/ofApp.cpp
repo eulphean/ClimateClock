@@ -44,19 +44,7 @@ void ofApp::update() {
 
 void ofApp::draw() {
     if (isInGridMode()) {
-        background->begin();
-        {
-            ofBackground(ofColor::black);
-            clockGrid.draw();
-        }
-        background->end();
-
-        clockFace->begin();
-        {
-            ofClearAlpha();
-        }
-        clockFace->end();
-
+        clockGrid.drawFirstWindow();
     } else if(isInVideoMode()) {
         background->begin();
         {
@@ -70,13 +58,17 @@ void ofApp::draw() {
             clock.drawClock();
         }
         clockFace->end();
-    }
 
-    projectionMask.drawFirstWindow();
+        projectionMask.drawFirstWindow();
+    }
 }
 
 void ofApp::drawSecondWindow(ofEventArgs &args) {
-    projectionMask.drawSecondWindow();
+    if (isInGridMode()) {
+        clockGrid.drawSecondWindow();
+    } else if(isInVideoMode()) {
+        projectionMask.drawSecondWindow();
+    }
 }
 
 void ofApp::keyPressed(int key) {

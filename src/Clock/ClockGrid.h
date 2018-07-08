@@ -9,10 +9,10 @@ class ClockGrid {
   public:
     void setup();
     void update();
-    void draw();
+    void drawFirstWindow();
+    void drawSecondWindow();
     void exit();
     
-    void keyPressed(int key);
     void windowResized(int w, int h);
     void updateFromGui(int & val);
   
@@ -21,7 +21,6 @@ class ClockGrid {
     void loadTimeZones();
     string selectTimeZone();
 
-    bool hideGui = false;
     bool recreateGrid = false;
 
     vector<Clock> clocks;

@@ -32,15 +32,15 @@ void ClockGrid::update() {
     }
 }
 
-void ClockGrid::draw() {
+void ClockGrid::drawFirstWindow() {
     ofBackground(backgroundColor);
+    gui.draw();
+}
 
+void ClockGrid::drawSecondWindow() {
+    ofBackground(backgroundColor);
     for (int i = 0; i < clocks.size(); i++) {
         clocks[i].drawClock();
-    }
-
-    if (!hideGui) {
-        gui.draw();
     }
 }
 
@@ -70,12 +70,6 @@ void ClockGrid::exit() {
 
 void ClockGrid::windowResized(int w, int h) {
     createGrid();
-}
-
-void ClockGrid::keyPressed(int key) {
-    if (key == 'h') {
-        hideGui = !hideGui;
-    }
 }
 
 string ClockGrid::selectTimeZone() {
