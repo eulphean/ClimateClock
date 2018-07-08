@@ -30,6 +30,7 @@
 		8228364820F26584005560C5 /* ClockGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8228363A20F26584005560C5 /* ClockGrid.cpp */; };
 		8228364920F26584005560C5 /* tz.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8228363D20F26584005560C5 /* tz.cpp */; };
 		8228364A20F26584005560C5 /* Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8228364120F26584005560C5 /* Clock.cpp */; };
+		8228365220F270A2005560C5 /* CityClockDrawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8228365120F270A2005560C5 /* CityClockDrawing.cpp */; };
 		837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15F2C6477A769C03A56D1401 /* ofxSlider.cpp */; };
 		852E0891794923EE7583C621 /* ofxInputField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B351490B620D04E1E7C52D /* ofxInputField.cpp */; };
 		853E0BA2F448076739446874 /* ofxColorPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 181D363B6DD54D1FA6309C43 /* ofxColorPicker.cpp */; };
@@ -129,6 +130,8 @@
 		8228364020F26584005560C5 /* tz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tz.h; sourceTree = "<group>"; };
 		8228364120F26584005560C5 /* Clock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Clock.cpp; sourceTree = "<group>"; };
 		8228364220F26584005560C5 /* Clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
+		8228365020F270A2005560C5 /* CityClockDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityClockDrawing.h; sourceTree = "<group>"; };
+		8228365120F270A2005560C5 /* CityClockDrawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CityClockDrawing.cpp; sourceTree = "<group>"; };
 		832BDC407620CDBA568B713D /* tinyxmlerror.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = tinyxmlerror.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxmlerror.cpp; sourceTree = SOURCE_ROOT; };
 		87F26B4B24CBD428AD9EEBAA /* ofxBaseGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxBaseGui.h; path = ../../../addons/ofxGui/src/ofxBaseGui.h; sourceTree = SOURCE_ROOT; };
 		89449E3044D456F7DE7BEA14 /* ofxPanel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxPanel.h; path = ../../../addons/ofxGui/src/ofxPanel.h; sourceTree = SOURCE_ROOT; };
@@ -246,6 +249,7 @@
 		8228363220F26584005560C5 /* DrawModes */ = {
 			isa = PBXGroup;
 			children = (
+				8228364F20F270A2005560C5 /* CityClockDrawing */,
 				8228363520F26584005560C5 /* DrawMode.cpp */,
 				8228363720F26584005560C5 /* DrawMode.h */,
 				8228363A20F26584005560C5 /* ClockGrid.cpp */,
@@ -277,6 +281,15 @@
 				8228364020F26584005560C5 /* tz.h */,
 			);
 			path = Date;
+			sourceTree = "<group>";
+		};
+		8228364F20F270A2005560C5 /* CityClockDrawing */ = {
+			isa = PBXGroup;
+			children = (
+				8228365120F270A2005560C5 /* CityClockDrawing.cpp */,
+				8228365020F270A2005560C5 /* CityClockDrawing.h */,
+			);
+			path = CityClockDrawing;
 			sourceTree = "<group>";
 		};
 		9AC2EDD3E37C434314776335 /* Collections */ = {
@@ -576,6 +589,7 @@
 				F9BB26B7E6520AF05BBFAA14 /* alphaMask_ES2.frag in Sources */,
 				8228364520F26584005560C5 /* VideoOverlay.cpp in Sources */,
 				0F72FC16F5D8C70F532317E3 /* alphaMask_GL2.frag in Sources */,
+				8228365220F270A2005560C5 /* CityClockDrawing.cpp in Sources */,
 				7109C5297DF12D28548F1E82 /* alphaMask_GL3.frag in Sources */,
 				7EFF2709948EE75A4BA3BF80 /* alphaMask_GL3.vert in Sources */,
 				CFC55146A17C49881A095458 /* alphaMask_GL2.vert in Sources */,

@@ -2,20 +2,22 @@
 
 void VideoOverlay::setup(bool _isProductionMode) {
     isProductionMode = _isProductionMode;
-    clock.setup();
     isProductionMode ?
         projectionMask.setup(HOMOGRAPHY, PRESETS_PRODUCTION) :
         projectionMask.setup(HOMOGRAPHY, PRESETS_DEVELOPMENT);
 
     setupMovies();
+
     clockFace = projectionMask.newPattern(1350, 70);
+    cityClockDrawing.setup(clockFace);
+
     projectionMask.setStorageFileName(cities.at(currentCity));
     background = projectionMask.getBackground();
     ofAddListener(ofEvents().keyPressed, this, &VideoOverlay::keyPressed);
 }
 
 void VideoOverlay::update() {
-    clock.update();
+    cityClockDrawing.update();
     if(ofGetFrameNum() == 1){
         projectionMask.setStorageFileName(cities.at(currentCity));
     }
@@ -31,14 +33,8 @@ void VideoOverlay::drawFirstWindow() {
         backgrounds[cities.at(currentCity)].draw(0, 0, background->getWidth(), background->getHeight());
     }
     background->end();
-    
-    clockFace->begin();
-    {
-        ofBackground(ofColor::white);
-        clock.drawClock();
-    }
-    clockFace->end();
-    
+
+    cityClockDrawing.draw(cities.at(currentCity));
     projectionMask.drawFirstWindow();
 }
 

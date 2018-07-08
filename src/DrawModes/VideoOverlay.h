@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include "ofxProjectionMask.h"
 #include "ofxLayerMask.h"
-#include "Clock.h"
+#include "CityClockDrawing.h"
 
 class VideoOverlay {
     
@@ -23,7 +23,7 @@ private:
     ofVideoPlayer backgroundMovie;
     map<string, ofVideoPlayer> backgrounds;
     string backgroundsDir;
-    Clock clock;
+    CityClockDrawing cityClockDrawing;
     
     vector<string> cities;
     int currentCity;
