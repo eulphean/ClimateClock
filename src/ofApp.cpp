@@ -4,7 +4,6 @@ void ofApp::setup() {
     clock.setup("newyork.xml");
 
     projectionMask.setup(HOMOGRAPHY, PRESETS_PRODUCTION);
-    currentCity = 0;
     setupMovies();
     clockFace = projectionMask.newPattern(1350, 70);
     projectionMask.setStorageFileName(cities.at(currentCity));
@@ -13,6 +12,7 @@ void ofApp::setup() {
 }
 
 void ofApp::setupMovies(){
+    currentCity = 0;
     backgroundsDir = "cities";
     ofDirectory dir(backgroundsDir);
     dir.listDir();
@@ -27,6 +27,9 @@ void ofApp::setupMovies(){
 }
 
 void ofApp::update() {
+    if(ofGetFrameNum() == 1){
+        projectionMask.setStorageFileName(cities.at(currentCity));
+    }
     projectionMask.update(mouseX, mouseY);
     clock.update();
 
