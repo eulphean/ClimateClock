@@ -1,7 +1,10 @@
 #include "ofApp.h"
 
 void ofApp::setup() {
+    drawMode = CC_DRAW_VIDEOS;
+
     clock.setup("newyork.xml");
+    clockGrid.setup();
 
     projectionMask.setup(HOMOGRAPHY, PRESETS_PRODUCTION);
     setupMovies();
@@ -32,33 +35,52 @@ void ofApp::update() {
     }
     projectionMask.update(mouseX, mouseY);
     clock.update();
+    clockGrid.update();
 
     for(auto& background : backgrounds){
         background.second.update();
     }
-
-    background->begin();
-    {
-        backgrounds[cities.at(currentCity)].draw(0, 0, background->getWidth(), background->getHeight());
-    }
-    background->end();
 }
 
 void ofApp::draw() {
-    clockFace->begin();
-    {
-        ofBackground(ofColor::white);
-        clock.drawClock();
+    if (isInGridMode()) {
+        background->begin();
+        {
+            ofBackground(ofColor::black);
+            clockGrid.draw();
+        }
+        background->end();
+
+        clockFace->begin();
+        {
+            ofClearAlpha();
+        }
+        clockFace->end();
+
+    } else if(isInVideoMode()) {
+        background->begin();
+        {
+            backgrounds[cities.at(currentCity)].draw(0, 0, background->getWidth(), background->getHeight());
+        }
+        background->end();
+        
+        clockFace->begin();
+        {
+            ofBackground(ofColor::white);
+            clock.drawClock();
+        }
+        clockFace->end();
     }
-    clockFace->end();
+
+    projectionMask.drawFirstWindow();
 }
 
-void ofApp::drawSecondWindow(ofEventArgs &args){
+void ofApp::drawSecondWindow(ofEventArgs &args) {
     projectionMask.drawSecondWindow();
 }
 
 void ofApp::keyPressed(int key) {
-    if (key == 'c' || key == 'C') {
+    if(key == 'c' || key == 'C') {
         stopCurrentMovie();
         currentCity++;
         if(currentCity >= cities.size()){
@@ -67,6 +89,18 @@ void ofApp::keyPressed(int key) {
         projectionMask.setStorageFileName(cities.at(currentCity));
         playCurrentMovie();
     }
+
+    if(key == OF_KEY_RETURN) {
+        drawMode = isInVideoMode() ? CC_DRAW_GRID : CC_DRAW_VIDEOS;
+    }
+}
+
+bool ofApp::isInGridMode(){
+    return drawMode == CC_DRAW_GRID;
+}
+
+bool ofApp::isInVideoMode(){
+    return drawMode == CC_DRAW_VIDEOS;
 }
 
 void ofApp::playCurrentMovie(){
@@ -75,4 +109,8 @@ void ofApp::playCurrentMovie(){
 
 void ofApp::stopCurrentMovie(){
     backgrounds[cities.at(currentCity)].stop();
+}
+
+void ofApp::exit(){
+    clockGrid.exit();
 }

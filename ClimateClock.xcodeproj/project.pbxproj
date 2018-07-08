@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		076B0A50515508B54A91E271 /* Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B61CA70C4C2F5D276163CA8 /* Clock.cpp */; };
 		09647D14A621C73DE9931223 /* CanvasContents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 610664C60D4DABBAF7644D37 /* CanvasContents.cpp */; };
 		0DB54D1D7240859E40204C01 /* Xml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B39DEF5C59E58FEFFC856B6 /* Xml.cpp */; };
 		0F72FC16F5D8C70F532317E3 /* alphaMask_GL2.frag in Sources */ = {isa = PBXBuildFile; fileRef = E3D0D0CBB99F266909832764 /* alphaMask_GL2.frag */; };
-		18B92FEF7D69A545381BC8E5 /* SecondApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA5D233EECB1A9A82094F33B /* SecondApp.cpp */; };
 		1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 907C5B5E104864A2D3A25745 /* ofxToggle.cpp */; };
 		244900C88898E50686F09114 /* Mouse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B96C481D7B4DF3DB53BEDE75 /* Mouse.cpp */; };
 		3B96DE095864B8DB0144EDE4 /* DragHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FB23526782349FEF09EF80D /* DragHandle.cpp */; };
@@ -24,6 +22,8 @@
 		7109C5297DF12D28548F1E82 /* alphaMask_GL3.frag in Sources */ = {isa = PBXBuildFile; fileRef = 94CC084F31DBD2C66E3DBEB9 /* alphaMask_GL3.frag */; };
 		729840592B90C492EBB4EBDE /* ofxProjectionMask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3270FA6535936663D879D198 /* ofxProjectionMask.cpp */; };
 		7EFF2709948EE75A4BA3BF80 /* alphaMask_GL3.vert in Sources */ = {isa = PBXBuildFile; fileRef = 95F5452C58F13212B5099E64 /* alphaMask_GL3.vert */; };
+		821F6C7520F1BB81002DE65F /* Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821F6C7120F1BB80002DE65F /* Clock.cpp */; };
+		821F6C7920F1BBA2002DE65F /* ClockGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821F6C7720F1BBA2002DE65F /* ClockGrid.cpp */; };
 		837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15F2C6477A769C03A56D1401 /* ofxSlider.cpp */; };
 		852E0891794923EE7583C621 /* ofxInputField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B351490B620D04E1E7C52D /* ofxInputField.cpp */; };
 		853E0BA2F448076739446874 /* ofxColorPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 181D363B6DD54D1FA6309C43 /* ofxColorPicker.cpp */; };
@@ -108,9 +108,12 @@
 		628184A9BF426DA066FE888A /* Homography.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Homography.cpp; path = ../../../addons/ofxProjectionMask/src/Drawing/Homography.cpp; sourceTree = SOURCE_ROOT; };
 		687FDC6F308E919DD5FC4C5C /* PointObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = PointObject.h; path = ../../../addons/ofxProjectionMask/src/Drawing/Points/PointObject.h; sourceTree = SOURCE_ROOT; };
 		6B1EE0E710D517C3317B38A7 /* alphaMask_GL2.vert */ = {isa = PBXFileReference; explicitFileType = file; fileEncoding = 4; name = alphaMask_GL2.vert; path = ../../../addons/ofxLayerMask/src/shader/alphaMask_GL2.vert; sourceTree = SOURCE_ROOT; };
-		787D0066C5E3831075420581 /* Clock.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Clock.h; path = src/Clock.h; sourceTree = SOURCE_ROOT; };
 		78D67A00EB899FAC09430597 /* ofxLabel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxLabel.cpp; path = ../../../addons/ofxGui/src/ofxLabel.cpp; sourceTree = SOURCE_ROOT; };
 		802251BAF1B35B1D67B32FD0 /* ofxSliderGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxSliderGroup.cpp; path = ../../../addons/ofxGui/src/ofxSliderGroup.cpp; sourceTree = SOURCE_ROOT; };
+		821F6C7120F1BB80002DE65F /* Clock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Clock.cpp; sourceTree = "<group>"; };
+		821F6C7420F1BB80002DE65F /* Clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
+		821F6C7720F1BBA2002DE65F /* ClockGrid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClockGrid.cpp; sourceTree = "<group>"; };
+		821F6C7820F1BBA2002DE65F /* ClockGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClockGrid.h; sourceTree = "<group>"; };
 		832BDC407620CDBA568B713D /* tinyxmlerror.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = tinyxmlerror.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxmlerror.cpp; sourceTree = SOURCE_ROOT; };
 		87F26B4B24CBD428AD9EEBAA /* ofxBaseGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxBaseGui.h; path = ../../../addons/ofxGui/src/ofxBaseGui.h; sourceTree = SOURCE_ROOT; };
 		89449E3044D456F7DE7BEA14 /* ofxPanel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxPanel.h; path = ../../../addons/ofxGui/src/ofxPanel.h; sourceTree = SOURCE_ROOT; };
@@ -119,7 +122,6 @@
 		94CC084F31DBD2C66E3DBEB9 /* alphaMask_GL3.frag */ = {isa = PBXFileReference; explicitFileType = file; fileEncoding = 4; name = alphaMask_GL3.frag; path = ../../../addons/ofxLayerMask/src/shader/alphaMask_GL3.frag; sourceTree = SOURCE_ROOT; };
 		95F5452C58F13212B5099E64 /* alphaMask_GL3.vert */ = {isa = PBXFileReference; explicitFileType = file; fileEncoding = 4; name = alphaMask_GL3.vert; path = ../../../addons/ofxLayerMask/src/shader/alphaMask_GL3.vert; sourceTree = SOURCE_ROOT; };
 		9604B925D32EE39065747725 /* ofxBaseGui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxBaseGui.cpp; path = ../../../addons/ofxGui/src/ofxBaseGui.cpp; sourceTree = SOURCE_ROOT; };
-		9B61CA70C4C2F5D276163CA8 /* Clock.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Clock.cpp; path = src/Clock.cpp; sourceTree = SOURCE_ROOT; };
 		A3C5D360A115AF05D2BA2AEC /* Canvas.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Canvas.cpp; path = ../../../addons/ofxProjectionMask/src/Drawing/Areas/Canvas.cpp; sourceTree = SOURCE_ROOT; };
 		A506CEE81D6CFA75C1CB4DA2 /* Mouse.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Mouse.h; path = ../../../addons/ofxProjectionMask/src/Drawing/Mouse.h; sourceTree = SOURCE_ROOT; };
 		A9E4628DEE13794A92581E42 /* ofxLayerMask.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxLayerMask.cpp; path = ../../../addons/ofxLayerMask/src/ofxLayerMask.cpp; sourceTree = SOURCE_ROOT; };
@@ -148,8 +150,6 @@
 		E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "openFrameworks-Info.plist"; sourceTree = "<group>"; };
 		E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../../libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
 		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
-		E6BD79F49A0C3C13C9B0AF7B /* SecondApp.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SecondApp.h; path = src/SecondApp.h; sourceTree = SOURCE_ROOT; };
-		EA5D233EECB1A9A82094F33B /* SecondApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = SecondApp.cpp; path = src/SecondApp.cpp; sourceTree = SOURCE_ROOT; };
 		ECF8674C7975F1063C5E30CA /* ofxGuiGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxGuiGroup.cpp; path = ../../../addons/ofxGui/src/ofxGuiGroup.cpp; sourceTree = SOURCE_ROOT; };
 		EE0A37942F9AE36EFB55C224 /* PointObject.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = PointObject.cpp; path = ../../../addons/ofxProjectionMask/src/Drawing/Points/PointObject.cpp; sourceTree = SOURCE_ROOT; };
 		F552D018A402690FB077A090 /* ofxProjectionMask.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxProjectionMask.h; path = ../../../addons/ofxProjectionMask/src/ofxProjectionMask.h; sourceTree = SOURCE_ROOT; };
@@ -245,6 +245,18 @@
 			);
 			name = src;
 			sourceTree = "<group>";
+		};
+		821F6C7020F1BB80002DE65F /* Clock */ = {
+			isa = PBXGroup;
+			children = (
+				821F6C7120F1BB80002DE65F /* Clock.cpp */,
+				821F6C7420F1BB80002DE65F /* Clock.h */,
+				821F6C7720F1BBA2002DE65F /* ClockGrid.cpp */,
+				821F6C7820F1BBA2002DE65F /* ClockGrid.h */,
+			);
+			name = Clock;
+			path = src/Clock;
+			sourceTree = SOURCE_ROOT;
 		};
 		9AC2EDD3E37C434314776335 /* Collections */ = {
 			isa = PBXGroup;
@@ -369,14 +381,11 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				821F6C7020F1BB80002DE65F /* Clock */,
 				F9A4EB0A20F067F50001DF1B /* Date */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
-				E6BD79F49A0C3C13C9B0AF7B /* SecondApp.h */,
-				EA5D233EECB1A9A82094F33B /* SecondApp.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
-				9B61CA70C4C2F5D276163CA8 /* Clock.cpp */,
-				787D0066C5E3831075420581 /* Clock.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -550,12 +559,11 @@
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
-				076B0A50515508B54A91E271 /* Clock.cpp in Sources */,
-				18B92FEF7D69A545381BC8E5 /* SecondApp.cpp in Sources */,
 				856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */,
 				853E0BA2F448076739446874 /* ofxColorPicker.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
+				821F6C7520F1BB81002DE65F /* Clock.cpp in Sources */,
 				5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */,
 				B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */,
 				852E0891794923EE7583C621 /* ofxInputField.cpp in Sources */,
@@ -586,6 +594,7 @@
 				729840592B90C492EBB4EBDE /* ofxProjectionMask.cpp in Sources */,
 				87B479F55285F413D96B5A45 /* ofxSecondWindow.cpp in Sources */,
 				63B57AC5BF4EF088491E0317 /* ofxXmlSettings.cpp in Sources */,
+				821F6C7920F1BBA2002DE65F /* ClockGrid.cpp in Sources */,
 				5A4349E9754D6FA14C0F2A3A /* tinyxmlparser.cpp in Sources */,
 				9D44DC88EF9E7991B4A09951 /* tinyxmlerror.cpp in Sources */,
 				933A2227713C720CEFF80FD9 /* tinyxml.cpp in Sources */,

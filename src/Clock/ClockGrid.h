@@ -4,12 +4,12 @@
 #include "ofxGui.h"
 #include "Clock.h"
 
-class SecondApp : public ofBaseApp{
+class ClockGrid {
 
-	public:
-		void setup();
-		void update();
-		void draw();
+  public:
+    void setup();
+    void update();
+    void draw();
     void exit();
     
     void keyPressed(int key);
@@ -20,19 +20,15 @@ class SecondApp : public ofBaseApp{
     void createGrid();
     void loadTimeZones();
     string selectTimeZone();
-    
-    // flags
+
     bool hideGui = false;
     bool recreateGrid = false;
-  
-    // Grid clocks.
-    std::vector<Clock> clocks;
-  
-    // Timezones
-    std::vector<string> timeZones; // All the timezones
-    std::vector<int> tzIndices; // Current timezone indices in the grid.
-  
-    // Gui.
+
+    vector<Clock> clocks;
+
+    vector<string> timeZones;
+    vector<int> tzIndices;
+
     ofxPanel gui;
     ofxColorSlider backgroundColor;
     ofParameter<int> clockWidth { "Clock Width", 300, 200, 350 }; // Distance between 2 consecutive words.
