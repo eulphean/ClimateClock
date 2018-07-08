@@ -14,6 +14,8 @@ void CenteredClock::drawThirdWindow(){
     if(!isThirdWindowSetup){
         setupThirdWindow();
     }
+    ofSetColor(ofColor::white);
+    clock.drawClock();
 }
 
 void CenteredClock::setupThirdWindow(){
