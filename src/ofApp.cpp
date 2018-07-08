@@ -23,6 +23,7 @@ void ofApp::setupMovies(){
         backgrounds[contents.at(i).getBaseName()] = backgroundMovie;
     }
 
+    projectionMask.setStorageFileName(cities.at(currentCity));
     playCurrentMovie();
 }
 
