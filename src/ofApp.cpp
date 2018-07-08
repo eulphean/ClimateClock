@@ -55,21 +55,11 @@ void ofApp::exit() {
 }
 
 void ofApp::keyPressed(int key) {
-    if (key == OF_KEY_UP) {
+    if (key == 'c' || key == 'C') {
         stopCurrentMovie();
         currentCity++;
         if(currentCity >= cities.size()){
             currentCity = 0;
-        }
-        projectionMask.setStorageFileName(cities.at(currentCity));
-        playCurrentMovie();
-    }
-
-    if (key == OF_KEY_DOWN) {
-        stopCurrentMovie();
-        currentCity--;
-        if(currentCity < 0){
-            currentCity = cities.size() - 1;
         }
         projectionMask.setStorageFileName(cities.at(currentCity));
         playCurrentMovie();
