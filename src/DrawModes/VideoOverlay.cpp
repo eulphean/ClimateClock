@@ -2,7 +2,7 @@
 
 void VideoOverlay::setup(Clock* _clock) {
     clock = _clock;
-    projectionMask.setup(HOMOGRAPHY, PRESETS_PRODUCTION);
+    projectionMask.setup(HOMOGRAPHY);
     setupMovies();
     clockFace = projectionMask.newPattern(1350, 70);
     projectionMask.setStorageFileName(cities.at(currentCity));
