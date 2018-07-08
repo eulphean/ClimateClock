@@ -2,17 +2,21 @@
 
 #include "ofMain.h"
 #include "ofxLayerMask.h"
+#include "ofxProjectionMask.h"
 #include "Clock.h"
 
 class CityClockDrawing {
     
 public:
-    void setup(ofxLayerMask* _layerMask);
+    void setup(ofxProjectionMask* projectionMask);
     void update();
     void draw(string city);
 protected:
     void drawNewYorkBuffers();
     void drawTokyoBuffers();
-    ofxLayerMask* layerMask;
+
+    int numPatterns = 3;
+    ofxLayerMask* clockFace;
+    vector<ofxLayerMask*> clockFaceParts;
     Clock clock;
 };

@@ -19,7 +19,7 @@ private:
     void stopCurrentMovie();
     
     ofxProjectionMask projectionMask;
-    ofxLayerMask *clockFace, *background;
+    ofxLayerMask *background;
     ofVideoPlayer backgroundMovie;
     map<string, ofVideoPlayer> backgrounds;
     string backgroundsDir;

@@ -8,8 +8,7 @@ void VideoOverlay::setup(bool _isProductionMode) {
 
     setupMovies();
 
-    clockFace = projectionMask.newPattern(1350, 70);
-    cityClockDrawing.setup(clockFace);
+    cityClockDrawing.setup(&projectionMask);
 
     projectionMask.setStorageFileName(cities.at(currentCity));
     background = projectionMask.getBackground();

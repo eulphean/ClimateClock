@@ -1,8 +1,11 @@
 #include "CityClockDrawing.h"
 
-void CityClockDrawing::setup(ofxLayerMask* _layerMask) {
-    layerMask = _layerMask;
+void CityClockDrawing::setup(ofxProjectionMask* projectionMask) {
     clock.setup();
+    clockFace = projectionMask->newPattern(1080, 860);
+    for(int i = 0; i < numPatterns; i++){
+        clockFaceParts.push_back(projectionMask->newPattern(400, 400));
+    }
 }
 
 void CityClockDrawing::update() {
@@ -18,19 +21,19 @@ void CityClockDrawing::draw(string city) {
 }
 
 void CityClockDrawing::drawNewYorkBuffers() {
-    layerMask->begin();
+    clockFace->begin();
     {
         ofBackground(ofColor::white);
         clock.drawClock();
     }
-    layerMask->end();
+    clockFace->end();
 }
 
 void CityClockDrawing::drawTokyoBuffers() {
-    layerMask->begin();
+    clockFace->begin();
     {
         ofBackground(ofColor::white);
         clock.drawClock();
     }
-    layerMask->end();
+    clockFace->end();
 }
