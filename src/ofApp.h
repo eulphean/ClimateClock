@@ -1,10 +1,10 @@
 #pragma once
 
 #include "ofMain.h"
-#include "Clock.h"
+#include "DrawMode.h"
 #include "ClockGrid.h"
 #include "VideoOverlay.h"
-#include "DrawMode.h"
+#include "CenteredClock.h"
 
 class ofApp : public ofBaseApp{
 
@@ -18,8 +18,8 @@ public:
     void exit();
   
 private:
-    Clock clock;
+    DrawMode drawMode;
     ClockGrid clockGrid;
     VideoOverlay videoOverlay;
-    DrawMode drawMode;
+    CenteredClock centeredClock;
 };

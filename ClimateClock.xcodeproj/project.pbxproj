@@ -27,6 +27,7 @@
 		821F6C9120F1DD25002DE65F /* Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821F6C8C20F1DD25002DE65F /* Clock.cpp */; };
 		821F6C9420F1DDAE002DE65F /* VideoOverlay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821F6C9220F1DDAE002DE65F /* VideoOverlay.cpp */; };
 		821F6C9720F1E1CA002DE65F /* DrawMode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821F6C9520F1E1CA002DE65F /* DrawMode.cpp */; };
+		821F6C9A20F261BD002DE65F /* CenteredClock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821F6C9920F261BD002DE65F /* CenteredClock.cpp */; };
 		837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15F2C6477A769C03A56D1401 /* ofxSlider.cpp */; };
 		852E0891794923EE7583C621 /* ofxInputField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B351490B620D04E1E7C52D /* ofxInputField.cpp */; };
 		853E0BA2F448076739446874 /* ofxColorPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 181D363B6DD54D1FA6309C43 /* ofxColorPicker.cpp */; };
@@ -124,6 +125,8 @@
 		821F6C9320F1DDAE002DE65F /* VideoOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoOverlay.h; sourceTree = "<group>"; };
 		821F6C9520F1E1CA002DE65F /* DrawMode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawMode.cpp; sourceTree = "<group>"; };
 		821F6C9620F1E1CA002DE65F /* DrawMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawMode.h; sourceTree = "<group>"; };
+		821F6C9820F261BD002DE65F /* CenteredClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenteredClock.h; sourceTree = "<group>"; };
+		821F6C9920F261BD002DE65F /* CenteredClock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CenteredClock.cpp; sourceTree = "<group>"; };
 		832BDC407620CDBA568B713D /* tinyxmlerror.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = tinyxmlerror.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxmlerror.cpp; sourceTree = SOURCE_ROOT; };
 		87F26B4B24CBD428AD9EEBAA /* ofxBaseGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxBaseGui.h; path = ../../../addons/ofxGui/src/ofxBaseGui.h; sourceTree = SOURCE_ROOT; };
 		89449E3044D456F7DE7BEA14 /* ofxPanel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxPanel.h; path = ../../../addons/ofxGui/src/ofxPanel.h; sourceTree = SOURCE_ROOT; };
@@ -255,6 +258,8 @@
 		821F6C8120F1DD25002DE65F /* DrawModes */ = {
 			isa = PBXGroup;
 			children = (
+				821F6C9920F261BD002DE65F /* CenteredClock.cpp */,
+				821F6C9820F261BD002DE65F /* CenteredClock.h */,
 				821F6C8520F1DD25002DE65F /* ClockGrid.cpp */,
 				821F6C8220F1DD25002DE65F /* ClockGrid.h */,
 				821F6C9520F1E1CA002DE65F /* DrawMode.cpp */,
@@ -586,6 +591,7 @@
 				852E0891794923EE7583C621 /* ofxInputField.cpp in Sources */,
 				483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */,
 				F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */,
+				821F6C9A20F261BD002DE65F /* CenteredClock.cpp in Sources */,
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
 				853F053FBB0E1A5C69AE0829 /* ofxLayerMask.cpp in Sources */,
 				F9BB26B7E6520AF05BBFAA14 /* alphaMask_ES2.frag in Sources */,

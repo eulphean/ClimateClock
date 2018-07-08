@@ -1,7 +1,7 @@
 #include "VideoOverlay.h"
 
-void VideoOverlay::setup(Clock* _clock) {
-    clock = _clock;
+void VideoOverlay::setup() {
+    clock.setup();
     projectionMask.setup(HOMOGRAPHY);
     setupMovies();
     clockFace = projectionMask.newPattern(1350, 70);
@@ -11,6 +11,7 @@ void VideoOverlay::setup(Clock* _clock) {
 }
 
 void VideoOverlay::update() {
+    clock.update();
     if(ofGetFrameNum() == 1){
         projectionMask.setStorageFileName(cities.at(currentCity));
     }
@@ -30,7 +31,7 @@ void VideoOverlay::drawFirstWindow() {
     clockFace->begin();
     {
         ofBackground(ofColor::white);
-        clock->drawClock();
+        clock.drawClock();
     }
     clockFace->end();
     

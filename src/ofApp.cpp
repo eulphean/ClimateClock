@@ -2,15 +2,15 @@
 
 void ofApp::setup() {
     drawMode.setup();
-    clock.setup("newyork.xml");
     clockGrid.setup();
-    videoOverlay.setup(&clock);
+    videoOverlay.setup();
+    centeredClock.setup();
 }
 
 void ofApp::update() {
-    clock.update();
     clockGrid.update();
     videoOverlay.update();
+    centeredClock.update();
 }
 
 void ofApp::draw() {
@@ -30,7 +30,7 @@ void ofApp::drawSecondWindow(ofEventArgs &args) {
 }
 
 void ofApp::drawThirdWindow(ofEventArgs &args) {
-    ofDrawBitmapString("Hello", 5, 5);
+    centeredClock.drawThirdWindow();
 }
 
 void ofApp::exit(){

@@ -8,7 +8,7 @@
 class VideoOverlay {
     
 public:
-    void setup(Clock* _clock);
+    void setup();
     void update();
     void drawFirstWindow();
     void drawSecondWindow();
@@ -23,7 +23,7 @@ private:
     ofVideoPlayer backgroundMovie;
     map<string, ofVideoPlayer> backgrounds;
     string backgroundsDir;
-    Clock* clock;
+    Clock clock;
     
     vector<string> cities;
     int currentCity;
