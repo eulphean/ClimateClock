@@ -4,8 +4,7 @@
 #include "ofxGui.h"
 #include "Clock.h"
 #include "ClockGrid.h"
-#include "ofxProjectionMask.h"
-#include "ofxLayerMask.h"
+#include "VideoOverlay.h"
 
 enum ccDrawMode {
     CC_DRAW_GRID,
@@ -27,20 +26,9 @@ private:
     bool isInGridMode();
     bool isInVideoMode();
 
-    void playCurrentMovie();
-    void stopCurrentMovie();
-
     ccDrawMode drawMode;
 
     Clock clock;
     ClockGrid clockGrid;
-
-    ofxProjectionMask projectionMask;
-    ofxLayerMask *clockFace, *background;
-    ofVideoPlayer backgroundMovie;
-    map<string, ofVideoPlayer> backgrounds;
-    string backgroundsDir;
-
-    vector<string> cities;
-    int currentCity;
+    VideoOverlay videoOverlay;
 };

@@ -22,8 +22,10 @@
 		7109C5297DF12D28548F1E82 /* alphaMask_GL3.frag in Sources */ = {isa = PBXBuildFile; fileRef = 94CC084F31DBD2C66E3DBEB9 /* alphaMask_GL3.frag */; };
 		729840592B90C492EBB4EBDE /* ofxProjectionMask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3270FA6535936663D879D198 /* ofxProjectionMask.cpp */; };
 		7EFF2709948EE75A4BA3BF80 /* alphaMask_GL3.vert in Sources */ = {isa = PBXBuildFile; fileRef = 95F5452C58F13212B5099E64 /* alphaMask_GL3.vert */; };
-		821F6C7520F1BB81002DE65F /* Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821F6C7120F1BB80002DE65F /* Clock.cpp */; };
-		821F6C7920F1BBA2002DE65F /* ClockGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821F6C7720F1BBA2002DE65F /* ClockGrid.cpp */; };
+		821F6C8F20F1DD25002DE65F /* ClockGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821F6C8520F1DD25002DE65F /* ClockGrid.cpp */; };
+		821F6C9020F1DD25002DE65F /* tz.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821F6C8820F1DD25002DE65F /* tz.cpp */; };
+		821F6C9120F1DD25002DE65F /* Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821F6C8C20F1DD25002DE65F /* Clock.cpp */; };
+		821F6C9420F1DDAE002DE65F /* VideoOverlay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 821F6C9220F1DDAE002DE65F /* VideoOverlay.cpp */; };
 		837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15F2C6477A769C03A56D1401 /* ofxSlider.cpp */; };
 		852E0891794923EE7583C621 /* ofxInputField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B351490B620D04E1E7C52D /* ofxInputField.cpp */; };
 		853E0BA2F448076739446874 /* ofxColorPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 181D363B6DD54D1FA6309C43 /* ofxColorPicker.cpp */; };
@@ -47,7 +49,6 @@
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
 		F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E112B3AEBEA2C091BF2B40AE /* ofxPanel.cpp */; };
 		F7A71601C83BF7AFD88C7B89 /* TextArea.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E0871A58D8655794E9662B9 /* TextArea.cpp */; };
-		F9A4EB0F20F067F50001DF1B /* tz.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F9A4EB0C20F067F50001DF1B /* tz.cpp */; };
 		F9BB26B7E6520AF05BBFAA14 /* alphaMask_ES2.frag in Sources */ = {isa = PBXBuildFile; fileRef = 2E0493A3C19C349A27FC7D25 /* alphaMask_ES2.frag */; };
 /* End PBXBuildFile section */
 
@@ -110,10 +111,16 @@
 		6B1EE0E710D517C3317B38A7 /* alphaMask_GL2.vert */ = {isa = PBXFileReference; explicitFileType = file; fileEncoding = 4; name = alphaMask_GL2.vert; path = ../../../addons/ofxLayerMask/src/shader/alphaMask_GL2.vert; sourceTree = SOURCE_ROOT; };
 		78D67A00EB899FAC09430597 /* ofxLabel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxLabel.cpp; path = ../../../addons/ofxGui/src/ofxLabel.cpp; sourceTree = SOURCE_ROOT; };
 		802251BAF1B35B1D67B32FD0 /* ofxSliderGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxSliderGroup.cpp; path = ../../../addons/ofxGui/src/ofxSliderGroup.cpp; sourceTree = SOURCE_ROOT; };
-		821F6C7120F1BB80002DE65F /* Clock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Clock.cpp; sourceTree = "<group>"; };
-		821F6C7420F1BB80002DE65F /* Clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
-		821F6C7720F1BBA2002DE65F /* ClockGrid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClockGrid.cpp; sourceTree = "<group>"; };
-		821F6C7820F1BBA2002DE65F /* ClockGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClockGrid.h; sourceTree = "<group>"; };
+		821F6C8220F1DD25002DE65F /* ClockGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClockGrid.h; sourceTree = "<group>"; };
+		821F6C8520F1DD25002DE65F /* ClockGrid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClockGrid.cpp; sourceTree = "<group>"; };
+		821F6C8820F1DD25002DE65F /* tz.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tz.cpp; sourceTree = "<group>"; };
+		821F6C8920F1DD25002DE65F /* tz_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tz_private.h; sourceTree = "<group>"; };
+		821F6C8A20F1DD25002DE65F /* date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = date.h; sourceTree = "<group>"; };
+		821F6C8B20F1DD25002DE65F /* tz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tz.h; sourceTree = "<group>"; };
+		821F6C8C20F1DD25002DE65F /* Clock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Clock.cpp; sourceTree = "<group>"; };
+		821F6C8D20F1DD25002DE65F /* Clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
+		821F6C9220F1DDAE002DE65F /* VideoOverlay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoOverlay.cpp; sourceTree = "<group>"; };
+		821F6C9320F1DDAE002DE65F /* VideoOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoOverlay.h; sourceTree = "<group>"; };
 		832BDC407620CDBA568B713D /* tinyxmlerror.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = tinyxmlerror.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxmlerror.cpp; sourceTree = SOURCE_ROOT; };
 		87F26B4B24CBD428AD9EEBAA /* ofxBaseGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxBaseGui.h; path = ../../../addons/ofxGui/src/ofxBaseGui.h; sourceTree = SOURCE_ROOT; };
 		89449E3044D456F7DE7BEA14 /* ofxPanel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxPanel.h; path = ../../../addons/ofxGui/src/ofxPanel.h; sourceTree = SOURCE_ROOT; };
@@ -157,10 +164,6 @@
 		F6CD5194C7EEB1B621758398 /* ofxSecondWindow.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxSecondWindow.cpp; path = ../../../addons/ofxSecondWindow/src/ofxSecondWindow.cpp; sourceTree = SOURCE_ROOT; };
 		F9004F0176BA58CF8044C484 /* Xml.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Xml.h; path = ../../../addons/ofxProjectionMask/src/Storage/Xml.h; sourceTree = SOURCE_ROOT; };
 		F905D46EF2AE96B79CEF0609 /* ofxSecondWindow.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxSecondWindow.h; path = ../../../addons/ofxSecondWindow/src/ofxSecondWindow.h; sourceTree = SOURCE_ROOT; };
-		F9A4EB0B20F067F50001DF1B /* date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = date.h; sourceTree = "<group>"; };
-		F9A4EB0C20F067F50001DF1B /* tz.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tz.cpp; sourceTree = "<group>"; };
-		F9A4EB0D20F067F50001DF1B /* tz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tz.h; sourceTree = "<group>"; };
-		F9A4EB0E20F067F50001DF1B /* tz_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tz_private.h; sourceTree = "<group>"; };
 		FC5DA1C87211D4F6377DA719 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = tinyxmlparser.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxmlparser.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -246,17 +249,37 @@
 			name = src;
 			sourceTree = "<group>";
 		};
-		821F6C7020F1BB80002DE65F /* Clock */ = {
+		821F6C8120F1DD25002DE65F /* DrawModes */ = {
 			isa = PBXGroup;
 			children = (
-				821F6C7120F1BB80002DE65F /* Clock.cpp */,
-				821F6C7420F1BB80002DE65F /* Clock.h */,
-				821F6C7720F1BBA2002DE65F /* ClockGrid.cpp */,
-				821F6C7820F1BBA2002DE65F /* ClockGrid.h */,
+				821F6C8520F1DD25002DE65F /* ClockGrid.cpp */,
+				821F6C8220F1DD25002DE65F /* ClockGrid.h */,
+				821F6C9220F1DDAE002DE65F /* VideoOverlay.cpp */,
+				821F6C9320F1DDAE002DE65F /* VideoOverlay.h */,
 			);
-			name = Clock;
-			path = src/Clock;
-			sourceTree = SOURCE_ROOT;
+			path = DrawModes;
+			sourceTree = "<group>";
+		};
+		821F6C8620F1DD25002DE65F /* Clock */ = {
+			isa = PBXGroup;
+			children = (
+				821F6C8720F1DD25002DE65F /* Date */,
+				821F6C8C20F1DD25002DE65F /* Clock.cpp */,
+				821F6C8D20F1DD25002DE65F /* Clock.h */,
+			);
+			path = Clock;
+			sourceTree = "<group>";
+		};
+		821F6C8720F1DD25002DE65F /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				821F6C8820F1DD25002DE65F /* tz.cpp */,
+				821F6C8920F1DD25002DE65F /* tz_private.h */,
+				821F6C8A20F1DD25002DE65F /* date.h */,
+				821F6C8B20F1DD25002DE65F /* tz.h */,
+			);
+			path = Date;
+			sourceTree = "<group>";
 		};
 		9AC2EDD3E37C434314776335 /* Collections */ = {
 			isa = PBXGroup;
@@ -381,8 +404,8 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				821F6C7020F1BB80002DE65F /* Clock */,
-				F9A4EB0A20F067F50001DF1B /* Date */,
+				821F6C8620F1DD25002DE65F /* Clock */,
+				821F6C8120F1DD25002DE65F /* DrawModes */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
@@ -443,17 +466,6 @@
 				E74DC01A078204FA75FD4D0D /* shader */,
 			);
 			name = src;
-			sourceTree = "<group>";
-		};
-		F9A4EB0A20F067F50001DF1B /* Date */ = {
-			isa = PBXGroup;
-			children = (
-				F9A4EB0B20F067F50001DF1B /* date.h */,
-				F9A4EB0C20F067F50001DF1B /* tz.cpp */,
-				F9A4EB0D20F067F50001DF1B /* tz.h */,
-				F9A4EB0E20F067F50001DF1B /* tz_private.h */,
-			);
-			path = Date;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -563,7 +575,6 @@
 				853E0BA2F448076739446874 /* ofxColorPicker.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
-				821F6C7520F1BB81002DE65F /* Clock.cpp in Sources */,
 				5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */,
 				B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */,
 				852E0891794923EE7583C621 /* ofxInputField.cpp in Sources */,
@@ -581,9 +592,9 @@
 				F7A71601C83BF7AFD88C7B89 /* TextArea.cpp in Sources */,
 				B6A612F76CCE330A56118A28 /* Canvas.cpp in Sources */,
 				244900C88898E50686F09114 /* Mouse.cpp in Sources */,
-				F9A4EB0F20F067F50001DF1B /* tz.cpp in Sources */,
 				BBB68A8265F6404CF134058B /* PointObject.cpp in Sources */,
 				3B96DE095864B8DB0144EDE4 /* DragHandle.cpp in Sources */,
+				821F6C9020F1DD25002DE65F /* tz.cpp in Sources */,
 				9FCABFF231B041B5F4B145E3 /* MaskPoint.cpp in Sources */,
 				6571D6A30BABD8EA6C708E9B /* Homography.cpp in Sources */,
 				09647D14A621C73DE9931223 /* CanvasContents.cpp in Sources */,
@@ -591,12 +602,14 @@
 				C331C50B8B721DB309247421 /* ofExtensions.cpp in Sources */,
 				4C6FF3EB83F5CF320E2F44C0 /* Presets.cpp in Sources */,
 				0DB54D1D7240859E40204C01 /* Xml.cpp in Sources */,
+				821F6C8F20F1DD25002DE65F /* ClockGrid.cpp in Sources */,
 				729840592B90C492EBB4EBDE /* ofxProjectionMask.cpp in Sources */,
 				87B479F55285F413D96B5A45 /* ofxSecondWindow.cpp in Sources */,
+				821F6C9420F1DDAE002DE65F /* VideoOverlay.cpp in Sources */,
 				63B57AC5BF4EF088491E0317 /* ofxXmlSettings.cpp in Sources */,
-				821F6C7920F1BBA2002DE65F /* ClockGrid.cpp in Sources */,
 				5A4349E9754D6FA14C0F2A3A /* tinyxmlparser.cpp in Sources */,
 				9D44DC88EF9E7991B4A09951 /* tinyxmlerror.cpp in Sources */,
+				821F6C9120F1DD25002DE65F /* Clock.cpp in Sources */,
 				933A2227713C720CEFF80FD9 /* tinyxml.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
