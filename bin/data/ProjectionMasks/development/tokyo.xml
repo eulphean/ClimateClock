@@ -1,6 +1,6 @@
 <session>
     <type>auto</type>
-    <timestamp>2018-07-08-11-05-53-256</timestamp>
+    <timestamp>2018-07-08-12-53-39-461</timestamp>
     <designCanvas>
         <width>240</width>
         <height>180</height>
@@ -16,38 +16,38 @@
     <maskFrames>
         <maskFrame>
             <id>0</id>
-            <designWidth>69</designWidth>
-            <designHeight>100</designHeight>
-            <designX>44</designX>
-            <designY>76</designY>
-            <liveWidth>178</liveWidth>
-            <liveHeight>232</liveHeight>
-            <liveX>113</liveX>
-            <liveY>176</liveY>
+            <designWidth>144</designWidth>
+            <designHeight>152</designHeight>
+            <designX>18</designX>
+            <designY>22</designY>
+            <liveWidth>370</liveWidth>
+            <liveHeight>352</liveHeight>
+            <liveX>47</liveX>
+            <liveY>51</liveY>
             <maskPoints>
                 <maskPoint>
-                    <designX>20</designX>
-                    <designY>21</designY>
-                    <liveX>52</liveX>
-                    <liveY>49</liveY>
+                    <designX>106</designX>
+                    <designY>127</designY>
+                    <liveX>273</liveX>
+                    <liveY>294</liveY>
                 </maskPoint>
                 <maskPoint>
-                    <designX>53</designX>
-                    <designY>14</designY>
-                    <liveX>137</liveX>
-                    <liveY>33</liveY>
+                    <designX>114</designX>
+                    <designY>11</designY>
+                    <liveX>293</liveX>
+                    <liveY>26</liveY>
                 </maskPoint>
                 <maskPoint>
-                    <designX>55</designX>
-                    <designY>50</designY>
-                    <liveX>142</liveX>
-                    <liveY>116</liveY>
+                    <designX>13</designX>
+                    <designY>10</designY>
+                    <liveX>34</liveX>
+                    <liveY>24</liveY>
                 </maskPoint>
                 <maskPoint>
-                    <designX>25</designX>
-                    <designY>61</designY>
-                    <liveX>65</liveX>
-                    <liveY>141</liveY>
+                    <designX>4</designX>
+                    <designY>145</designY>
+                    <liveX>11</liveX>
+                    <liveY>336</liveY>
                 </maskPoint>
             </maskPoints>
         </maskFrame>
