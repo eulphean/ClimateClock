@@ -1,7 +1,7 @@
 #include "ofApp.h"
 
 void ofApp::setup() {
-    drawMode = CC_DRAW_VIDEOS;
+    drawMode.setup();
     clock.setup("newyork.xml");
     clockGrid.setup();
     videoOverlay.setup(&clock);
@@ -14,33 +14,19 @@ void ofApp::update() {
 }
 
 void ofApp::draw() {
-    if (isInGridMode()) {
+    if (drawMode.isClockGrid()) {
         clockGrid.drawFirstWindow();
-    } else if(isInVideoMode()) {
+    } else if(drawMode.isVideoOverlay()) {
         videoOverlay.drawFirstWindow();
     }
 }
 
 void ofApp::drawSecondWindow(ofEventArgs &args) {
-    if (isInGridMode()) {
+    if (drawMode.isClockGrid()) {
         clockGrid.drawSecondWindow();
-    } else if(isInVideoMode()) {
+    } else if(drawMode.isVideoOverlay()) {
         videoOverlay.drawSecondWindow();
     }
-}
-
-void ofApp::keyPressed(int key) {
-    if(key == OF_KEY_RETURN) {
-        drawMode = isInVideoMode() ? CC_DRAW_GRID : CC_DRAW_VIDEOS;
-    }
-}
-
-bool ofApp::isInGridMode(){
-    return drawMode == CC_DRAW_GRID;
-}
-
-bool ofApp::isInVideoMode(){
-    return drawMode == CC_DRAW_VIDEOS;
 }
 
 void ofApp::exit(){
