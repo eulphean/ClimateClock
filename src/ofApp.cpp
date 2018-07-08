@@ -29,6 +29,10 @@ void ofApp::drawSecondWindow(ofEventArgs &args) {
     }
 }
 
+void ofApp::drawThirdWindow(ofEventArgs &args) {
+    ofDrawBitmapString("Hello", 5, 5);
+}
+
 void ofApp::exit(){
     clockGrid.exit();
 }

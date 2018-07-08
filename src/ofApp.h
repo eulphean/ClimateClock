@@ -14,6 +14,7 @@ public:
     void update();
     void draw();
     void drawSecondWindow(ofEventArgs &args);
+    void drawThirdWindow(ofEventArgs &args);
     void exit();
   
 private:
