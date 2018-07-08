@@ -22,4 +22,5 @@ private:
     ClockGrid clockGrid;
     VideoOverlay videoOverlay;
     CenteredClock centeredClock;
+    bool isProductionMode;
 };

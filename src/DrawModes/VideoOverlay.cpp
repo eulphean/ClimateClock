@@ -1,8 +1,12 @@
 #include "VideoOverlay.h"
 
-void VideoOverlay::setup() {
+void VideoOverlay::setup(bool _isProductionMode) {
+    isProductionMode = _isProductionMode;
     clock.setup();
-    projectionMask.setup(HOMOGRAPHY);
+    isProductionMode ?
+        projectionMask.setup(HOMOGRAPHY, PRESETS_PRODUCTION) :
+        projectionMask.setup(HOMOGRAPHY, PRESETS_DEVELOPMENT);
+
     setupMovies();
     clockFace = projectionMask.newPattern(1350, 70);
     projectionMask.setStorageFileName(cities.at(currentCity));

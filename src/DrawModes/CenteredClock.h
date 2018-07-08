@@ -6,9 +6,11 @@
 class CenteredClock {
     
 public:
-    void setup();
+    void setup(bool _isProductionMode);
     void update();
     void drawThirdWindow();
 protected:
+    void setupThirdWindow();
     Clock clock;
+    bool isThirdWindowSetup, isProductionMode;
 };

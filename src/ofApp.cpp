@@ -1,10 +1,11 @@
 #include "ofApp.h"
 
 void ofApp::setup() {
+    isProductionMode = true;
     drawMode.setup();
     clockGrid.setup();
-    videoOverlay.setup();
-    centeredClock.setup();
+    videoOverlay.setup(isProductionMode);
+    centeredClock.setup(isProductionMode);
 }
 
 void ofApp::update() {

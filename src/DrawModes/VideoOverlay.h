@@ -8,7 +8,7 @@
 class VideoOverlay {
     
 public:
-    void setup();
+    void setup(bool _isProductionMode);
     void update();
     void drawFirstWindow();
     void drawSecondWindow();
@@ -27,4 +27,5 @@ private:
     
     vector<string> cities;
     int currentCity;
+    bool isProductionMode;
 };
