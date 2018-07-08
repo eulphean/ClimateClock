@@ -3,7 +3,7 @@
 void ofApp::setup() {
     clock.setup("newyork.xml");
 
-    projectionMask.setup(HOMOGRAPHY);
+    projectionMask.setup(HOMOGRAPHY, PRESETS_PRODUCTION);
     clockFace = projectionMask.newPattern(1350, 70);
 
     setupMovies();
