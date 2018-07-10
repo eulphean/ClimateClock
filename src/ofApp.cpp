@@ -1,7 +1,7 @@
 #include "ofApp.h"
 
 void ofApp::setup() {
-    isProductionMode = false;
+    isProductionMode = true;
     drawMode.setup();
     clockGrid.setup();
     videoOverlay.setup(isProductionMode);
