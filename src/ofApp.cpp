@@ -9,6 +9,7 @@ void ofApp::setup() {
 }
 
 void ofApp::update() {
+    drawMode.update();
     clockGrid.update();
     videoOverlay.update();
     centeredClock.update();

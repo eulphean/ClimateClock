@@ -11,10 +11,15 @@ class DrawMode {
     
 public:
     void setup();
+    void update();
     void next();
     bool isClockGrid();
     bool isVideoOverlay();
     void keyPressed(ofKeyEventArgs& args);
 protected:
     ccDrawMode drawMode;
+    bool isSequencing = false;
+    unsigned long lastTime;
+    // Time between switching scenes. 
+    unsigned long sequenceTime;
 };
