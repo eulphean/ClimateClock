@@ -15,8 +15,9 @@ protected:
     void drawNewYorkBuffers();
     void drawTokyoBuffers();
 
-    int numPatterns = 3;
+    int numFacePartsNYC = 3;
     ofxLayerMask* clockFace;
     vector<ofxLayerMask*> clockFaceParts;
-    Clock clock;
+    Clock nycClock, tokyoClock;
+    map<string, Clock> clocks;
 };

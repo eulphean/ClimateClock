@@ -1,15 +1,18 @@
 #include "CityClockDrawing.h"
 
 void CityClockDrawing::setup(ofxProjectionMask* projectionMask) {
-    clock.setup();
+    nycClock.setup("newyork.xml");
+    tokyoClock.setup("tokyo.xml");
+
     clockFace = projectionMask->newPattern(1080, 860);
-    for(int i = 0; i < numPatterns; i++){
+    for(int i = 0; i < numFacePartsNYC; i++){
         clockFaceParts.push_back(projectionMask->newPattern(80, 35));
     }
 }
 
 void CityClockDrawing::update() {
-    clock.update();
+    nycClock.update();
+    tokyoClock.update();
 }
 
 void CityClockDrawing::draw(string city) {
@@ -30,21 +33,21 @@ void CityClockDrawing::drawNewYorkBuffers() {
     clockFaceParts.at(0)->begin();
     {
         ofBackground(ofColor::green);
-        clock.drawDays(3, 30);
+        nycClock.drawDays(3, 30);
     }
     clockFaceParts.at(0)->end();
 
     clockFaceParts.at(1)->begin();
     {
         ofBackground(ofColor::green);
-        clock.drawHrs(3, 30);
+        nycClock.drawHrs(3, 30);
     }
     clockFaceParts.at(1)->end();
 
     clockFaceParts.at(2)->begin();
     {
         ofBackground(ofColor::green);
-        clock.drawMins(3, 30);
+        nycClock.drawMins(3, 30);
     }
     clockFaceParts.at(2)->end();
 }
@@ -53,7 +56,7 @@ void CityClockDrawing::drawTokyoBuffers() {
     clockFace->begin();
     {
         ofBackground(ofColor::white);
-        clock.drawClock();
+        tokyoClock.drawClock();
     }
     clockFace->end();
 }
