@@ -75,15 +75,16 @@ void Clock::drawClock() {
 }
 
 void Clock::drawTimeTitle(int idx, string timeToPrint, string timeTitle) {
-  ofSetColor(fontColor);
-  time[idx].drawString(timeToPrint, currentX, 0);
-  ofPushMatrix();
-    ofTranslate(currentX, yPositionTitle);
-    int lengthTime = time[idx].stringWidth(timeToPrint);
-    int lengthTitle = title[idx].stringWidth(timeTitle);
-    int xPos = abs(lengthTime-lengthTitle)/2;
-    title[idx].drawString(timeTitle, xPos, 0);
-  ofPopMatrix();
+  ofPushStyle();
+    time[idx].drawString(timeToPrint, currentX, 0);
+    ofPushMatrix();
+      ofTranslate(currentX, yPositionTitle);
+      int lengthTime = time[idx].stringWidth(timeToPrint);
+      int lengthTitle = title[idx].stringWidth(timeTitle);
+      int xPos = abs(lengthTime-lengthTitle)/2;
+      title[idx].drawString(timeTitle, xPos, 0);
+    ofPopMatrix();
+  ofPopStyle();
 }
 
 void Clock::drawYears(int x, int y) {

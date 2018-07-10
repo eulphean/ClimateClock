@@ -11,7 +11,7 @@ void DrawMode::update(){
       if (elapsedTime > sequenceTime) { // Done showing current mode.
         next(); // Show next mode.
         lastTime = ofGetElapsedTimeMillis(); // Reset last time.
-        sequenceTime = ofRandom(8, 15) * 1000;
+        sequenceTime = ofRandom(minSequenceTime, maxSequenceTime) * 1000;
       }
     }
 }
@@ -38,7 +38,7 @@ void DrawMode::keyPressed(ofKeyEventArgs& args) {
       isSequencing = !isSequencing;
       if (isSequencing) {
         lastTime = ofGetElapsedTimeMillis();
-        sequenceTime = ofRandom(8, 15) * 1000;
+        sequenceTime = ofRandom(minSequenceTime, maxSequenceTime) * 1000;
         std::cout << "Start cycling scenes." << endl;
       } else {
         std:: cout << "Stop cycling scenes." << endl;
