@@ -1,7 +1,8 @@
 <settings>
     <fontSizeTime>30</fontSizeTime>
     <fontSizeTitle>10</fontSizeTitle>
-    <font>instruction.otf</font>
+    <fontTime>alarmclock.ttf</fontTime>
+    <fontTitle>absender.ttf</fontTitle>
     <timeZone>America/New_York</timeZone>
     <fontColor>255,0,0,255</fontColor>
 </settings>

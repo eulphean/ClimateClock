@@ -58,7 +58,8 @@ class Clock {
     int fontSizeTime = 30;
     int fontSizeTitle = 12;
     int yPositionTitle = 23;
-    string font = "instruction.otf";
+    string fontTime = "instruction.otf";
+    string fontTitle = "instruction.otf";
     string timeZone = "America/Chicago";
     float xPosition; float yPosition;
     PositionMode positionMode;

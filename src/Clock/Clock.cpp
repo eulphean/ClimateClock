@@ -7,7 +7,8 @@ void Clock::setup(string fileName, PositionMode _positionMode) {
     settings.loadFile("Clocks/" + fileName);
     fontSizeTime = settings.getValue("settings:fontSizeTime", 10.0);
     fontSizeTitle = settings.getValue("settings:fontSizeTitle", 10.0);
-    font = settings.getValue("settings:font", "instruction.otf");
+    fontTime = settings.getValue("settings:fontTime", "instruction.otf");
+    fontTitle = settings.getValue("settings:fontTitle", "instruction.otf");
     timeZone = settings.getValue("settings:timeZone", "America/Chicago");
    
     // Construct color from XML.
@@ -177,7 +178,7 @@ void Clock::createTimeWords() {
   time.clear();
   for (int i = 0; i < numWordsTime; i++) {
     ofTrueTypeFont word;
-    word.load("Fonts/" + font, fontSizeTime);
+    word.load("Fonts/" + fontTime, fontSizeTime);
     time.push_back(word);
   }
 }
@@ -187,7 +188,7 @@ void Clock::createTitleWords() {
   title.clear();
   for (int i = 0; i < numWordsTitle; i++) {
     ofTrueTypeFont word;
-    word.load("Fonts/" + font, fontSizeTitle); // Title should be smaller than Time's font size.
+    word.load("Fonts/" + fontTitle, fontSizeTitle); // Title should be smaller than Time's font size.
     title.push_back(word);
   }
 }
