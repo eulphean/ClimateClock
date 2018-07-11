@@ -28,7 +28,8 @@ protected:
     int numFacePartsNYC = 10;
     ofxLayerMask* clockFace;
     vector<ofxLayerMask*> clockFaceParts;
+    int bufferSize, halfBufferSize;
+
     Clock nycClock, tokyoClock;
     ofColor nycBgColor;
-    map<string, Clock> clocks;
 };

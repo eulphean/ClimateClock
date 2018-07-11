@@ -1,13 +1,15 @@
 #include "CityClockDrawing.h"
 
 void CityClockDrawing::setup(ofxProjectionMask* projectionMask) {
-    nycClock.setup("newyork.xml");
-    tokyoClock.setup("tokyo.xml");
+    nycClock.setup("newyork.xml", POSITION_MODE_CENTERED);
+    tokyoClock.setup("tokyo.xml", POSITION_MODE_CENTERED);
     nycBgColor.setHex(0x515256);
+    bufferSize = 200;
+    halfBufferSize = bufferSize * 0.5;
 
     clockFace = projectionMask->newPattern(1080, 860);
     for(int i = 0; i < numFacePartsNYC; i++){
-        clockFaceParts.push_back(projectionMask->newPattern(200, 200));
+        clockFaceParts.push_back(projectionMask->newPattern(bufferSize, bufferSize));
     }
 }
 
@@ -81,50 +83,50 @@ void CityClockDrawing::drawTokyoBuffers() {
 
 void CityClockDrawing::drawNewYorkYears(){
     ofBackground(nycBgColor);
-    nycClock.drawYears();
+    nycClock.drawYears(halfBufferSize, halfBufferSize);
 }
 
 void CityClockDrawing::drawNewYorkYearsLabel(){
     ofClear(0, 0, 0, 0);
-    nycClock.drawYearsTitle();
+    nycClock.drawYearsTitle(halfBufferSize, halfBufferSize);
 }
 
 void CityClockDrawing::drawNewYorkDays(){
     ofBackground(nycBgColor);
-    nycClock.drawDays();
+    nycClock.drawDays(halfBufferSize, halfBufferSize);
 }
 
 void CityClockDrawing::drawNewYorkDaysLabel(){
     ofClear(0, 0, 0, 0);
-    nycClock.drawDaysTitle();
+    nycClock.drawDaysTitle(halfBufferSize, halfBufferSize);
 }
 
 void CityClockDrawing::drawNewYorkHours(){
     ofBackground(nycBgColor);
-    nycClock.drawHrs();
+    nycClock.drawHrs(halfBufferSize, halfBufferSize);
 }
 
 void CityClockDrawing::drawNewYorkHoursLabel(){
     ofClear(0, 0, 0, 0);
-    nycClock.drawHrsTitle();
+    nycClock.drawHrsTitle(halfBufferSize, halfBufferSize);
 }
 
 void CityClockDrawing::drawNewYorkMinutes(){
     ofBackground(nycBgColor);
-    nycClock.drawMins();
+    nycClock.drawMins(halfBufferSize, halfBufferSize);
 }
 
 void CityClockDrawing::drawNewYorkMinutesLabel(){
     ofClear(0, 0, 0, 0);
-    nycClock.drawMinsTitle();
+    nycClock.drawMinsTitle(halfBufferSize, halfBufferSize);
 }
 
 void CityClockDrawing::drawNewYorkSeconds(){
     ofBackground(nycBgColor);
-    nycClock.drawSecs();
+    nycClock.drawSecs(halfBufferSize, halfBufferSize);
 }
 
 void CityClockDrawing::drawNewYorkSecondsLabel(){
     ofClear(0, 0, 0, 0);
-    nycClock.drawSecsTitle();
+    nycClock.drawSecsTitle(halfBufferSize, halfBufferSize);
 }
