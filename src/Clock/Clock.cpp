@@ -1,6 +1,7 @@
 #include "Clock.h"
 
-void Clock::setup(string fileName) {
+void Clock::setup(string fileName, PositionMode _positionMode) {
+  positionMode = _positionMode;
   if (fileName != " ") {
     // Load XML file.
     settings.loadFile("Clocks/" + fileName);
@@ -78,7 +79,6 @@ void Clock::drawTimeTitle(int idx, string timeToPrint, string timeTitle) {
   ofPushStyle();
     time[idx].drawString(timeToPrint, currentX, 0);
     ofPushMatrix();
-      ofTranslate(currentX, yPositionTitle);
       int lengthTime = time[idx].stringWidth(timeToPrint);
       int lengthTitle = title[idx].stringWidth(timeTitle);
       int xPos = abs(lengthTime-lengthTitle)/2;
@@ -90,7 +90,7 @@ void Clock::drawTimeTitle(int idx, string timeToPrint, string timeTitle) {
 void Clock::drawYears(int x, int y) {
   string yearsToPrint = placeValueTime(years, PlaceValue::Ten);
   ofPushMatrix();
-    ofTranslate(x, y);
+    translate(x, y, time[0], yearsToPrint);
     ofSetColor(fontColor);
     time[0].drawString(yearsToPrint, 0, 0);
   ofPopMatrix();
@@ -98,7 +98,7 @@ void Clock::drawYears(int x, int y) {
 
 void Clock::drawYearsTitle(int x, int y) {
   ofPushMatrix();
-    ofTranslate(x, y);
+    translate(x, y, title[0], "Years");
     ofSetColor(fontColor);
     title[0].drawString("Years", 0, 0);
   ofPopMatrix();
@@ -107,7 +107,7 @@ void Clock::drawYearsTitle(int x, int y) {
 void Clock::drawDays(int x, int y) {
   string daysToPrint = placeValueTime(days, PlaceValue::Hundred);
   ofPushMatrix();
-    ofTranslate(x, y);
+    translate(x, y, time[1], daysToPrint);
     ofSetColor(fontColor);
     time[1].drawString(daysToPrint, 0, 0);
   ofPopMatrix();
@@ -115,7 +115,7 @@ void Clock::drawDays(int x, int y) {
 
 void Clock::drawDaysTitle(int x, int y) {
   ofPushMatrix();
-    ofTranslate(x, y);
+    translate(x, y, title[1], "Days");
     ofSetColor(fontColor);
     title[1].drawString("Days", 0, 0);
   ofPopMatrix();
@@ -124,7 +124,7 @@ void Clock::drawDaysTitle(int x, int y) {
 void Clock::drawHrs(int x, int y) {
   string hrsToPrint = placeValueTime(hours, PlaceValue::Ten);
   ofPushMatrix();
-    ofTranslate(x, y);
+    translate(x, y, time[2], hrsToPrint);
     ofSetColor(fontColor);
     time[2].drawString(hrsToPrint, 0, 0);
   ofPopMatrix();
@@ -132,7 +132,7 @@ void Clock::drawHrs(int x, int y) {
 
 void Clock::drawHrsTitle(int x, int y) {
   ofPushMatrix();
-    ofTranslate(x, y);
+    translate(x, y, title[2], "Hrs");
     ofSetColor(fontColor);
     title[2].drawString("Hrs", 0, 0);
   ofPopMatrix();
@@ -141,7 +141,7 @@ void Clock::drawHrsTitle(int x, int y) {
 void Clock::drawMins(int x, int y) {
   string minsToPrint = placeValueTime(minutes, PlaceValue::Ten);
   ofPushMatrix();
-    ofTranslate(x, y);
+    translate(x, y, time[3], minsToPrint);
     ofSetColor(fontColor);
     time[3].drawString(minsToPrint, 0, 0);
   ofPopMatrix();
@@ -149,7 +149,7 @@ void Clock::drawMins(int x, int y) {
 
 void Clock::drawMinsTitle(int x, int y) {
   ofPushMatrix();
-    ofTranslate(x, y);
+    translate(x, y, title[3], "Mins");
     ofSetColor(fontColor);
     title[3].drawString("Mins", 0, 0);
   ofPopMatrix();
@@ -158,7 +158,7 @@ void Clock::drawMinsTitle(int x, int y) {
 void Clock::drawSecs(int x, int y) {
   string secsToPrint = placeValueTime(seconds, PlaceValue::Ten);
   ofPushMatrix();
-    ofTranslate(x, y);
+    translate(x, y, time[4], secsToPrint);
     ofSetColor(fontColor);
     time[4].drawString(secsToPrint, 0, 0);
   ofPopMatrix();
@@ -166,7 +166,7 @@ void Clock::drawSecs(int x, int y) {
 
 void Clock::drawSecsTitle(int x, int y) {
   ofPushMatrix();
-    ofTranslate(x, y);
+    translate(x, y, title[4], "Secs");
     ofSetColor(fontColor);
     title[4].drawString("Secs", 0, 0);
   ofPopMatrix();
@@ -279,4 +279,13 @@ void Clock::setPosition(float x, float y) {
 
 void Clock::setTimeZone(string tz) {
   timeZone = tz;
+}
+
+void Clock::translate(int x, int y, ofTrueTypeFont& font, string str){
+    if(positionMode == POSITION_MODE_CENTERED){
+        ofRectangle boundingBox = font.getStringBoundingBox(str, 0, 0);
+        ofTranslate(x - boundingBox.width * 0.5, y + boundingBox.height * 0.5);
+    } else {
+        ofTranslate(x, y);
+    }
 }

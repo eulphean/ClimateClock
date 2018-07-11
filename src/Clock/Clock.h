@@ -14,9 +14,15 @@ enum PlaceValue {
   Thousand
 };
 
+// Position
+enum PositionMode {
+    POSITION_MODE_CENTERED,
+    POSITION_MODE_NORMAL
+};
+
 class Clock {
   public:
-    void setup(string fileName = " ");
+    void setup(string fileName = " ", PositionMode _positionMode = POSITION_MODE_NORMAL);
     void update();
 
     // Generic method that draws the entire clock
@@ -41,6 +47,7 @@ class Clock {
     void createTimeWords();
     void createTitleWords();
     void updateTime();
+    void translate(int x, int y, ofTrueTypeFont& font, string str);
   
     // XML instance.
     ofxXmlSettings settings;
@@ -54,6 +61,7 @@ class Clock {
     string font = "instruction.otf";
     string timeZone = "America/Chicago";
     float xPosition; float yPosition;
+    PositionMode positionMode;
 
     //  18   181  15   11   11  <- Line 1 (5 words)
     // Years Days Hrs Mins Secs <- Line 2 (5 words)
