@@ -6,7 +6,9 @@ void VideoOverlay::setup(bool _isProductionMode) {
         projectionMask.setup(HOMOGRAPHY, PRESETS_PRODUCTION) :
         projectionMask.setup(HOMOGRAPHY, PRESETS_DEVELOPMENT);
 
-    setupMovies();
+    currentCity = 0;
+    setupBackgroundMovies();
+    setupOverlayImages();
 
     cityClockDrawing.setup(&projectionMask);
 
@@ -21,7 +23,7 @@ void VideoOverlay::update() {
         projectionMask.setStorageFileName(cities.at(currentCity));
     }
     projectionMask.update(ofGetMouseX(), ofGetMouseY());
-    for(auto& background : backgrounds){
+    for(auto& background : backgroundMovies){
         background.second.update();
     }
 }
@@ -29,7 +31,8 @@ void VideoOverlay::update() {
 void VideoOverlay::drawFirstWindow() {
     background->begin();
     {
-        backgrounds[cities.at(currentCity)].draw(0, 0, background->getWidth(), background->getHeight());
+        backgroundMovies[cities.at(currentCity)].draw(0, 0, background->getWidth(), background->getHeight());
+        overlayImages[cities.at(currentCity)].draw(0, 0, background->getWidth(), background->getHeight());
     }
     background->end();
 
@@ -53,25 +56,36 @@ void VideoOverlay::keyPressed(ofKeyEventArgs& args){
     }
 }
 
-void VideoOverlay::setupMovies(){
-    currentCity = 0;
-    backgroundsDir = "cities";
-    ofDirectory dir(backgroundsDir);
+void VideoOverlay::setupBackgroundMovies(){
+    string loc = "cities";
+    ofDirectory dir(loc);
     dir.listDir();
     vector<ofFile> contents = dir.getFiles();
-    
+
     for(int i = 0; i < contents.size(); i++){
         cities.push_back(contents.at(i).getBaseName());
-        backgroundMovie.load(backgroundsDir + "/" + contents.at(i).getFileName());
-        backgrounds[contents.at(i).getBaseName()] = backgroundMovie;
+        backgroundMovie.load(loc + "/" + contents.at(i).getFileName());
+        backgroundMovies[contents.at(i).getBaseName()] = backgroundMovie;
     }
     playCurrentMovie();
 }
 
+void VideoOverlay::setupOverlayImages(){
+    string loc = "city-overlays";
+    ofDirectory dir(loc);
+    dir.listDir();
+    vector<ofFile> contents = dir.getFiles();
+
+    for(int i = 0; i < contents.size(); i++){
+        overlayImage.load(loc + "/" + contents.at(i).getFileName());
+        overlayImages[contents.at(i).getBaseName()] = overlayImage;
+    }
+}
+
 void VideoOverlay::playCurrentMovie(){
-    backgrounds[cities.at(currentCity)].play();
+    backgroundMovies[cities.at(currentCity)].play();
 }
 
 void VideoOverlay::stopCurrentMovie(){
-    backgrounds[cities.at(currentCity)].stop();
+    backgroundMovies[cities.at(currentCity)].stop();
 }
