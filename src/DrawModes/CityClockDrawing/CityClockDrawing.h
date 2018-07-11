@@ -14,10 +14,21 @@ public:
 protected:
     void drawNewYorkBuffers();
     void drawTokyoBuffers();
+    void drawNewYorkYears();
+    void drawNewYorkYearsLabel();
+    void drawNewYorkDays();
+    void drawNewYorkDaysLabel();
+    void drawNewYorkHours();
+    void drawNewYorkHoursLabel();
+    void drawNewYorkMinutes();
+    void drawNewYorkMinutesLabel();
+    void drawNewYorkSeconds();
+    void drawNewYorkSecondsLabel();
 
-    int numFacePartsNYC = 3;
+    int numFacePartsNYC = 10;
     ofxLayerMask* clockFace;
     vector<ofxLayerMask*> clockFaceParts;
     Clock nycClock, tokyoClock;
+    ofColor nycBgColor;
     map<string, Clock> clocks;
 };

@@ -3,10 +3,11 @@
 void CityClockDrawing::setup(ofxProjectionMask* projectionMask) {
     nycClock.setup("newyork.xml");
     tokyoClock.setup("tokyo.xml");
+    nycBgColor.setHex(0x515256);
 
     clockFace = projectionMask->newPattern(1080, 860);
     for(int i = 0; i < numFacePartsNYC; i++){
-        clockFaceParts.push_back(projectionMask->newPattern(80, 35));
+        clockFaceParts.push_back(projectionMask->newPattern(200, 200));
     }
 }
 
@@ -25,31 +26,48 @@ void CityClockDrawing::draw(string city) {
 
 void CityClockDrawing::drawNewYorkBuffers() {
     clockFace->begin();
-    {
-        ofClear(0, 0, 0, 0);
-    }
+    ofClear(0, 0, 0, 0);
     clockFace->end();
     
     clockFaceParts.at(0)->begin();
-    {
-        ofBackground(ofColor::green);
-        nycClock.drawDays(3, 30);
-    }
+    drawNewYorkYears();
     clockFaceParts.at(0)->end();
-
+    
     clockFaceParts.at(1)->begin();
-    {
-        ofBackground(ofColor::green);
-        nycClock.drawHrs(3, 30);
-    }
+    drawNewYorkYearsLabel();
     clockFaceParts.at(1)->end();
-
+    
     clockFaceParts.at(2)->begin();
-    {
-        ofBackground(ofColor::green);
-        nycClock.drawMins(3, 30);
-    }
+    drawNewYorkDays();
     clockFaceParts.at(2)->end();
+    
+    clockFaceParts.at(3)->begin();
+    drawNewYorkDaysLabel();
+    clockFaceParts.at(3)->end();
+    
+    clockFaceParts.at(4)->begin();
+    drawNewYorkHours();
+    clockFaceParts.at(4)->end();
+    
+    clockFaceParts.at(5)->begin();
+    drawNewYorkHoursLabel();
+    clockFaceParts.at(5)->end();
+    
+    clockFaceParts.at(6)->begin();
+    drawNewYorkMinutes();
+    clockFaceParts.at(6)->end();
+    
+    clockFaceParts.at(7)->begin();
+    drawNewYorkMinutesLabel();
+    clockFaceParts.at(7)->end();
+    
+    clockFaceParts.at(8)->begin();
+    drawNewYorkSeconds();
+    clockFaceParts.at(8)->end();
+    
+    clockFaceParts.at(9)->begin();
+    drawNewYorkSecondsLabel();
+    clockFaceParts.at(9)->end();
 }
 
 void CityClockDrawing::drawTokyoBuffers() {
@@ -59,4 +77,54 @@ void CityClockDrawing::drawTokyoBuffers() {
         tokyoClock.drawClock();
     }
     clockFace->end();
+}
+
+void CityClockDrawing::drawNewYorkYears(){
+    ofBackground(nycBgColor);
+    nycClock.drawYears();
+}
+
+void CityClockDrawing::drawNewYorkYearsLabel(){
+    ofClear(0, 0, 0, 0);
+    nycClock.drawYearsTitle();
+}
+
+void CityClockDrawing::drawNewYorkDays(){
+    ofBackground(nycBgColor);
+    nycClock.drawDays();
+}
+
+void CityClockDrawing::drawNewYorkDaysLabel(){
+    ofClear(0, 0, 0, 0);
+    nycClock.drawDaysTitle();
+}
+
+void CityClockDrawing::drawNewYorkHours(){
+    ofBackground(nycBgColor);
+    nycClock.drawHrs();
+}
+
+void CityClockDrawing::drawNewYorkHoursLabel(){
+    ofClear(0, 0, 0, 0);
+    nycClock.drawHrsTitle();
+}
+
+void CityClockDrawing::drawNewYorkMinutes(){
+    ofBackground(nycBgColor);
+    nycClock.drawMins();
+}
+
+void CityClockDrawing::drawNewYorkMinutesLabel(){
+    ofClear(0, 0, 0, 0);
+    nycClock.drawMinsTitle();
+}
+
+void CityClockDrawing::drawNewYorkSeconds(){
+    ofBackground(nycBgColor);
+    nycClock.drawSecs();
+}
+
+void CityClockDrawing::drawNewYorkSecondsLabel(){
+    ofClear(0, 0, 0, 0);
+    nycClock.drawSecsTitle();
 }
