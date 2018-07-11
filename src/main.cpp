@@ -10,10 +10,16 @@ int getNumScreens(){
 }
 
 int main(){
+    bool isProductionMode = false;
+
+    shared_ptr<ofApp> mainApp(new ofApp);
+    mainApp.get()->setIsProductionMode(isProductionMode);
     int numScreens = getNumScreens();
 
     ofGLFWWindowSettings settings;
-    settings.windowMode = OF_FULLSCREEN;
+    if(isProductionMode){
+        settings.windowMode = OF_FULLSCREEN;
+    }
     settings.monitor = 0;
     shared_ptr<ofAppBaseWindow> mainWindow = ofCreateWindow(settings);
 
@@ -25,8 +31,7 @@ int main(){
     settings.monitor = numScreens > 2 ? 2 : settings.monitor;
     shared_ptr<ofAppBaseWindow> thirdWindow = ofCreateWindow(settings);
     thirdWindow->setVerticalSync(false);
-    
-    shared_ptr<ofApp> mainApp(new ofApp);
+
     ofAddListener(secondWindow->events().draw, mainApp.get(), &ofApp::drawSecondWindow);
     ofAddListener(thirdWindow->events().draw, mainApp.get(), &ofApp::drawThirdWindow);
     

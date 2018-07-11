@@ -1,7 +1,6 @@
 #include "ofApp.h"
 
 void ofApp::setup() {
-    isProductionMode = true;
     drawMode.setup();
     clockGrid.setup();
     videoOverlay.setup(isProductionMode);
@@ -44,4 +43,8 @@ void ofApp::drawThirdWindow(ofEventArgs &args) {
 
 void ofApp::exit(){
     clockGrid.exit();
+}
+
+void ofApp::setIsProductionMode(bool _isProductionMode){
+    isProductionMode = _isProductionMode;
 }

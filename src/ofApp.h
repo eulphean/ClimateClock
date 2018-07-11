@@ -16,6 +16,7 @@ public:
     void drawSecondWindow(ofEventArgs &args);
     void drawThirdWindow(ofEventArgs &args);
     void exit();
+    void setIsProductionMode(bool _isProductionMode);
   
 private:
     DrawMode drawMode;
