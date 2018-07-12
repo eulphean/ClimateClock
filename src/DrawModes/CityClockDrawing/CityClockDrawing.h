@@ -31,5 +31,4 @@ protected:
     int bufferSize, halfBufferSize;
 
     Clock nycClock, tokyoClock;
-    ofColor nycBgColor;
 };

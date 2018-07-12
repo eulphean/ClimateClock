@@ -10,7 +10,7 @@ int getNumScreens(){
 }
 
 int main(){
-    bool isProductionMode = false;
+    bool isProductionMode = true;
 
     shared_ptr<ofApp> mainApp(new ofApp);
     mainApp.get()->setIsProductionMode(isProductionMode);

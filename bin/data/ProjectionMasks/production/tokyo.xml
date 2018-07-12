@@ -1,6 +1,6 @@
 <session>
     <type>auto</type>
-    <timestamp>2018-07-08-02-19-11-987</timestamp>
+    <timestamp>2018-07-11-22-13-40-108</timestamp>
     <designCanvas>
         <width>1004</width>
         <height>710</height>
@@ -8,153 +8,23 @@
         <y>10</y>
     </designCanvas>
     <liveCanvas>
-        <width>0</width>
-        <height>900</height>
-        <x>1440</x>
+        <width>1920</width>
+        <height>1080</height>
+        <x>0</x>
         <y>0</y>
     </liveCanvas>
     <maskFrames>
         <maskFrame>
             <id>0</id>
-            <designWidth>0</designWidth>
-            <designHeight>0</designHeight>
-            <designX>0</designX>
-            <designY>0</designY>
-            <liveWidth>0</liveWidth>
-            <liveHeight>0</liveHeight>
-            <liveX>0</liveX>
-            <liveY>0</liveY>
-            <maskPoints>
-                <maskPoint>
-                    <designX>0</designX>
-                    <designY>11</designY>
-                    <liveX>14</liveX>
-                    <liveY>14</liveY>
-                </maskPoint>
-                <maskPoint>
-                    <designX>0</designX>
-                    <designY>8</designY>
-                    <liveX>110</liveX>
-                    <liveY>11</liveY>
-                </maskPoint>
-                <maskPoint>
-                    <designX>0</designX>
-                    <designY>100</designY>
-                    <liveX>113</liveX>
-                    <liveY>128</liveY>
-                </maskPoint>
-                <maskPoint>
-                    <designX>0</designX>
-                    <designY>103</designY>
-                    <liveX>16</liveX>
-                    <liveY>131</liveY>
-                </maskPoint>
-            </maskPoints>
-        </maskFrame>
-        <maskFrame>
-            <id>1</id>
-            <designWidth>0</designWidth>
-            <designHeight>0</designHeight>
-            <designX>0</designX>
-            <designY>0</designY>
-            <liveWidth>0</liveWidth>
-            <liveHeight>0</liveHeight>
-            <liveX>0</liveX>
-            <liveY>0</liveY>
-            <maskPoints>
-                <maskPoint>
-                    <designX>0</designX>
-                    <designY>10</designY>
-                    <liveX>20</liveX>
-                    <liveY>13</liveY>
-                </maskPoint>
-                <maskPoint>
-                    <designX>0</designX>
-                    <designY>7</designY>
-                    <liveX>108</liveX>
-                    <liveY>10</liveY>
-                </maskPoint>
-                <maskPoint>
-                    <designX>0</designX>
-                    <designY>139</designY>
-                    <liveX>113</liveX>
-                    <liveY>177</liveY>
-                </maskPoint>
-                <maskPoint>
-                    <designX>0</designX>
-                    <designY>139</designY>
-                    <liveX>23</liveX>
-                    <liveY>177</liveY>
-                </maskPoint>
-            </maskPoints>
-        </maskFrame>
-        <maskFrame>
-            <id>2</id>
-            <designWidth>0</designWidth>
-            <designHeight>0</designHeight>
-            <designX>0</designX>
-            <designY>0</designY>
-            <liveWidth>0</liveWidth>
-            <liveHeight>0</liveHeight>
-            <liveX>0</liveX>
-            <liveY>0</liveY>
-            <maskPoints>
-                <maskPoint>
-                    <designX>0</designX>
-                    <designY>97</designY>
-                    <liveX>0</liveX>
-                    <liveY>123</liveY>
-                </maskPoint>
-                <maskPoint>
-                    <designX>0</designX>
-                    <designY>42</designY>
-                    <liveX>0</liveX>
-                    <liveY>54</liveY>
-                </maskPoint>
-                <maskPoint>
-                    <designX>0</designX>
-                    <designY>49</designY>
-                    <liveX>0</liveX>
-                    <liveY>63</liveY>
-                </maskPoint>
-                <maskPoint>
-                    <designX>0</designX>
-                    <designY>115</designY>
-                    <liveX>0</liveX>
-                    <liveY>146</liveY>
-                </maskPoint>
-            </maskPoints>
-        </maskFrame>
-        <maskFrame>
-            <id>3</id>
-            <designWidth>0</designWidth>
-            <designHeight>300</designHeight>
-            <designX>0</designX>
-            <designY>409</designY>
-            <liveWidth>0</liveWidth>
-            <liveHeight>381</liveHeight>
-            <liveX>0</liveX>
-            <liveY>519</liveY>
-            <maskPoints>
-                <maskPoint>
-                    <designX>0</designX>
-                    <designY>211</designY>
-                    <liveX>0</liveX>
-                    <liveY>268</liveY>
-                </maskPoint>
-                <maskPoint>
-                    <designX>0</designX>
-                    <designY>132</designY>
-                    <liveX>0</liveX>
-                    <liveY>168</liveY>
-                </maskPoint>
-                <maskPoint>
-                    <designX>0</designX>
-                    <designY>242</designY>
-                    <liveX>0</liveX>
-                    <liveY>307</liveY>
-                </maskPoint>
-            </maskPoints>
+            <designWidth>78</designWidth>
+            <designHeight>112</designHeight>
+            <designX>39</designX>
+            <designY>47</designY>
+            <liveWidth>150</liveWidth>
+            <liveHeight>171</liveHeight>
+            <liveX>75</liveX>
+            <liveY>72</liveY>
+            <maskPoints></maskPoints>
         </maskFrame>
     </maskFrames>
 </session>

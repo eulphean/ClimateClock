@@ -31,8 +31,14 @@ void VideoOverlay::update() {
 void VideoOverlay::drawFirstWindow() {
     background->begin();
     {
+        ofPushMatrix();
+        ofTranslate(background->getWidth() * 0.5, background->getHeight() * 0.5);
+                ofScale(1.03, 1.03);
+        ofRotateZ(1.75);
+        ofTranslate(-(background->getWidth() * 0.5), -(background->getHeight() * 0.5));
         backgroundMovies[cities.at(currentCity)].draw(0, 0, background->getWidth(), background->getHeight());
         overlayImages[cities.at(currentCity)].draw(0, 0, background->getWidth(), background->getHeight());
+        ofPopMatrix();
     }
     background->end();
 
