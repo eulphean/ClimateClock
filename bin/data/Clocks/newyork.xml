@@ -6,6 +6,6 @@
     <fontTitle>The Led Display St.ttf</fontTitle>
     <timeZone>America/New_York</timeZone>
     <fontColor>252,111,4,255</fontColor>
-    <titleColor>160, 161, 165</titleColor>
-    <cityColor>203, 204, 206,255</cityColor>
+    <titleColor>160,161,165,255</titleColor>
+    <cityColor>203,204,206,255</cityColor>
 </settings>
