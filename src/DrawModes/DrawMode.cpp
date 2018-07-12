@@ -1,7 +1,7 @@
 #include "DrawMode.h"
 
 void DrawMode::setup(){
-    drawMode = CC_DRAW_VIDEO_OVERLAY;
+    drawMode = CC_DRAW_CLOCK_GRID;
     ofAddListener(ofEvents().keyPressed, this, &DrawMode::keyPressed);
 }
 
@@ -17,15 +17,31 @@ void DrawMode::update(){
 }
 
 void DrawMode::next(){
-    drawMode = isVideoOverlay() ? CC_DRAW_CLOCK_GRID : CC_DRAW_VIDEO_OVERLAY;
+    if(drawMode == CC_DRAW_CLOCK_GRID){
+        drawMode = CC_DRAW_VIDEO_NEWYORK;
+    } else if(drawMode == CC_DRAW_VIDEO_NEWYORK) {
+        drawMode = CC_DRAW_VIDEO_TOKYO;
+    } else if(drawMode == CC_DRAW_VIDEO_TOKYO){
+        drawMode = CC_DRAW_VIDEO_PARIS;
+    } else if(drawMode == CC_DRAW_VIDEO_PARIS){
+        drawMode = CC_DRAW_CLOCK_GRID;
+    }
 }
 
 bool DrawMode::isClockGrid(){
     return drawMode == CC_DRAW_CLOCK_GRID;
 }
 
-bool DrawMode::isVideoOverlay(){
-    return drawMode == CC_DRAW_VIDEO_OVERLAY;
+bool DrawMode::isNewYorkOverlay(){
+    return drawMode == CC_DRAW_VIDEO_NEWYORK;
+}
+
+bool DrawMode::isTokyoOverlay(){
+    return drawMode == CC_DRAW_VIDEO_TOKYO;
+}
+
+bool DrawMode::isParisOverlay(){
+    return drawMode == CC_DRAW_VIDEO_PARIS;
 }
 
 void DrawMode::keyPressed(ofKeyEventArgs& args) {

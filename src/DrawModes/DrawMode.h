@@ -4,7 +4,9 @@
 
 enum ccDrawMode {
     CC_DRAW_CLOCK_GRID,
-    CC_DRAW_VIDEO_OVERLAY
+    CC_DRAW_VIDEO_NEWYORK,
+    CC_DRAW_VIDEO_TOKYO,
+    CC_DRAW_VIDEO_PARIS,
 };
 
 class DrawMode {
@@ -16,8 +18,10 @@ public:
     void update();
     void next();
     bool isClockGrid();
-    bool isVideoOverlay();
-    
+    bool isNewYorkOverlay();
+    bool isTokyoOverlay();
+    bool isParisOverlay();
+
     void keyPressed(ofKeyEventArgs& args);
 protected:
     ccDrawMode drawMode;

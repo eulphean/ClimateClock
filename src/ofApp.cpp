@@ -18,23 +18,30 @@ void ofApp::draw() {
     if (drawMode.isClockGrid()) {
         clockGrid.drawFirstWindow();
         centeredClock.drawFirstWindow();
-    } else if(drawMode.isVideoOverlay()) {
+    } else if(drawMode.isNewYorkOverlay()) {
+        videoOverlay.setCurrentCity("newyork");
+        videoOverlay.drawFirstWindow();
+    } else if(drawMode.isTokyoOverlay()) {
+        videoOverlay.setCurrentCity("tokyo");
+        videoOverlay.drawFirstWindow();
+    } else if(drawMode.isParisOverlay()) {
+        videoOverlay.setCurrentCity("paris");
         videoOverlay.drawFirstWindow();
     }
 }
 
 void ofApp::drawSecondWindow(ofEventArgs &args) {
-   if (drawMode.isClockGrid()) {
-      ofPushStyle();
-      unsigned long elapsedTime = ofGetElapsedTimeMillis() - drawMode.lastTime;
-      int alpha = ofMap(elapsedTime, 0, 5000, 0, 255, true);
-      ofEnableAlphaBlending();
-      //ofSetColor(255, 255, 255, alpha);
-      clockGrid.drawSecondWindow();
-      ofDisableAlphaBlending();
-      ofPopStyle();
-    } else if (drawMode.isVideoOverlay()) {
-      videoOverlay.drawSecondWindow();
+    if (drawMode.isClockGrid()) {
+        clockGrid.drawSecondWindow();
+    } else if(drawMode.isNewYorkOverlay()) {
+        videoOverlay.setCurrentCity("newyork");
+        videoOverlay.drawSecondWindow();
+    } else if(drawMode.isTokyoOverlay()) {
+        videoOverlay.setCurrentCity("tokyo");
+        videoOverlay.drawSecondWindow();
+    } else if(drawMode.isParisOverlay()) {
+        videoOverlay.setCurrentCity("paris");
+        videoOverlay.drawSecondWindow();
     }
 }
 

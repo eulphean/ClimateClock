@@ -13,8 +13,8 @@ public:
     void drawFirstWindow();
     void drawSecondWindow();
     void keyPressed(ofKeyEventArgs& args);
-private:
     void setCurrentCity(string city);
+private:
     void setupBackgroundMovies();
     void setupOverlayImages();
     void playCurrentMovie();
