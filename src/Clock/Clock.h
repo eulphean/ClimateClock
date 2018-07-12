@@ -22,8 +22,9 @@ enum PositionMode {
 
 class Clock {
   public:
-    void setup(string fileName = " ", PositionMode _positionMode = POSITION_MODE_NORMAL);
+    void setup(string fileName = " ", PositionMode _positionMode = POSITION_MODE_NORMAL, string guiXml = " ");
     void update();
+    void exit();
 
     // Generic method that draws the entire clock
     void drawClock();
@@ -41,25 +42,43 @@ class Clock {
     void setPosition (float x, float y);
     void setTimeZone (string timezone);
   
+    // GUI
+    void drawGui();
+  
   private:
-    void drawTimeTitle(int idx, string timeToPrint, string title);
+    void drawSeperator();
+    string getCityFromTimezone();
+    void drawTimeTitle(int idx, string timeToPrint, string timeForSize, string title);
     string placeValueTime(int unit, PlaceValue place); // Create the time string based on its Units place.
     void createTimeWords();
     void createTitleWords();
+    void createSeperators();
+    void createCity();
     void updateTime();
     void translate(int x, int y, ofTrueTypeFont& font, string str);
   
     // XML instance.
     ofxXmlSettings settings;
   
-    // Clock format parameters.
-    ofColor fontColor = ofColor::white;
-    float wordSpacing = 11.3;
+    // Clock format parameters. Some of them are in GUI
+    // to be able to format the clock properly.
+    ofxPanel gui;
+    ofParameter<float> wordSpacing { "Word Spacing", 8, 5, 20 }; // Distance between 2 consecutive words.
+    ofParameter<float> yPositionTitle { "Title Position", -45, -3000, 1000 };
+    ofParameter<float> roundedRectWidth { "Rounded Rect Width", 310, 50, 3000 };
+    ofParameter<float> roundedRectHeight { "Rounded Rect Height", 40, 10, 500 };
+    ofParameter<float> rectXOffset { "Rect X Offset", 5, 0, 1000 };
+    ofParameter<float> rectYOffset { "Rect Y Offset", 35, 0, 1000 };
+    ofParameter<float> cityYOffset { "City Y Offset", 35, 0, 1000 };
+    
     int fontSizeTime = 30;
     int fontSizeTitle = 12;
-    int yPositionTitle = 23;
-    string fontTime = "instruction.otf";
-    string fontTitle = "instruction.otf";
+    int fontSizeCity = 18;
+    ofColor fontColor = ofColor(255, 93, 86, 255);
+    ofColor fontTitleColor = ofColor(160, 161, 165, 255);
+    ofColor fontCityColor = ofColor(203, 204, 206, 255);
+    string fontTime = "digi2.ttf";
+    string fontTitle = "fontbureau.otf";
     string timeZone = "America/Chicago";
     float xPosition; float yPosition;
     PositionMode positionMode;
@@ -73,6 +92,16 @@ class Clock {
     const int numWordsTitle = 5; // Line 2
     std::vector<ofTrueTypeFont> title;
   
+    // 18 : 181 : 15 : 11 : 11 (:)
+    const int numSeperators = 4;
+    std::vector<ofTrueTypeFont> seperators;
+  
+    // City
+    ofTrueTypeFont city; 
+  
     // Clock parameters
     int years; int days; int hours; int minutes; int seconds; int milliseconds;
+  
+    // Gui Xml file.
+    string guiXmlFile;
 };

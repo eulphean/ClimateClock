@@ -29,9 +29,9 @@ class ClockGrid {
     vector<int> tzIndices;
 
     ofxPanel gui;
-    ofxColorSlider backgroundColor;
-    ofParameter<int> clockWidth { "Clock Width", 300, 200, 350 }; // Distance between 2 consecutive words.
-    ofParameter<int> clockHeight { "Clock Height", 80, 40, 150 };
-    ofParameter<int> xPadding { "X Padding", 10, 0, 100 };
-    ofParameter<int> yPadding { "Y Padding", 10, 0, 100 };
+    ofColor backgroundColor = ofColor(52,52,52,255);
+    ofParameter<int> xOffset { "X Offset", 5, 0, 200 };
+    ofParameter<int> yOffset { "Y Offset", 5, 0, 200 };
+    ofParameter<int> clockWidth { "Clock Width", 300, 200, 500 }; // Distance between 2 consecutive words.
+    ofParameter<int> clockHeight { "Clock Height", 80, 40, 200 };
 };

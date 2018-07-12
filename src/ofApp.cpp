@@ -17,6 +17,7 @@ void ofApp::update() {
 void ofApp::draw() {
     if (drawMode.isClockGrid()) {
         clockGrid.drawFirstWindow();
+        centeredClock.drawFirstWindow();
     } else if(drawMode.isVideoOverlay()) {
         videoOverlay.drawFirstWindow();
     }
@@ -28,7 +29,7 @@ void ofApp::drawSecondWindow(ofEventArgs &args) {
       unsigned long elapsedTime = ofGetElapsedTimeMillis() - drawMode.lastTime;
       int alpha = ofMap(elapsedTime, 0, 5000, 0, 255, true);
       ofEnableAlphaBlending();
-      ofSetColor(255, 255, 255, alpha);
+      //ofSetColor(255, 255, 255, alpha);
       clockGrid.drawSecondWindow();
       ofDisableAlphaBlending();
       ofPopStyle();
@@ -42,6 +43,7 @@ void ofApp::drawThirdWindow(ofEventArgs &args) {
 }
 
 void ofApp::exit(){
+    centeredClock.exit();
     clockGrid.exit();
 }
 

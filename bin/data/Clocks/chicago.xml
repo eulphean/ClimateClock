@@ -1,8 +1,11 @@
 <settings>
     <fontSizeTime>30</fontSizeTime>
     <fontSizeTitle>22</fontSizeTitle>
+    <fontSizeCity>30</fontSizeCity>
     <fontTime>instruction.otf</fontTime>
     <fontTitle>instruction.otf</fontTitle>
     <timeZone>America/Chicago</timeZone>
     <fontColor>255,255,255,255</fontColor>
+    <titleColor>160, 161, 165</titleColor>
+    <cityColor>203, 204, 206,255</cityColor>
 </settings>

@@ -3,17 +3,14 @@
 void ClockGrid::setup() {
     loadTimeZones();
 
-    gui.setup();
-    gui.setPosition(50, 65);
-    gui.add(backgroundColor.setup("Background color", ofColor(255, 0, 0), ofColor(0), ofColor(255)));
+    gui.setup("Clock Grid params");
+    gui.setPosition(50, 50);
     gui.add(clockWidth); gui.add(clockHeight);
-    gui.add(xPadding); gui.add(yPadding);
+    gui.add(xOffset); gui.add(yOffset);
     
     clockWidth.addListener(this, &ClockGrid::updateFromGui);
     clockHeight.addListener(this, &ClockGrid::updateFromGui);
-    xPadding.addListener(this, &ClockGrid::updateFromGui);
-    yPadding.addListener(this, &ClockGrid::updateFromGui);
-    
+  
     gui.loadFromFile("Grid.xml");
 
     createGrid();
@@ -39,23 +36,27 @@ void ClockGrid::drawFirstWindow() {
 
 void ClockGrid::drawSecondWindow() {
     ofBackground(backgroundColor);
-    for (int i = 0; i < clocks.size(); i++) {
-        clocks[i].drawClock();
-    }
+    ofPushMatrix();
+      ofTranslate(xOffset, yOffset);
+      for (int i = 0; i < clocks.size(); i++) {
+          clocks[i].drawClock();
+      }
+    ofPopMatrix();
 }
 
 void ClockGrid::createGrid() {
     clocks.clear();
     tzIndices.clear();
 
-    for (int x = 10; x < ofGetWidth(); x += (clockWidth + xPadding)) {
-        for (int y = clockHeight/2; y < ofGetHeight(); y += (clockHeight + yPadding)) {
-            Clock clock;
-            clock.setup();
-            clock.setTimeZone(selectTimeZone());
-            clock.setTextColor(ofColor::white);
-            clock.setPosition(x, y);
-            clocks.push_back(clock);
+    for (int x = 0; x < ofGetWidth(); x += clockWidth) {
+        for (int y = 0; y < ofGetHeight(); y += clockHeight) {
+            if (ofGetWidth() - x > clockWidth && ofGetHeight() - y > clockHeight) {
+              Clock clock;
+              clock.setup();
+              clock.setTimeZone(selectTimeZone());
+              clock.setPosition(x, y);
+              clocks.push_back(clock);
+            }
         }
     }
 }
@@ -73,7 +74,7 @@ void ClockGrid::windowResized(int w, int h) {
 }
 
 string ClockGrid::selectTimeZone() {
-    /*int maxEntries = timeZones.size();
+    int maxEntries = timeZones.size();
 
     int randIdx = ofRandom(0, maxEntries - 1);
     while (ofContains(tzIndices, randIdx)) {
@@ -81,8 +82,7 @@ string ClockGrid::selectTimeZone() {
     }
     tzIndices.push_back(randIdx);
 
-    return timeZones[randIdx];*/
-    return timeZones[ofRandom(0, timeZones.size() - 1)];
+    return timeZones[randIdx];
 }
 
 void ClockGrid::loadTimeZones() {

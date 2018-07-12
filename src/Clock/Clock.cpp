@@ -1,25 +1,54 @@
 #include "Clock.h"
 
-void Clock::setup(string fileName, PositionMode _positionMode) {
+void Clock::setup(string fileName, PositionMode _positionMode, string guiXml) {
+  // Initialize a GUI for adjust important clock display parameters.
+  if (guiXml != " ") {
+    guiXmlFile = guiXml;
+    
+    gui.setup(guiXmlFile);
+    gui.setPosition(300, 50);
+    gui.add(wordSpacing);
+    gui.add(yPositionTitle);
+    gui.add(roundedRectWidth);
+    gui.add(roundedRectHeight);
+    gui.add(rectXOffset);
+    gui.add(rectYOffset);
+    gui.add(cityYOffset);
+    gui.loadFromFile(guiXml);
+  }
+  
   positionMode = _positionMode;
   if (fileName != " ") {
     // Load XML file.
     settings.loadFile("Clocks/" + fileName);
     fontSizeTime = settings.getValue("settings:fontSizeTime", 10.0);
     fontSizeTitle = settings.getValue("settings:fontSizeTitle", 10.0);
+    fontSizeCity = settings.getValue("settings:fontSizeCity", 10.0);
     fontTime = settings.getValue("settings:fontTime", "instruction.otf");
     fontTitle = settings.getValue("settings:fontTitle", "instruction.otf");
     timeZone = settings.getValue("settings:timeZone", "America/Chicago");
    
-    // Construct color from XML.
-    string color = settings.getValue("settings:fontColor", "255,255,255,255");
+    // Construct time color from XML.
+    string color = settings.getValue("settings:fontColor", "255, 255, 255, 255");
     auto c = ofSplitString(color, ",");
     fontColor = ofColor(ofToInt(c[0]), ofToInt(c[1]), ofToInt(c[2]), ofToInt(c[3]));
+    
+    // Constuct title from XML
+    color = settings.getValue("settings:titleColor", "255,255,255,255");
+    c = ofSplitString(color, ",");
+    fontTitleColor = ofColor(ofToInt(c[0]), ofToInt(c[1]), ofToInt(c[2]), ofToInt(c[3]));
+    
+    // Construct city color from XML.
+    color = settings.getValue("settings:cityColor", "255,255,255,255");
+    c = ofSplitString(color, ",");
+    fontCityColor = ofColor(ofToInt(c[0]), ofToInt(c[1]), ofToInt(c[2]), ofToInt(c[3]));
   }
 
-  // Create ofTrueTypeFont time and title words.
+  // Create ofTrueTypeFont time, title, seperators, and city.
   createTimeWords();
   createTitleWords();
+  createSeperators();
+  city.load("Fonts/" + fontTitle, fontSizeCity);
 }
 
 void Clock::update() {
@@ -35,36 +64,44 @@ void Clock::drawClock() {
       switch (i) {
         case 0: {
           string yearsToPrint = placeValueTime(years, PlaceValue::Ten);
-          drawTimeTitle(i, yearsToPrint, "Years");
+          drawTimeTitle(i, yearsToPrint, "--", "YEARS");
           currentX += time[i].stringWidth(yearsToPrint) + wordSpacing;
+          drawSeperator();
+          currentX += seperators[0].stringWidth(":") + wordSpacing;
           break;
         }
         
         case 1: {
           string daysToPrint = placeValueTime(days, PlaceValue::Hundred);
-          drawTimeTitle(i, daysToPrint, "Days");
+          drawTimeTitle(i, daysToPrint, "---", "DAYS");
           currentX += time[i].stringWidth(daysToPrint) + wordSpacing;
+          drawSeperator();
+          currentX += seperators[1].stringWidth(":") + wordSpacing;
           break;
         }
         
         case 2: {
           string hrsToPrint = placeValueTime(hours, PlaceValue::Ten);
-          drawTimeTitle(i, hrsToPrint, "Hrs");
+          drawTimeTitle(i, hrsToPrint, "--", "HRS");
           currentX += time[i].stringWidth(hrsToPrint) + wordSpacing;
+          drawSeperator();
+          currentX += seperators[2].stringWidth(":") + wordSpacing;
           break;
         }
         
         case 3: {
           string minsToPrint = placeValueTime(minutes, PlaceValue::Ten); // Minutes should be till 10th place.
-          drawTimeTitle(i, minsToPrint, "Mins");
+          drawTimeTitle(i, minsToPrint, "--", "MINS");
           currentX += time[i].stringWidth(minsToPrint) + wordSpacing;
+          drawSeperator();
+          currentX += seperators[3].stringWidth(":") + wordSpacing;
           break;
         }
         
         case 4: {
           string secsToPrint = placeValueTime(seconds, PlaceValue::Ten);
-          drawTimeTitle(i, secsToPrint, "Secs");
-          currentX += time[i].stringWidth(secsToPrint) + wordSpacing;
+          drawTimeTitle(i, secsToPrint, "--", "SECS");
+          currentX += time[i].stringWidth("--");
           break;
         }
         
@@ -73,16 +110,57 @@ void Clock::drawClock() {
         }
       }
     }
+  
+    // Rounded Rectangle around time. 
+    ofPushStyle();
+      ofNoFill();
+      ofSetColor(fontCityColor);
+      ofSetLineWidth(2.0);
+      ofPushMatrix();
+        ofTranslate(-rectXOffset, -rectYOffset);
+        ofRectangle r (0, 0, roundedRectWidth, roundedRectHeight);
+        ofDrawRectRounded(r, 15);
+      ofPopMatrix();
+    ofPopStyle();
+  
+    // City
+    ofPushStyle();
+      ofSetColor(fontCityColor);
+      string c = getCityFromTimezone();
+      int cityLength = city.stringWidth(c);
+      int xPos = (roundedRectWidth - cityLength)/2;
+      ofPushMatrix();
+        ofTranslate(xPos, cityYOffset);
+        city.drawString(c, 0, 0);
+      ofPopMatrix();
+    ofPopStyle();
   ofPopMatrix();
 }
 
-void Clock::drawTimeTitle(int idx, string timeToPrint, string timeTitle) {
+void Clock::drawSeperator() {
   ofPushStyle();
+    ofSetColor(fontColor);
+    seperators[2].drawString(":", currentX, 0);
+  ofPopStyle();
+}
+
+string Clock::getCityFromTimezone() {
+  // America/Chicago
+  auto s = ofSplitString(timeZone, "/");
+  ofStringReplace(s[1], "_", " ");
+  return ofToUpper(s[1]);
+}
+
+void Clock::drawTimeTitle(int idx, string timeToPrint, string timeForSize, string timeTitle) {
+  ofPushStyle();
+    ofSetColor(fontColor);
     time[idx].drawString(timeToPrint, currentX, 0);
     ofPushMatrix();
-      int lengthTime = time[idx].stringWidth(timeToPrint);
-      int lengthTitle = title[idx].stringWidth(timeTitle);
-      int xPos = abs(lengthTime-lengthTitle)/2;
+      ofTranslate(currentX, yPositionTitle);
+      float lengthTime = time[idx].stringWidth(timeForSize);
+      float lengthTitle = title[idx].stringWidth(timeTitle);
+      float xPos = (lengthTime-lengthTitle)/2;
+      ofSetColor(fontTitleColor);
       title[idx].drawString(timeTitle, xPos, 0);
     ofPopMatrix();
   ofPopStyle();
@@ -183,6 +261,15 @@ void Clock::createTimeWords() {
   }
 }
 
+void Clock::createSeperators() {
+  seperators.clear();
+  for (int i = 0; i < numSeperators; i++) {
+    ofTrueTypeFont f;
+    f.load("Fonts/" + fontTime, fontSizeTime);
+    seperators.push_back(f);
+  }
+}
+
 void Clock::createTitleWords() {
   // Create words for Title.
   title.clear();
@@ -191,6 +278,14 @@ void Clock::createTitleWords() {
     word.load("Fonts/" + fontTitle, fontSizeTitle); // Title should be smaller than Time's font size.
     title.push_back(word);
   }
+}
+
+void Clock::drawGui() {
+  gui.draw();
+}
+
+void Clock::exit() {
+  gui.saveToFile(guiXmlFile);
 }
 
 string Clock::placeValueTime(int time, PlaceValue place) {

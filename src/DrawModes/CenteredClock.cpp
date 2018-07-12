@@ -3,20 +3,42 @@
 void CenteredClock::setup(bool _isProductionMode) {
     isProductionMode = _isProductionMode;
     isThirdWindowSetup = false;
-    clock.setup("newyorkmain.xml");
   
-    // TODO: Add a GUI to place the clock.
-    // Get a good font.
-    // Add a line on top as the city name.
-    if (isProductionMode) {
-      clock.setPosition(ofGetWidth()/2-100, ofGetHeight()/2);
-    } else {
+    // Initialize clock.
+    clock.setup("mainnyc.xml", POSITION_MODE_CENTERED, "CenterCoreClock.xml");
+  
+    // Setup the GUI.
+    gui.setup("Centered Clock Params.");
+    gui.setPosition(300, 250);
+    gui.add(xPosition);
+    gui.add(yPosition);
+    gui.add(xScale);
+    gui.add(yScale);
+    gui.loadFromFile("CenterClock.xml");
+  
+    // Set position in the window if we are not in
+    // production mode.
+    if (!isProductionMode) {
       clock.setPosition(50, 200);
     }
 }
 
 void CenteredClock::update() {
     clock.update();
+  
+    if (isProductionMode) {
+      clock.setPosition(xPosition, yPosition);
+    }
+}
+
+void CenteredClock::drawFirstWindow() {
+    // Core clock GUI.
+    // clock.drawGui();
+  
+    // Draw Centered Clock GUI in production mode only.
+    if (isProductionMode) {
+      // gui.draw();
+    }
 }
 
 void CenteredClock::drawThirdWindow(){
@@ -24,12 +46,16 @@ void CenteredClock::drawThirdWindow(){
         setupThirdWindow();
     }
   
-    clock.drawClock();
+    ofPushMatrix();
+      if (isProductionMode) {
+        ofScale(xScale, yScale, 0);
+      }
+      clock.drawClock();
+    ofPopMatrix();
 }
 
 void CenteredClock::setupThirdWindow(){
-    ofSetHexColor(0xFFFFFF);
-    ofBackground(0, 0, 0);
+    ofBackground(52, 52, 52);
     ofEnableAlphaBlending();
     
     if(isProductionMode){
@@ -39,4 +65,9 @@ void CenteredClock::setupThirdWindow(){
         ofSetWindowShape(400, 400);
     }
     isThirdWindowSetup = true;
+}
+
+void CenteredClock::exit() {
+   gui.saveToFile("CenterClock.xml");
+   clock.exit();
 }

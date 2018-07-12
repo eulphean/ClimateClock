@@ -3,6 +3,9 @@
     <fontSizeTitle>50</fontSizeTitle>
     <fontTime>DS-DIGIT.TTF</fontTime>
     <fontTitle>DS-DIGII.TTF</fontTitle>
+    <fontSizeCity>30</fontSizeCity>
     <timeZone>America/New_York</timeZone>
     <fontColor>222,15,15,215</fontColor>
+    <titleColor>160, 161, 165</titleColor>
+    <cityColor>203, 204, 206,255</cityColor>
 </settings>
