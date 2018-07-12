@@ -14,6 +14,7 @@ void Clock::setup(string fileName, PositionMode _positionMode, string guiXml) {
     gui.add(rectXOffset);
     gui.add(rectYOffset);
     gui.add(cityYOffset);
+    gui.add(cityXOffset);
     gui.loadFromFile(guiXml);
   }
   
@@ -128,11 +129,15 @@ void Clock::drawClock() {
     // City
     ofPushStyle();
       ofSetColor(fontCityColor);
-      string c = getCityFromTimezone();
-      int cityLength = city.stringWidth(c);
-      int xPos = (roundedRectWidth - cityLength)/2;
       ofPushMatrix();
-        ofTranslate(xPos, cityYOffset);
+        string c = getCityFromTimezone();
+        if (guiXOffsetForCity) {
+          ofTranslate(cityXOffset, cityYOffset);
+        } else {
+          int cityLength = city.stringWidth(c);
+          int xPos = (roundedRectWidth - cityLength)/2;
+          ofTranslate(xPos, cityYOffset);
+        }
         city.drawString(c, 0, 0);
       ofPopMatrix();
     ofPopStyle();

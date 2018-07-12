@@ -45,8 +45,10 @@ class Clock {
     // GUI
     void drawGui();
   
-    // Hide border.
+    // Hide border and don't use GUI for adjusting
+    // GUI offset.
     bool hideRoundedBorder = false;
+    bool guiXOffsetForCity = false;
   
   private:
     void drawSeperator();
@@ -73,6 +75,7 @@ class Clock {
     ofParameter<float> rectXOffset { "Rect X Offset", 5, 0, 1000 };
     ofParameter<float> rectYOffset { "Rect Y Offset", 35, 0, 1000 };
     ofParameter<float> cityYOffset { "City Y Offset", 35, 0, 1000 };
+    ofParameter<float> cityXOffset { "City X Offset", 35, 0, 1000 };
     
     int fontSizeTime = 30;
     int fontSizeTitle = 12;

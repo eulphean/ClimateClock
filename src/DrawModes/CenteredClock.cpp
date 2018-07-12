@@ -7,6 +7,7 @@ void CenteredClock::setup(bool _isProductionMode) {
     // Initialize clock.
     clock.setup("mainnyc.xml", POSITION_MODE_CENTERED, "CenterCoreClock.xml");
     clock.hideRoundedBorder = true;
+    clock.guiXOffsetForCity = true;
   
     // Setup the GUI.
     gui.setup("Centered Clock Params.");
