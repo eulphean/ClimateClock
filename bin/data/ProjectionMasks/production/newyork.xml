@@ -1,26 +1,6 @@
 <session>
     <type>auto</type>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     <timestamp>2018-07-11-22-09-00-847</timestamp>
-=======
-    <timestamp>2018-07-12-00-17-15-563</timestamp>
->>>>>>> Add a GUI to center clock. Draw it as part of the grid.
-=======
-    <timestamp>2018-07-12-01-06-04-633</timestamp>
->>>>>>> Use a new font for the center clock. Finalizing the center clock for now.
-=======
-    <timestamp>2018-07-12-01-55-33-855</timestamp>
->>>>>>> Integrate city.
-=======
-    <timestamp>2018-07-12-03-20-37-741</timestamp>
->>>>>>> Finalize the grid.
-=======
-    <timestamp>2018-07-12-03-48-04-761</timestamp>
->>>>>>> Integrate colors.
     <designCanvas>
         <width>1004</width>
         <height>710</height>
@@ -28,20 +8,14 @@
         <y>10</y>
     </designCanvas>
     <liveCanvas>
-<<<<<<< HEAD
         <width>1920</width>
         <height>1080</height>
-=======
-        <width>1280</width>
-        <height>800</height>
->>>>>>> Add a GUI to center clock. Draw it as part of the grid.
         <x>0</x>
         <y>0</y>
     </liveCanvas>
     <maskFrames>
         <maskFrame>
             <id>0</id>
-<<<<<<< HEAD
             <designWidth>43</designWidth>
             <designHeight>134</designHeight>
             <designX>63</designX>
@@ -419,40 +393,6 @@
                     <designY>54</designY>
                     <liveX>4</liveX>
                     <liveY>83</liveY>
-=======
-            <designWidth>80</designWidth>
-            <designHeight>127</designHeight>
-            <designX>483</designX>
-            <designY>349</designY>
-            <liveWidth>102</liveWidth>
-            <liveHeight>144</liveHeight>
-            <liveX>616</liveX>
-            <liveY>394</liveY>
-            <maskPoints>
-                <maskPoint>
-                    <designX>30</designX>
-                    <designY>149</designY>
-                    <liveX>39</liveX>
-                    <liveY>168</liveY>
-                </maskPoint>
-                <maskPoint>
-                    <designX>24</designX>
-                    <designY>15</designY>
-                    <liveX>31</liveX>
-                    <liveY>17</liveY>
-                </maskPoint>
-                <maskPoint>
-                    <designX>103</designX>
-                    <designY>15</designY>
-                    <liveX>132</liveX>
-                    <liveY>17</liveY>
-                </maskPoint>
-                <maskPoint>
-                    <designX>108</designX>
-                    <designY>152</designY>
-                    <liveX>138</liveX>
-                    <liveY>172</liveY>
->>>>>>> Add a GUI to center clock. Draw it as part of the grid.
                 </maskPoint>
             </maskPoints>
         </maskFrame>
