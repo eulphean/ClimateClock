@@ -1,8 +1,8 @@
 <settings>
-    <fontSizeTime>30</fontSizeTime>
-    <fontSizeTitle>20</fontSizeTitle>
-    <fontTime>The Led Display St.ttf</fontTime>
-    <fontTitle>The Led Display St.ttf</fontTitle>
+    <fontSizeTime>100</fontSizeTime>
+    <fontSizeTitle>50</fontSizeTitle>
+    <fontTime>DS-DIGIT.TTF</fontTime>
+    <fontTitle>DS-DIGII.TTF</fontTitle>
     <timeZone>America/New_York</timeZone>
-    <fontColor>255,0,0,255</fontColor>
+    <fontColor>222,15,15,215</fontColor>
 </settings>

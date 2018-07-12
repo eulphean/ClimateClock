@@ -13,7 +13,6 @@ public:
     void draw(string city);
 protected:
     void drawNewYorkBuffers();
-    void drawTokyoBuffers();
     void drawNewYorkYears();
     void drawNewYorkYearsLabel();
     void drawNewYorkDays();
@@ -24,6 +23,18 @@ protected:
     void drawNewYorkMinutesLabel();
     void drawNewYorkSeconds();
     void drawNewYorkSecondsLabel();
+
+    void drawTokyoBuffers();
+    void drawTokyoYears();
+    void drawTokyoYearsLabel();
+    void drawTokyoDays();
+    void drawTokyoDaysLabel();
+    void drawTokyoHours();
+    void drawTokyoHoursLabel();
+    void drawTokyoMinutes();
+    void drawTokyoMinutesLabel();
+    void drawTokyoSeconds();
+    void drawTokyoSecondsLabel();
 
     int numFacePartsNYC = 10;
     ofxLayerMask* clockFace;
