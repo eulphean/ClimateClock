@@ -6,6 +6,7 @@ void CenteredClock::setup(bool _isProductionMode) {
   
     // Initialize clock.
     clock.setup("mainnyc.xml", POSITION_MODE_CENTERED, "CenterCoreClock.xml");
+    clock.hideRoundedBorder = true;
   
     // Setup the GUI.
     gui.setup("Centered Clock Params.");
@@ -33,11 +34,11 @@ void CenteredClock::update() {
 
 void CenteredClock::drawFirstWindow() {
     // Core clock GUI.
-    // clock.drawGui();
+    clock.drawGui();
   
     // Draw Centered Clock GUI in production mode only.
     if (isProductionMode) {
-      // gui.draw();
+      gui.draw();
     }
 }
 

@@ -45,6 +45,9 @@ class Clock {
     // GUI
     void drawGui();
   
+    // Hide border.
+    bool hideRoundedBorder = false;
+  
   private:
     void drawSeperator();
     string getCityFromTimezone();

@@ -82,7 +82,7 @@ void Clock::drawClock() {
         
         case 2: {
           string hrsToPrint = placeValueTime(hours, PlaceValue::Ten);
-          drawTimeTitle(i, hrsToPrint, "--", "HRS");
+          drawTimeTitle(i, hrsToPrint, "00", "HRS");
           currentX += time[i].stringWidth(hrsToPrint) + wordSpacing;
           drawSeperator();
           currentX += seperators[2].stringWidth(":") + wordSpacing;
@@ -91,7 +91,7 @@ void Clock::drawClock() {
         
         case 3: {
           string minsToPrint = placeValueTime(minutes, PlaceValue::Ten); // Minutes should be till 10th place.
-          drawTimeTitle(i, minsToPrint, "--", "MINS");
+          drawTimeTitle(i, minsToPrint, "00", "MINS");
           currentX += time[i].stringWidth(minsToPrint) + wordSpacing;
           drawSeperator();
           currentX += seperators[3].stringWidth(":") + wordSpacing;
@@ -111,17 +111,19 @@ void Clock::drawClock() {
       }
     }
   
-    // Rounded Rectangle around time. 
-    ofPushStyle();
-      ofNoFill();
-      ofSetColor(fontCityColor);
-      ofSetLineWidth(2.0);
-      ofPushMatrix();
-        ofTranslate(-rectXOffset, -rectYOffset);
-        ofRectangle r (0, 0, roundedRectWidth, roundedRectHeight);
-        ofDrawRectRounded(r, 15);
-      ofPopMatrix();
-    ofPopStyle();
+    if (!hideRoundedBorder) {
+      // Rounded Rectangle around time.
+      ofPushStyle();
+        ofNoFill();
+        ofSetColor(fontCityColor);
+        ofSetLineWidth(2.0);
+        ofPushMatrix();
+          ofTranslate(-rectXOffset, -rectYOffset);
+          ofRectangle r (0, 0, roundedRectWidth, roundedRectHeight);
+          ofDrawRectRounded(r, 15);
+        ofPopMatrix();
+      ofPopStyle();
+    }
   
     // City
     ofPushStyle();
