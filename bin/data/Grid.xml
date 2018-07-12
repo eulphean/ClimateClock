@@ -8,10 +8,10 @@
 	<Y_Padding>25</Y_Padding>
 </group>
 <Clock_Grid_params>
-	<Clock_Width>318</Clock_Width>
+	<Clock_Width>340</Clock_Width>
 	<Clock_Height>130</Clock_Height>
 	<X_Padding>40</X_Padding>
 	<Y_Padding>100</Y_Padding>
-	<X_Offset>13</X_Offset>
-	<Y_Offset>90</Y_Offset>
+	<X_Offset>140</X_Offset>
+	<Y_Offset>170</Y_Offset>
 </Clock_Grid_params>

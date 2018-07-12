@@ -50,13 +50,13 @@ void ClockGrid::createGrid() {
 
     for (int x = 0; x < ofGetWidth(); x += clockWidth) {
         for (int y = 0; y < ofGetHeight(); y += clockHeight) {
-            if (ofGetWidth() - x > clockWidth && ofGetHeight() - y > clockHeight) {
+//            if (ofGetWidth() - x > clockWidth && ofGetHeight() - y > clockHeight) {
               Clock clock;
               clock.setup();
               clock.setTimeZone(selectTimeZone());
               clock.setPosition(x, y);
               clocks.push_back(clock);
-            }
+//            }
         }
     }
 }
@@ -74,15 +74,16 @@ void ClockGrid::windowResized(int w, int h) {
 }
 
 string ClockGrid::selectTimeZone() {
-    int maxEntries = timeZones.size();
-
-    int randIdx = ofRandom(0, maxEntries - 1);
-    while (ofContains(tzIndices, randIdx)) {
-        randIdx = ofRandom(0, maxEntries - 1);
-    }
-    tzIndices.push_back(randIdx);
-
-    return timeZones[randIdx];
+//    int maxEntries = timeZones.size();
+//
+//    int randIdx = ofRandom(0, maxEntries - 1);
+//    while (ofContains(tzIndices, randIdx)) {
+//        randIdx = ofRandom(0, maxEntries - 1);
+//    }
+//    tzIndices.push_back(randIdx);
+//
+//    return timeZones[randIdx];
+    return timeZones[ofRandom(0, timeZones.size())];
 }
 
 void ClockGrid::loadTimeZones() {
