@@ -115,4 +115,11 @@ void ClockGrid::loadTimeZones() {
     timeZones.push_back("Europe/Rome");
     timeZones.push_back("Europe/Tallinn");
     timeZones.push_back("Europe/Stockholm");
+    timeZones.push_back("Africa/Abidjan");
+    timeZones.push_back("America/Juneau");
+    timeZones.push_back("America/Jamaica");
+    timeZones.push_back("America/Los_Angeles");
+    timeZones.push_back("Atlantic/Madeira");
+    timeZones.push_back("Pacific/Guam");
+  
 }
