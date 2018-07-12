@@ -14,23 +14,24 @@ public:
     void drawSecondWindow();
     void keyPressed(ofKeyEventArgs& args);
 private:
+    void setCurrentCity(string city);
+    void setupCities();
     void setupBackgroundMovies();
     void setupOverlayImages();
     void playCurrentMovie();
     void stopCurrentMovie();
+    void drawCurrentMovie();
+    void drawCurrentOverlayImage();
     
     ofxProjectionMask projectionMask;
     ofxLayerMask *background;
 
-    ofVideoPlayer backgroundMovie;
-    map<string, ofVideoPlayer> backgroundMovies;
-
-    ofImage overlayImage;
-    map<string, ofImage> overlayImages;
+    ofVideoPlayer newYorkMovie, tokyoMovie;
+    ofImage newYorkOverlayImage, tokyoOverlayImage;
 
     CityClockDrawing cityClockDrawing;
     
     vector<string> cities;
-    int currentCity;
+    string currentCity;
     bool isProductionMode;
 };
