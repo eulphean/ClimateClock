@@ -6,11 +6,10 @@ void VideoOverlay::setup(bool _isProductionMode) {
         projectionMask.setup(HOMOGRAPHY, PRESETS_PRODUCTION) :
         projectionMask.setup(HOMOGRAPHY, PRESETS_DEVELOPMENT);
 
-    setupCities();
     setupBackgroundMovies();
     setupOverlayImages();
     cityClockDrawing.setup(&projectionMask);
-    setCurrentCity("tokyo");
+    setCurrentCity("paris");
     playCurrentMovie();
 
     background = projectionMask.getBackground();
@@ -58,6 +57,8 @@ void VideoOverlay::keyPressed(ofKeyEventArgs& args){
         if(currentCity == "tokyo"){
             nextCity = "newyork";
         }else if(currentCity == "newyork"){
+            nextCity = "paris";
+        }else if(currentCity == "paris"){
             nextCity = "tokyo";
         }
         setCurrentCity(nextCity);
@@ -70,16 +71,12 @@ void VideoOverlay::setCurrentCity(string city){
     projectionMask.setStorageFileName(currentCity);
 }
 
-void VideoOverlay::setupCities(){
-    cities.push_back("tokyo");
-    cities.push_back("newyork");
-}
-
 void VideoOverlay::setupBackgroundMovies(){
     newYorkMovie.load("cities/newyork.mov");
     newYorkMovie.setVolume(0);
     tokyoMovie.load("cities/tokyo.mp4");
     tokyoMovie.setVolume(0);
+    eiffelTowerImage.load("cities/paris.jpg");
 }
 
 void VideoOverlay::setupOverlayImages(){
@@ -108,6 +105,8 @@ void VideoOverlay::drawCurrentMovie(){
         tokyoMovie.draw(0, 0, background->getWidth(), background->getHeight());
     } else if(currentCity == "newyork"){
         newYorkMovie.draw(0, 0, background->getWidth(), background->getHeight());
+    } else if(currentCity == "paris"){
+        eiffelTowerImage.draw(0, 0, background->getWidth(), background->getHeight());
     }
 }
 

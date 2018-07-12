@@ -23,7 +23,7 @@ protected:
     void drawNewYorkMinutesLabel();
     void drawNewYorkSeconds();
     void drawNewYorkSecondsLabel();
-
+    
     void drawTokyoBuffers();
     void drawTokyoYears();
     void drawTokyoYearsLabel();
@@ -35,11 +35,23 @@ protected:
     void drawTokyoMinutesLabel();
     void drawTokyoSeconds();
     void drawTokyoSecondsLabel();
+    
+    void drawParisBuffers();
+    void drawParisYears();
+    void drawParisYearsLabel();
+    void drawParisDays();
+    void drawParisDaysLabel();
+    void drawParisHours();
+    void drawParisHoursLabel();
+    void drawParisMinutes();
+    void drawParisMinutesLabel();
+    void drawParisSeconds();
+    void drawParisSecondsLabel();
 
     int numFacePartsNYC = 10;
     ofxLayerMask* clockFace;
     vector<ofxLayerMask*> clockFaceParts;
     int bufferSize, halfBufferSize;
 
-    Clock nycClock, tokyoClock;
+    Clock nycClock, tokyoClock, parisClock;
 };

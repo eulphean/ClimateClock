@@ -3,6 +3,7 @@
 void CityClockDrawing::setup(ofxProjectionMask* projectionMask) {
     nycClock.setup("newyork.xml", POSITION_MODE_CENTERED);
     tokyoClock.setup("tokyo.xml", POSITION_MODE_CENTERED);
+    parisClock.setup("paris.xml", POSITION_MODE_CENTERED);
     bufferSize = 200;
     halfBufferSize = bufferSize * 0.5;
 
@@ -15,6 +16,7 @@ void CityClockDrawing::setup(ofxProjectionMask* projectionMask) {
 void CityClockDrawing::update() {
     nycClock.update();
     tokyoClock.update();
+    parisClock.update();
 }
 
 void CityClockDrawing::draw(string city) {
@@ -22,6 +24,8 @@ void CityClockDrawing::draw(string city) {
         drawNewYorkBuffers();
     } else if(city == "tokyo") {
         drawTokyoBuffers();
+    } else if(city == "paris") {
+        drawParisBuffers();
     }
 }
 
@@ -175,7 +179,7 @@ void CityClockDrawing::drawTokyoBuffers() {
     clockFace->begin();
     ofClear(0, 0, 0, 0);
     clockFace->end();
-
+    
     clockFace->begin();
     ofClear(0, 0, 0, 0);
     clockFace->end();
@@ -270,4 +274,104 @@ void CityClockDrawing::drawTokyoSecondsLabel(){
     ofClear(0, 0, 0, 0);
     tokyoClock.drawSecsTitle(halfBufferSize, halfBufferSize);
 }
-	
+
+void CityClockDrawing::drawParisBuffers() {
+    clockFace->begin();
+    ofClear(0, 0, 0, 0);
+    clockFace->end();
+    
+    clockFace->begin();
+    ofClear(0, 0, 0, 0);
+    clockFace->end();
+    
+    clockFaceParts.at(0)->begin();
+    drawParisYears();
+    clockFaceParts.at(0)->end();
+    
+    clockFaceParts.at(1)->begin();
+    drawParisYearsLabel();
+    clockFaceParts.at(1)->end();
+    
+    clockFaceParts.at(2)->begin();
+    drawParisDays();
+    clockFaceParts.at(2)->end();
+    
+    clockFaceParts.at(3)->begin();
+    drawParisDaysLabel();
+    clockFaceParts.at(3)->end();
+    
+    clockFaceParts.at(4)->begin();
+    drawParisHours();
+    clockFaceParts.at(4)->end();
+    
+    clockFaceParts.at(5)->begin();
+    drawParisHoursLabel();
+    clockFaceParts.at(5)->end();
+    
+    clockFaceParts.at(6)->begin();
+    drawParisMinutes();
+    clockFaceParts.at(6)->end();
+    
+    clockFaceParts.at(7)->begin();
+    drawParisMinutesLabel();
+    clockFaceParts.at(7)->end();
+    
+    clockFaceParts.at(8)->begin();
+    drawParisSeconds();
+    clockFaceParts.at(8)->end();
+    
+    clockFaceParts.at(9)->begin();
+    drawParisSecondsLabel();
+    clockFaceParts.at(9)->end();
+}
+
+void CityClockDrawing::drawParisYears(){
+    ofClear(0, 0, 0, 0);
+    parisClock.drawYears(halfBufferSize, halfBufferSize);
+}
+
+void CityClockDrawing::drawParisYearsLabel(){
+    ofClear(0, 0, 0, 0);
+    parisClock.drawYearsTitle(halfBufferSize, halfBufferSize);
+}
+
+void CityClockDrawing::drawParisDays(){
+    ofClear(0, 0, 0, 0);
+    parisClock.drawDays(halfBufferSize, halfBufferSize);
+}
+
+void CityClockDrawing::drawParisDaysLabel(){
+    ofClear(0, 0, 0, 0);
+    parisClock.drawDaysTitle(halfBufferSize, halfBufferSize);
+}
+
+void CityClockDrawing::drawParisHours(){
+    ofClear(0, 0, 0, 0);
+    parisClock.drawHrs(halfBufferSize, halfBufferSize);
+}
+
+void CityClockDrawing::drawParisHoursLabel(){
+    ofClear(0, 0, 0, 0);
+    parisClock.drawHrsTitle(halfBufferSize, halfBufferSize);
+}
+
+void CityClockDrawing::drawParisMinutes(){
+    ofClear(0, 0, 0, 0);
+    parisClock.drawMins(halfBufferSize, halfBufferSize);
+}
+
+void CityClockDrawing::drawParisMinutesLabel(){
+    ofClear(0, 0, 0, 0);
+    parisClock.drawMinsTitle(halfBufferSize, halfBufferSize);
+}
+
+void CityClockDrawing::drawParisSeconds(){
+    ofClear(0, 0, 0, 0);
+    parisClock.drawSecs(halfBufferSize, halfBufferSize);
+}
+
+void CityClockDrawing::drawParisSecondsLabel(){
+    ofClear(0, 0, 0, 0);
+    parisClock.drawSecsTitle(halfBufferSize, halfBufferSize);
+}
+

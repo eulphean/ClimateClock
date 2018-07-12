@@ -15,7 +15,6 @@ public:
     void keyPressed(ofKeyEventArgs& args);
 private:
     void setCurrentCity(string city);
-    void setupCities();
     void setupBackgroundMovies();
     void setupOverlayImages();
     void playCurrentMovie();
@@ -27,7 +26,7 @@ private:
     ofxLayerMask *background;
 
     ofVideoPlayer newYorkMovie, tokyoMovie;
-    ofImage newYorkOverlayImage, tokyoOverlayImage;
+    ofImage newYorkOverlayImage, tokyoOverlayImage, eiffelTowerImage;
 
     CityClockDrawing cityClockDrawing;
     
