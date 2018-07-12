@@ -27,7 +27,5 @@ protected:
     ccDrawMode drawMode;
     bool isSequencing = false;
     // Time between switching scenes. 
-    unsigned long sequenceTime;
-    const int minSequenceTime = 20; // 20 secs
-    const int maxSequenceTime = 25; // 25 secs
+    unsigned long sequenceTime = 30; // Start with 30 seconds. 
 };

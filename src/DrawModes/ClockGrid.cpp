@@ -50,13 +50,11 @@ void ClockGrid::createGrid() {
 
     for (int x = 0; x < ofGetWidth(); x += clockWidth) {
         for (int y = 0; y < ofGetHeight(); y += clockHeight) {
-//            if (ofGetWidth() - x > clockWidth && ofGetHeight() - y > clockHeight) {
-              Clock clock;
-              clock.setup();
-              clock.setTimeZone(selectTimeZone());
-              clock.setPosition(x, y);
-              clocks.push_back(clock);
-//            }
+            Clock clock;
+            clock.setup();
+            clock.setTimeZone(selectTimeZone());
+            clock.setPosition(x, y);
+            clocks.push_back(clock);
         }
     }
 }

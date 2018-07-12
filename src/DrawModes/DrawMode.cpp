@@ -11,7 +11,15 @@ void DrawMode::update(){
       if (elapsedTime > sequenceTime) { // Done showing current mode.
         next(); // Show next mode.
         lastTime = ofGetElapsedTimeMillis(); // Reset last time.
-        sequenceTime = ofRandom(minSequenceTime, maxSequenceTime) * 1000;
+        if(drawMode == CC_DRAW_CLOCK_GRID){
+          sequenceTime = 30 * 1000;
+        } else if(drawMode == CC_DRAW_VIDEO_NEWYORK) {
+          sequenceTime = 60 * 1000;
+        } else if(drawMode == CC_DRAW_VIDEO_TOKYO){
+          sequenceTime = 14 * 1000;
+        } else if(drawMode == CC_DRAW_VIDEO_PARIS){
+          sequenceTime = 14 * 1000;
+        }
       }
     }
 }
@@ -54,7 +62,6 @@ void DrawMode::keyPressed(ofKeyEventArgs& args) {
       isSequencing = !isSequencing;
       if (isSequencing) {
         lastTime = ofGetElapsedTimeMillis();
-        sequenceTime = ofRandom(minSequenceTime, maxSequenceTime) * 1000;
         std::cout << "Start cycling scenes." << endl;
       } else {
         std:: cout << "Stop cycling scenes." << endl;
