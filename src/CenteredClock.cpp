@@ -18,33 +18,19 @@ void CenteredClock::setup() {
 
 void CenteredClock::update() {
     clock.update();
-  
-    if (isProductionMode) {
-      clock.setPosition(xPosition, yPosition);
-    }
+    clock.setPosition(xPosition, yPosition);
 }
 
-void CenteredClock::drawFirstWindow() {
-    // Core clock GUI.
-    clock.drawGui();
+void CenteredClock::draw() {
+  // Draw Gui (TODO: Add a flag to hide the GUI as well). 
+  clock.drawGui();
+  gui.draw();
   
-    // Draw Centered Clock GUI in production mode only.
-    if (isProductionMode) {
-      gui.draw();
-    }
-}
-
-void CenteredClock::drawThirdWindow(){
-    if(!isThirdWindowSetup){
-        setupThirdWindow();
-    }
-  
-    ofPushMatrix();
-      if (isProductionMode) {
-        ofScale(xScale, yScale, 0);
-      }
-      clock.drawClock();
-    ofPopMatrix();
+  // Apply scaling to the center clock.
+  ofPushMatrix();
+    ofScale(xScale, yScale, 0);
+    clock.drawClock();
+  ofPopMatrix();
 }
 
 

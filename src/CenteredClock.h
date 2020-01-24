@@ -10,14 +10,10 @@ public:
     void setup();
     void update();
     void draw(); 
-    void drawFirstWindow();
-    void drawThirdWindow();
     void exit();
     
 protected:
-    void setupThirdWindow();
     Clock clock;
-    bool isThirdWindowSetup, isProductionMode;
   
     // GUI parameters for Centered Clock. 
     ofxPanel gui;

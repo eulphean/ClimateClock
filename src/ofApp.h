@@ -7,7 +7,6 @@ class ofApp : public ofBaseApp{
 
 public:
     void setup();
-    void setupMovies();
     void update();
     void draw();
     void exit();
