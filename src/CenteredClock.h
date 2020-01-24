@@ -7,8 +7,9 @@
 class CenteredClock {
     
 public:
-    void setup(bool _isProductionMode);
+    void setup();
     void update();
+    void draw(); 
     void drawFirstWindow();
     void drawThirdWindow();
     void exit();
