@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <CenterCoreClock_xml>
 	<Word_Spacing>9</Word_Spacing>
-	<Title_Position>-160</Title_Position>
+	<Title_Position>-135</Title_Position>
 	<Rounded_Rect_Width>1144</Rounded_Rect_Width>
 	<Rounded_Rect_Height>140</Rounded_Rect_Height>
 	<Rect_X_Offset>0</Rect_X_Offset>
 	<Rect_Y_Offset>125</Rect_Y_Offset>
-	<City_X_Offset>400</City_X_Offset>
-	<City_Y_Offset>100</City_Y_Offset>
+	<City_X_Offset>419.844</City_X_Offset>
+	<City_Y_Offset>89.8438</City_Y_Offset>
 </CenterCoreClock_xml>

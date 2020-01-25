@@ -2,7 +2,7 @@
 
 void CenteredClock::setup() {
     // Initialize clock.
-    clock.setup("mainnyc.xml", POSITION_MODE_CENTERED, "CenterCoreClock.xml");
+    clock.setup("chicago.xml", POSITION_MODE_CENTERED, "CenterCoreClock.xml");
     clock.hideRoundedBorder = true;
     clock.guiXOffsetForCity = true;
   
