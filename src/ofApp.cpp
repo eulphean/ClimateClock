@@ -24,3 +24,7 @@ void ofApp::keyPressed(int key) {
     hideGui = !hideGui;
   }
 }
+
+void ofApp::mousePressed(int x, int y, int button) {
+  centeredClock.nextTimezone(); 
+}

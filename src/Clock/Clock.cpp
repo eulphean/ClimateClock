@@ -407,3 +407,8 @@ void Clock::translate(int x, int y, ofTrueTypeFont& font, string str){
   ofRectangle boundingBox = font.getStringBoundingBox(str, 0, 0);
   ofTranslate(x - boundingBox.width * 0.5, y + boundingBox.height * 0.5);
 }
+
+void Clock::nextTimezone() {
+  // Pick a timezone (random) from the array (put all that code)
+  setTimeZone("America/New_York");
+}

@@ -12,6 +12,7 @@ public:
     void exit();
   
     void keyPressed(int key);
+    void mousePressed(int x, int y, int button);
   
 private:
     CenteredClock centeredClock;

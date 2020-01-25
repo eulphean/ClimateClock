@@ -32,11 +32,16 @@ void CenteredClock::draw(bool hideGui) {
     ofShowCursor();
     clock.drawGui();
     gui.draw();
+  } else {
+    ofHideCursor(); 
   }
 }
-
 
 void CenteredClock::exit() {
    gui.saveToFile("CenterClock.xml");
    clock.exit();
+}
+
+void CenteredClock::nextTimezone() {
+  clock.nextTimezone(); 
 }
