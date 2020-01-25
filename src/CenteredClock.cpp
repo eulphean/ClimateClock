@@ -47,8 +47,8 @@ void CenteredClock::setup() {
     timezoneIdx = 0;
     clock.setup(timezones[timezoneIdx], "CenterCoreClock.xml");
     clock.hideRoundedBorder = true;
-    clock.guiXOffsetForCity = true;
-
+    clock.guiXOffsetForCity = false;
+  
 }
 
 void CenteredClock::update() {

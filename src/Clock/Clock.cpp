@@ -129,7 +129,7 @@ void Clock::drawClock() {
           ofTranslate(cityXOffset, cityYOffset);
         } else {
           int cityLength = city.stringWidth(c);
-          int xPos = (roundedRectWidth - cityLength)/2;
+          int xPos = (currentX - cityLength)/2;
           ofTranslate(xPos, cityYOffset);
         }
         city.drawString(c, 0, 0);
@@ -141,6 +141,7 @@ void Clock::drawClock() {
       ofSetColor(fontCityColor);
       ofPushMatrix();
         c = "2° WINDOW PROJECT";
+        int xPos = (currentX - projectTitle.stringWidth(c))/2;
         ofTranslate(projectTitleXOffset, projectTitleYOffset);
         projectTitle.drawString(c, 0, 0);
       ofPopMatrix();
@@ -300,10 +301,6 @@ void Clock::createTitleWords() {
     word.load("Fonts/" + fontTitle, fontSizeTitle); // Title should be smaller than Time's font size.
     title.push_back(word);
   }
-}
-
-void Clock::createIPCCTitle() {
-
 }
 
 void Clock::drawGui() {
