@@ -51,6 +51,8 @@ void CenteredClock::setup() {
   
     currentTime = 0;
     maxWaitTime = 10000; // 60 seconds or 60000 milliseconds
+  
+    hideGui = true; 
 }
 
 void CenteredClock::update() {
