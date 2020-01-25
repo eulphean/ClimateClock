@@ -9,7 +9,7 @@ class CenteredClock {
 public:
     void setup();
     void update();
-    void draw(); 
+    void draw(bool hideGui); 
     void exit();
     
 protected:

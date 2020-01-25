@@ -21,16 +21,17 @@ void CenteredClock::update() {
     clock.setPosition(xPosition, yPosition);
 }
 
-void CenteredClock::draw() {
-  // Draw Gui (TODO: Add a flag to hide the GUI as well). 
-  clock.drawGui();
-  gui.draw();
-  
+void CenteredClock::draw(bool hideGui) {
   // Apply scaling to the center clock.
   ofPushMatrix();
     ofScale(xScale, yScale, 0);
     clock.drawClock();
   ofPopMatrix();
+  
+  if (!hideGui) {
+    clock.drawGui();
+    gui.draw();
+  }
 }
 
 

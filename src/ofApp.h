@@ -11,6 +11,9 @@ public:
     void draw();
     void exit();
   
+    void keyPressed(int key);
+  
 private:
     CenteredClock centeredClock;
+    bool hideGui; 
 };
