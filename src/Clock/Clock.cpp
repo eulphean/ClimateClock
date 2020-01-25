@@ -46,7 +46,7 @@ void Clock::setup(string initialTz, string guiXml) {
   ipccTitle.load("Fonts/" + fontTitle, fontSizeIpccTitle);
   
   // Load sound
-  ticker.load("click.wav"); ticker.setVolume(0.7);
+  ticker.load("click.wav"); ticker.setVolume(1.0);
   currentTime = ofGetElapsedTimeMillis();
 }
 
