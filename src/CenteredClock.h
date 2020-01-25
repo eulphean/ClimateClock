@@ -24,5 +24,8 @@ protected:
     ofParameter<float> yScale { "Y Scale", 1, 0.5, 10 };
   
     std::vector<string> timezones;
-    int timezoneIdx; 
+    int timezoneIdx;
+  
+    long currentTime;
+    long maxWaitTime; 
 };

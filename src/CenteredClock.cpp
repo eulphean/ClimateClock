@@ -49,11 +49,17 @@ void CenteredClock::setup() {
     clock.hideRoundedBorder = true;
     clock.guiXOffsetForCity = false;
   
+    currentTime = 0;
+    maxWaitTime = 10000; // 60 seconds or 60000 milliseconds
 }
 
 void CenteredClock::update() {
     clock.update();
     clock.setPosition(xPosition, yPosition);
+  
+    if (ofGetElapsedTimeMillis() - currentTime > maxWaitTime) {
+      clock.setTimeZone(timezones[0]);
+    }
 }
 
 void CenteredClock::draw(bool hideGui) {
@@ -79,5 +85,6 @@ void CenteredClock::exit() {
 
 void CenteredClock::nextTimezone() {
   timezoneIdx = (timezoneIdx + 1) % timezones.size();
-  clock.setTimeZone(timezones[timezoneIdx]); 
+  clock.setTimeZone(timezones[timezoneIdx]);
+  currentTime = ofGetElapsedTimeMillis(); // Reset current time.
 }
