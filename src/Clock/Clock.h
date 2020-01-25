@@ -117,4 +117,7 @@ class Clock {
   
     // Gui Xml file.
     string guiXmlFile;
+  
+    ofSoundPlayer ticker;  
+    long currentTime; 
 };

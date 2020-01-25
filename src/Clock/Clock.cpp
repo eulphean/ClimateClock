@@ -44,10 +44,20 @@ void Clock::setup(string initialTz, string guiXml) {
   city.load("Fonts/" + fontTitle, fontSizeCity);
   projectTitle.load("Fonts/" + fontTitle, fontSizeProjectTitle);
   ipccTitle.load("Fonts/" + fontTitle, fontSizeIpccTitle);
+  
+  // Load sound
+  ticker.load("click.wav"); ticker.setVolume(0.7);
+  currentTime = ofGetElapsedTimeMillis();
 }
 
 void Clock::update() {
   updateTime();
+  
+  // Clock ticking.
+  if (ofGetElapsedTimeMillis() - currentTime > 1000) {
+    ticker.play();
+    currentTime = ofGetElapsedTimeMillis();
+  }
 }
 
 void Clock::drawClock() {

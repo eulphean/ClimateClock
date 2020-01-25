@@ -27,5 +27,5 @@ protected:
     int timezoneIdx;
   
     long currentTime;
-    long maxWaitTime; 
+    long maxWaitTime;
 };
