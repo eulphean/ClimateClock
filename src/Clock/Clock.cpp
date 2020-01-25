@@ -1,6 +1,6 @@
 #include "Clock.h"
 
-void Clock::setup(string fileName, PositionMode _positionMode, string guiXml) {
+void Clock::setup(string guiXml) {
   // Initialize a GUI for adjust important clock display parameters.
   if (guiXml != " ") {
     guiXmlFile = guiXml;
@@ -15,30 +15,35 @@ void Clock::setup(string fileName, PositionMode _positionMode, string guiXml) {
     gui.add(rectYOffset);
     gui.add(cityYOffset);
     gui.add(cityXOffset);
+    gui.add(projectTitleXOffset);
+    gui.add(projectTitleYOffset);
+    gui.add(ipccTitleXOffset);
+    gui.add(ipccTitleYOffset);
     gui.loadFromFile(guiXml);
   }
   
-  positionMode = _positionMode;
-  if (fileName != " ") {
-    // Load XML file.
-    settings.loadFile("Clocks/" + fileName);
-    fontSizeTime = settings.getValue("settings:fontSizeTime", 10.0);
-    fontSizeTitle = settings.getValue("settings:fontSizeTitle", 10.0);
-    fontSizeCity = settings.getValue("settings:fontSizeCity", 10.0);
-    fontTime = settings.getValue("settings:fontTime", "instruction.otf");
-    fontTitle = settings.getValue("settings:fontTitle", "instruction.otf");
-    timeZone = settings.getValue("settings:timeZone", "America/Chicago");
-
-    fontColor = ofColor::black;
-    fontTitleColor = ofColor::black;
-    fontCityColor = ofColor::black;
-  }
+  // Set inital
+  fontSizeTime = 130;
+  fontSizeTitle = 35;
+  fontSizeCity = 45;
+  fontSizeProjectTitle = 60;
+  fontSizeIpccTitle = 35;
+  fontTime = "digi2.ttf";
+  fontTitle = "fontbureau.otf";
+  timeZone = "America/Chicago";
+  fontColor = ofColor::black;
+  fontTitleColor = ofColor::black;
+  fontCityColor = ofColor::black;
 
   // Create ofTrueTypeFont time, title, seperators, and city.
   createTimeWords();
   createTitleWords();
   createSeperators();
+  
+  // Load other fonts.
   city.load("Fonts/" + fontTitle, fontSizeCity);
+  projectTitle.load("Fonts/" + fontTitle, fontSizeProjectTitle);
+  ipccTitle.load("Fonts/" + fontTitle, fontSizeIpccTitle);
 }
 
 void Clock::update() {
@@ -130,6 +135,27 @@ void Clock::drawClock() {
         city.drawString(c, 0, 0);
       ofPopMatrix();
     ofPopStyle();
+  
+    // Project Title
+    ofPushStyle();
+      ofSetColor(fontCityColor);
+      ofPushMatrix();
+        c = "2° WINDOW PROJECT";
+        ofTranslate(projectTitleXOffset, projectTitleYOffset);
+        projectTitle.drawString(c, 0, 0);
+      ofPopMatrix();
+    ofPopStyle();
+  
+    // IPCC Title
+    ofPushStyle();
+      ofSetColor(fontCityColor);
+      ofPushMatrix();
+        c = "Until we will exceed IPCC's 2°C carbon budget with the current emission rate";
+        ofTranslate(ipccTitleXOffset, ipccTitleYOffset);
+        ipccTitle.drawString(c, 0, 0);
+      ofPopMatrix();
+    ofPopStyle();
+  
   ofPopMatrix();
 }
 
@@ -276,6 +302,10 @@ void Clock::createTitleWords() {
   }
 }
 
+void Clock::createIPCCTitle() {
+
+}
+
 void Clock::drawGui() {
   gui.draw();
 }
@@ -374,10 +404,6 @@ void Clock::setTimeZone(string tz) {
 }
 
 void Clock::translate(int x, int y, ofTrueTypeFont& font, string str){
-    if(positionMode == POSITION_MODE_CENTERED){
-        ofRectangle boundingBox = font.getStringBoundingBox(str, 0, 0);
-        ofTranslate(x - boundingBox.width * 0.5, y + boundingBox.height * 0.5);
-    } else {
-        ofTranslate(x, y);
-    }
+  ofRectangle boundingBox = font.getStringBoundingBox(str, 0, 0);
+  ofTranslate(x - boundingBox.width * 0.5, y + boundingBox.height * 0.5);
 }

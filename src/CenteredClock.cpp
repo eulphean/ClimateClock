@@ -2,7 +2,7 @@
 
 void CenteredClock::setup() {
     // Initialize clock.
-    clock.setup("costarica.xml", POSITION_MODE_CENTERED, "CenterCoreClock.xml");
+    clock.setup("CenterCoreClock.xml");
     clock.hideRoundedBorder = true;
     clock.guiXOffsetForCity = true;
   
@@ -29,6 +29,7 @@ void CenteredClock::draw(bool hideGui) {
   ofPopMatrix();
   
   if (!hideGui) {
+    ofShowCursor();
     clock.drawGui();
     gui.draw();
   }

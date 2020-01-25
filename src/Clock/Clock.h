@@ -22,7 +22,7 @@ enum PositionMode {
 
 class Clock {
   public:
-    void setup(string fileName = " ", PositionMode _positionMode = POSITION_MODE_NORMAL, string guiXml = " ");
+    void setup(string guiXml = " ");
     void update();
     void exit();
 
@@ -58,12 +58,11 @@ class Clock {
     void createTimeWords();
     void createTitleWords();
     void createSeperators();
+    void createProjectTitle();
+    void createIPCCTitle();
     void createCity();
     void updateTime();
     void translate(int x, int y, ofTrueTypeFont& font, string str);
-  
-    // XML instance.
-    ofxXmlSettings settings;
   
     // Clock format parameters. Some of them are in GUI
     // to be able to format the clock properly.
@@ -74,20 +73,25 @@ class Clock {
     ofParameter<float> roundedRectHeight { "Rounded Rect Height", 40, 10, 500 };
     ofParameter<float> rectXOffset { "Rect X Offset", 5, 0, 1000 };
     ofParameter<float> rectYOffset { "Rect Y Offset", 35, 0, 1000 };
-    ofParameter<float> cityYOffset { "City Y Offset", 35, 0, 1000 };
+    ofParameter<float> cityYOffset { "City Y Offset", 35, -1000, 1000 };
     ofParameter<float> cityXOffset { "City X Offset", 35, 0, 1000 };
+    ofParameter<float> projectTitleXOffset { "Project Title X Offset", 35, -1000, 1000 };
+    ofParameter<float> projectTitleYOffset { "Project Title Y Offset", 35, -1000, 1000 };
+    ofParameter<float> ipccTitleXOffset { "IPCC Title X Offset", 35, -1000, 1000 };
+    ofParameter<float> ipccTitleYOffset { "IPCC Title Y Offset", 35, -1000, 1000 };
     
-    int fontSizeTime = 30;
-    int fontSizeTitle = 12;
-    int fontSizeCity = 18;
-    ofColor fontColor = ofColor(255, 93, 86, 255);
-    ofColor fontTitleColor = ofColor(160, 161, 165, 255);
-    ofColor fontCityColor = ofColor(203, 204, 206, 255);
-    string fontTime = "digi2.ttf";
-    string fontTitle = "fontbureau.otf";
-    string timeZone = "America/Chicago";
+    int fontSizeTime;
+    int fontSizeTitle;
+    int fontSizeCity;
+    int fontSizeProjectTitle;
+    int fontSizeIpccTitle;
+    ofColor fontColor;
+    ofColor fontTitleColor;
+    ofColor fontCityColor;
+    string fontTime;
+    string fontTitle;
+    string timeZone;
     float xPosition; float yPosition;
-    PositionMode positionMode;
 
     //  18   181  15   11   11  <- Line 1 (5 words)
     // Years Days Hrs Mins Secs <- Line 2 (5 words)
@@ -107,6 +111,9 @@ class Clock {
   
     // Clock parameters
     int years; int days; int hours; int minutes; int seconds; int milliseconds;
+  
+    ofTrueTypeFont projectTitle;
+    ofTrueTypeFont ipccTitle;
   
     // Gui Xml file.
     string guiXmlFile;
