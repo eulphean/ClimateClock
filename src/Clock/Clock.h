@@ -22,9 +22,8 @@ enum PositionMode {
 
 class Clock {
   public:
-    void setup(string guiXml = " ");
+    void setup(string initialTz, string guiXml = " ");
     void update();
-    void nextTimezone();
     void exit();
 
     // Generic method that draws the entire clock

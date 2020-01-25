@@ -1,6 +1,6 @@
 #include "Clock.h"
 
-void Clock::setup(string guiXml) {
+void Clock::setup(string initialTz, string guiXml) {
   // Initialize a GUI for adjust important clock display parameters.
   if (guiXml != " ") {
     guiXmlFile = guiXml;
@@ -30,7 +30,7 @@ void Clock::setup(string guiXml) {
   fontSizeIpccTitle = 35;
   fontTime = "digi2.ttf";
   fontTitle = "fontbureau.otf";
-  timeZone = "America/Chicago";
+  timeZone = initialTz;
   fontColor = ofColor::black;
   fontTitleColor = ofColor::black;
   fontCityColor = ofColor::black;
@@ -406,9 +406,4 @@ void Clock::setTimeZone(string tz) {
 void Clock::translate(int x, int y, ofTrueTypeFont& font, string str){
   ofRectangle boundingBox = font.getStringBoundingBox(str, 0, 0);
   ofTranslate(x - boundingBox.width * 0.5, y + boundingBox.height * 0.5);
-}
-
-void Clock::nextTimezone() {
-  // Pick a timezone (random) from the array (put all that code)
-  setTimeZone("America/New_York");
 }

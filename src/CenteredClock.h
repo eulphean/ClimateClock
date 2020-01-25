@@ -22,4 +22,7 @@ protected:
     ofParameter<float> yPosition { "Y Position", 80, 40, 1000 };
     ofParameter<float> xScale { "X Scale", 1, 0.5, 10 };
     ofParameter<float> yScale { "Y Scale", 1, 0.5, 10 };
+  
+    std::vector<string> timezones;
+    int timezoneIdx; 
 };
