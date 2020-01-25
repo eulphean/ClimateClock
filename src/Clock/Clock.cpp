@@ -146,7 +146,7 @@ void Clock::drawClock() {
         projectTitle.drawString(c, 0, 0);
       ofPopMatrix();
     ofPopStyle();
-  
+
     // IPCC Title
     ofPushStyle();
       ofSetColor(fontCityColor);
