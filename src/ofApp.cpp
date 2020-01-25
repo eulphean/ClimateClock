@@ -2,7 +2,7 @@
 
 void ofApp::setup() {
   centeredClock.setup();
-  hideGui = false;
+  hideGui = true;
   bg.loadImage("background.jpg");
 }
 

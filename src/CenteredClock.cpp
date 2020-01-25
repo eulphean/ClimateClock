@@ -50,9 +50,7 @@ void CenteredClock::setup() {
     clock.guiXOffsetForCity = false;
   
     currentTime = 0;
-    maxWaitTime = 10000; // 60 seconds or 60000 milliseconds
-  
-    hideGui = true; 
+    maxWaitTime = 10000; // 60 seconds or 60000 milliseconds 
 }
 
 void CenteredClock::update() {
