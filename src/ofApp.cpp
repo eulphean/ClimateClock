@@ -11,8 +11,8 @@ void ofApp::update() {
 }
 
 void ofApp::draw() {
-  bg.draw(0, 0, ofGetWidth(), ofGetHeight());
-  centeredClock.draw(hideGui);
+   bg.draw(0, 0, ofGetWidth(), ofGetWidth());;
+   centeredClock.draw(hideGui);
 }
 
 void ofApp::exit(){

@@ -1,3 +1,4 @@
+PROJECT_LDFLAGS += -latomic
 ################################################################################
 # CONFIGURE PROJECT MAKEFILE (optional)
 #   This file is where we make project specific configurations.
