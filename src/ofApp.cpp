@@ -3,6 +3,7 @@
 void ofApp::setup() {
   centeredClock.setup();
   hideGui = false;
+  bg.loadImage("background.jpg");
 }
 
 void ofApp::update() {
@@ -10,6 +11,7 @@ void ofApp::update() {
 }
 
 void ofApp::draw() {
+  bg.draw(0, 0, ofGetWidth(), ofGetHeight());
   centeredClock.draw(hideGui);
 }
 

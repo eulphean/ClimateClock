@@ -28,21 +28,10 @@ void Clock::setup(string fileName, PositionMode _positionMode, string guiXml) {
     fontTime = settings.getValue("settings:fontTime", "instruction.otf");
     fontTitle = settings.getValue("settings:fontTitle", "instruction.otf");
     timeZone = settings.getValue("settings:timeZone", "America/Chicago");
-   
-    // Construct time color from XML.
-    string color = settings.getValue("settings:fontColor", "255, 255, 255, 255");
-    auto c = ofSplitString(color, ",");
-    fontColor = ofColor(ofToInt(c[0]), ofToInt(c[1]), ofToInt(c[2]), ofToInt(c[3]));
-    
-    // Constuct title from XML
-    color = settings.getValue("settings:titleColor", "255,255,255,255");
-    c = ofSplitString(color, ",");
-    fontTitleColor = ofColor(ofToInt(c[0]), ofToInt(c[1]), ofToInt(c[2]), ofToInt(c[3]));
-    
-    // Construct city color from XML.
-    color = settings.getValue("settings:cityColor", "255,255,255,255");
-    c = ofSplitString(color, ",");
-    fontCityColor = ofColor(ofToInt(c[0]), ofToInt(c[1]), ofToInt(c[2]), ofToInt(c[3]));
+
+    fontColor = ofColor::black;
+    fontTitleColor = ofColor::black;
+    fontCityColor = ofColor::black;
   }
 
   // Create ofTrueTypeFont time, title, seperators, and city.

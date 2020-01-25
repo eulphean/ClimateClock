@@ -15,5 +15,6 @@ public:
   
 private:
     CenteredClock centeredClock;
-    bool hideGui; 
+    bool hideGui;
+    ofImage bg; 
 };
