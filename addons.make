@@ -1,5 +1,2 @@
 ofxGui
-ofxLayerMask
 ofxXmlSettings
-ofxTriangle
-ofxProjectionMask

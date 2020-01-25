@@ -19,6 +19,6 @@ protected:
     ofxPanel gui;
     ofParameter<float> xPosition { "X Position", 50, -1000, 1000 }; // Distance between 2 consecutive words.
     ofParameter<float> yPosition { "Y Position", 80, 40, 1000 };
-    ofParameter<float> xScale { "X Scale", 1, 1, 10 };
-    ofParameter<float> yScale { "Y Scale", 1, 1, 10 };
+    ofParameter<float> xScale { "X Scale", 1, 0.5, 10 };
+    ofParameter<float> yScale { "Y Scale", 1, 0.5, 10 };
 };

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Centered_Clock_Params_>
-	<X_Position>103.438</X_Position>
-	<Y_Position>382.45</Y_Position>
-	<X_Scale>1.5</X_Scale>
-	<Y_Scale>1.5</Y_Scale>
+	<X_Position>120</X_Position>
+	<Y_Position>462.4</Y_Position>
+	<X_Scale>0.785</X_Scale>
+	<Y_Scale>0.88</Y_Scale>
 </Centered_Clock_Params_>
