@@ -55,7 +55,7 @@ void Clock::update() {
   
   // Clock ticking.
   if (ofGetElapsedTimeMillis() - currentTime > 1000) {
-    ticker.play();
+    //ticker.play();
     currentTime = ofGetElapsedTimeMillis();
   }
 }
