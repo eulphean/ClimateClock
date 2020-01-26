@@ -37,7 +37,7 @@ void ofApp::mousePressed(int x, int y, int button) {
   auto r = ofRandom(5, 10);
   
   Dip d (pos, c, r);
-  dips.push_back(d);
+  // dips.push_back(d);
 }
 
 // Animations (interpolate the background) = no
