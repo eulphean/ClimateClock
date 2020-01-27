@@ -41,9 +41,9 @@ void Clock::setup(string initialTz, string guiXml) {
   createSeperators();
   
   // Load other fonts.
-  city.load("Fonts/" + fontTitle, fontSizeCity);
-  projectTitle.load("Fonts/" + fontTitle, fontSizeProjectTitle);
-  ipccTitle.load("Fonts/" + fontTitle, fontSizeIpccTitle);
+  city.load("Fonts/betong.ttf", fontSizeCity);
+  projectTitle.load("Fonts/betong.ttf", fontSizeProjectTitle);
+  ipccTitle.load("Fonts/betong.ttf", fontSizeIpccTitle);
   
   // Load sound
   ticker.load("click.wav"); ticker.setVolume(1.0);
@@ -161,7 +161,7 @@ void Clock::drawClock() {
     ofPushStyle();
       ofSetColor(fontCityColor);
       ofPushMatrix();
-        c = "Until we will exceed IPCC's 2°C carbon budget with the current emission rate";
+        c = "Until we exceed 2°C carbon budget with our current emission rate";
         ofTranslate(ipccTitleXOffset, ipccTitleYOffset);
         ipccTitle.drawString(c, 0, 0);
       ofPopMatrix();
@@ -308,7 +308,7 @@ void Clock::createTitleWords() {
   title.clear();
   for (int i = 0; i < numWordsTitle; i++) {
     ofTrueTypeFont word;
-    word.load("Fonts/" + fontTitle, fontSizeTitle); // Title should be smaller than Time's font size.
+    word.load("Fonts/betong.ttf", fontSizeTitle); // Title should be smaller than Time's font size.
     title.push_back(word);
   }
 }
