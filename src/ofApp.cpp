@@ -1,7 +1,9 @@
 #include "ofApp.h"
 
 void ofApp::setup() {
-  centeredClock.setup();
+  // Setup the core clock module
+  wrapperClock.setup();
+    
   hideGui = true;
   bg.load("background.jpg");
   
@@ -15,10 +17,11 @@ void ofApp::setup() {
   curColIdx = 0;
   
   pressed = false;
+
 }
 
 void ofApp::update() {
-  centeredClock.update();
+  wrapperClock.update();
   handleColorLerp();
 }
 
@@ -29,7 +32,7 @@ void ofApp::draw() {
     ofBackground(lerped);
   }
   
-  centeredClock.draw(hideGui);
+  wrapperClock.draw(hideGui);
 }
 
 void ofApp::handleColorLerp() {
@@ -50,7 +53,7 @@ void ofApp::handleColorLerp() {
 }
 
 void ofApp::exit(){
-  centeredClock.exit();
+  wrapperClock.exit();
 }
 
 void ofApp::keyPressed(int key) {
@@ -60,7 +63,7 @@ void ofApp::keyPressed(int key) {
 }
 
 void ofApp::mousePressed(int x, int y, int button) {
-  centeredClock.nextTimezone();
+  wrapperClock.nextTimezone();
   pressed = true;
 }
 

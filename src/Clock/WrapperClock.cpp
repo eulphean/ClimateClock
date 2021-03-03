@@ -1,6 +1,6 @@
-#include "CenteredClock.h"
+#include "WrapperClock.h"
 
-void CenteredClock::setup() {
+void WrapperClock::setup() {
     // Setup the GUI.
     gui.setup("Centered Clock Params.");
     gui.setPosition(300, 250);
@@ -43,17 +43,20 @@ void CenteredClock::setup() {
     timezones.push_back("Europe/Zurich");
     timezones.push_back("Indian/Maldives");
   
+    // Request all data for the clock.
+    apiController.setup();
+    
     // Initialize clock.
     timezoneIdx = 0;
-    clock.setup(timezones[timezoneIdx], "CenterCoreClock.xml");
+    clock.setup(apiController, timezones[timezoneIdx], "CenterCoreClock.xml");
     clock.hideRoundedBorder = true;
     clock.guiXOffsetForCity = false;
   
     currentTime = 0;
-    maxWaitTime = 10000; // 60 seconds or 60000 milliseconds 
+    maxWaitTime = 10000; // 60 seconds or 60000 milliseconds
 }
 
-void CenteredClock::update() {
+void WrapperClock::update() {
     clock.update();
     clock.setPosition(xPosition, yPosition);
   
@@ -62,7 +65,7 @@ void CenteredClock::update() {
     }
 }
 
-void CenteredClock::draw(bool hideGui) {
+void WrapperClock::draw(bool hideGui) {
   // Apply scaling to the center clock.
   ofPushMatrix();
     ofScale(xScale, yScale, 0);
@@ -78,12 +81,12 @@ void CenteredClock::draw(bool hideGui) {
   }
 }
 
-void CenteredClock::exit() {
+void WrapperClock::exit() {
    gui.saveToFile("CenterClock.xml");
    clock.exit();
 }
 
-void CenteredClock::nextTimezone() {
+void WrapperClock::nextTimezone() {
   timezoneIdx = (timezoneIdx + 1) % timezones.size();
   clock.setTimeZone(timezones[timezoneIdx]);
   currentTime = ofGetElapsedTimeMillis(); // Reset current time.

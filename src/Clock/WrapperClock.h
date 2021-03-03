@@ -3,8 +3,9 @@
 #include "ofMain.h"
 #include "Clock.h"
 #include "ofxGui.h"
+#include "ApiController.h"
 
-class CenteredClock {
+class WrapperClock {
     
 public:
     void setup();
@@ -15,6 +16,7 @@ public:
     
 protected:
     Clock clock;
+    ApiController apiController; 
   
     // GUI parameters for Centered Clock. 
     ofxPanel gui;

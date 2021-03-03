@@ -1,6 +1,7 @@
 #include "Clock.h"
+using namespace std::chrono;
 
-void Clock::setup(string initialTz, string guiXml) {
+void Clock::setup(ApiController &apiController, string initialTz, string guiXml) {
   // Initialize a GUI for adjust important clock display parameters.
   if (guiXml != " ") {
     guiXmlFile = guiXml;
@@ -39,6 +40,10 @@ void Clock::setup(string initialTz, string guiXml) {
   createTimeWords();
   createTitleWords();
   createSeperators();
+    
+  // Create future time.
+  string endDate = apiController.getEndDate();
+  createEndTimePoint(endDate);
   
   // Load other fonts.
   city.load("Fonts/betong.ttf", fontSizeCity);
@@ -358,16 +363,34 @@ string Clock::placeValueTime(int time, PlaceValue place) {
   return s;
 }
 
+void Clock::createEndTimePoint(string endDate) {
+    cout << "End Date is: " << endDate << endl;
+    auto dateTimeArray = ofSplitString(endDate, "T");
+    auto dateArray = ofSplitString(dateTimeArray[0], "-");
+    int y = std::stoi(dateArray[0]); endTimeVars.push_back(y);
+    int m = std::stoi(dateArray[1]); endTimeVars.push_back(m);
+    int d = std::stoi(dateArray[2]); endTimeVars.push_back(d);
+    
+    auto timeArray = ofSplitString(dateTimeArray[1], ":");
+    int h = std::stoi(timeArray[0]); endTimeVars.push_back(h);
+    int mins = std::stoi(timeArray[1]); endTimeVars.push_back(mins);
+    int secs = std::stoi(timeArray[2]); endTimeVars.push_back(secs);
+}
+
 void Clock::updateTime() {
   using namespace date;
   
   // Future time in a zone.
-  auto future = make_zoned(locate_zone(timeZone), local_days{2037_y / jan / 5}, choose::earliest);
+  auto duration = std::chrono::hours(endTimeVars.at(3)) + std::chrono::minutes(endTimeVars.at(4)) + std::chrono::seconds(endTimeVars.at(5));
+  auto endTime = date::local_days{date::year{endTimeVars.at(0)} / endTimeVars.at(1) / endTimeVars.at(2)} + duration;
+  auto future = make_zoned(locate_zone(timeZone), endTime);
   auto futureTime = date::floor<chrono::milliseconds>(future.get_sys_time());
+  cout << futureTime << endl;
   
   // Current time in a zone.
   auto now = make_zoned(date::locate_zone(timeZone), chrono::system_clock::now());
-  auto nowTime = floor<chrono::milliseconds>(now.get_sys_time());
+  auto nowTime = date::floor<chrono::milliseconds>(now.get_sys_time());
+  cout << nowTime << endl;
 
   // Time difference.
   auto diff = chrono::duration_cast<chrono::milliseconds>(futureTime - nowTime);

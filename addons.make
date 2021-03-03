@@ -1,2 +1,5 @@
 ofxGui
+ofxHttpUtils
+ofxJSON
+ofxPoco
 ofxXmlSettings

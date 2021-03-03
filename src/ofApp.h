@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "CenteredClock.h"
+#include "WrapperClock.h"
 
 class ofApp : public ofBaseApp{
 
@@ -17,7 +17,7 @@ public:
     void mouseReleased(int x, int y, int button); 
   
 private:
-    CenteredClock centeredClock;
+    WrapperClock wrapperClock;
     bool hideGui;
     ofImage bg;
   

@@ -6,6 +6,7 @@
 #include "ofxGui.h"
 #include "ofxXmlSettings.h"
 #include "Date/tz.h"
+#include "ApiController.h"
 
 // Place
 enum PlaceValue {
@@ -22,7 +23,7 @@ enum PositionMode {
 
 class Clock {
   public:
-    void setup(string initialTz, string guiXml = " ");
+    void setup(ApiController &apiController, string initialTz, string guiXml = " ");
     void update();
     void exit();
 
@@ -63,7 +64,11 @@ class Clock {
     void createCity();
     void updateTime();
     void translate(int x, int y, ofTrueTypeFont& font, string str);
-  
+    void createEndTimePoint(string endDate);
+    
+    // Future time point variables
+    std::vector<int> endTimeVars; 
+    
     // Clock format parameters. Some of them are in GUI
     // to be able to format the clock properly.
     ofxPanel gui;
@@ -119,5 +124,5 @@ class Clock {
     string guiXmlFile;
   
     ofSoundPlayer ticker;  
-    long currentTime; 
+    long currentTime;
 };
